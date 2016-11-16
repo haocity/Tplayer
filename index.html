@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>弹幕演示</title>
+		<style>
+		body {
+		    overflow: hidden;
+		    font-family: "微软雅黑";
+		    padding: 0;
+		    margin: 0;
+		    font-size: 24px;
+				/*	background-image:url(http://t4.haotown.cn/img/bj@1441.jpg);*/
+		}
+		</style>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="colorpicker.js"></script>
+    	<link rel="stylesheet" type="text/css" href="themes.css" />
+	</head>
+	<body>
+		<form class="danmupost" action="send.php" method="post" target="hiddenIFrame"  onsubmit="mxxx()" >
+		<div class="logo-small"></div>
+		<input class="tucao" type="text" id="dm-text" name="dm-text" required="true" placeholder="客官，不来吐槽一下吗?"  autocomplete="off" >
+		<input type="text" id="dm-color" id="dm-color" name="dm-color" style="display:none" value="#fff">
+		<input type="text" id="dm-time" id="dm-time" name="dm-time" style="display:none" value="0">
+		<div class="dm-colorbar" id="dm-colorbar"></div>
+		<div id="color-picker" class="cp-small"></div>
+	    <script type="text/javascript">
+	    	document.getElementById("dm-colorbar").onclick=function(){
+							if (document.getElementById("color-picker").style.display=='block') {
+								document.getElementById("color-picker").style.display='none'
+							}
+							else{
+								document.getElementById("color-picker").style.display='block'
+							}
+						}
+	      ColorPicker(
+
+	        document.getElementById('color-picker'),
+
+	        function(hex, hsv, rgb) {
+	          //console.log(hsv.h, hsv.s, hsv.v);         // [0-359], [0-1], [0-1]
+	          //console.log(rgb.r, rgb.g, rgb.b);         // [0-255], [0-255], [0-255]
+	          document.getElementById('dm-color').value=hex;
+	           document.getElementById('dm-colorbar').style.background=hex;
+
+	        });
+
+	    </script>
+		<input class="post" id="dm-up" type="submit" value="发送" >
+		</form>
+		<iframe style="position:absolute;border:0px solid #000" name="hiddenIFrame" ></iframe>
+			<div id="danmu"></div>
+		<script type="text/javascript" src="danmu.js"></script>
+		<script type="text/javascript">
+		//一图壁纸
+	 function GetOneImg(){ 
+    OneImg="https://app.haotown.cn/img/bj@"+Math.round(Math.random()*4200)+".jpg"
+     }
+        //更换图片
+    function ChangeOneImg(){
+    console.log(OneImg);//调试图片地址
+    document.body.style.backgroundImage = "url("+OneImg+")";
+    GetOneImg();
+    LoadImg(OneImg);//预先加载下一张图片
+     }
+     //预加载
+        function LoadImg(url) { 
+    var img = new Image(); 
+    img.src = url; 
+    }
+    GetOneImg();
+    ChangeOneImg();
+    setInterval(ChangeOneImg,8000);
+    </script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+/* Common stuff */
+.picker-wrapper, 
+.slide-wrapper {
+    position: relative;
+    float: left;
+}
+.picker-indicator,
+.slide-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+.picker,
+.slide {
+    cursor: crosshair;
+    float: left;
+}
+
+
+/* Small skin */
+
+.cp-small {
+    display: none;
+    padding: 5px;
+    background-color: white;
+    position: absolute;
+    bottom: 30px;
+    left: 88%;
+    border-radius: 5px;
+    border:1px solid #B9B9B9;
+}
+.cp-small .picker {
+    width: 100px;
+    height: 100px;
+}
+.cp-small .slide {
+    width: 15px;
+    height: 100px;
+}
+.cp-small .slide-wrapper {
+    margin-left: 5px;
+}
+.cp-small .picker-indicator {
+    width: 1px;
+    height: 1px;
+    border: 1px solid black;
+    background-color: white;
+}
+.cp-small .slide-indicator {
+    width: 100%;
+    height: 2px;
+    left: 0px;
+    background-color: black;
+}
+

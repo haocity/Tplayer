@@ -34,7 +34,7 @@
 		    }
 		}
 
-		.danmupost {
+		.dm-send {
 		    position: fixed;
 		    bottom: 0px;
 		    left: 0;
@@ -46,7 +46,7 @@
 		    background-color: #625660;
 		}
 
-		.tucao {
+		.dm-tucao {
 		    position: relative;
 		    top: -12px;
 		    width: 70%;
@@ -54,7 +54,7 @@
 		    line-height: 20px;
 		}
 
-		.post {
+		.dm-post {
 		    position: relative;
 		    top: -13px;
 		    background-color: #8715EF;
@@ -75,7 +75,7 @@
 		    top: -4px;
 		    background-color: #fff;
 		}
-		.logo-small{
+		.dm-logo-small{
 			width: 114px;
 			height: 35px;
 			background-image: url(logo-small.png);

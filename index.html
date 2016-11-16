@@ -18,11 +18,11 @@
     	<link rel="stylesheet" type="text/css" href="themes.css" />
 	</head>
 	<body>
-		<form class="danmupost" action="send.php" method="post" target="hiddenIFrame"  onsubmit="mxxx()" >
-		<div class="logo-small"></div>
-		<input class="tucao" type="text" id="dm-text" name="dm-text" required="true" placeholder="客官，不来吐槽一下吗?"  autocomplete="off" >
-		<input type="text" id="dm-color" id="dm-color" name="dm-color" style="display:none" value="#fff">
-		<input type="text" id="dm-time" id="dm-time" name="dm-time" style="display:none" value="0">
+		<form class="dm-send" action="send.php" method="post" target="hiddenIFrame"  onsubmit="mxxx()" >
+		<div class="dm-logo-small"></div>
+		<input class="dm-tucao" type="text" id="dm-text" name="dm-text" required="true" placeholder="客官，不来吐槽一下吗?"  autocomplete="off" >
+		<input type="text" id="dm-color" name="dm-color" style="display:none" value="#fff">
+		<input type="text" id="dm-time"  name="dm-time" style="display:none" value="0">
 		<div class="dm-colorbar" id="dm-colorbar"></div>
 		<div id="color-picker" class="cp-small"></div>
 	    <script type="text/javascript">
@@ -47,7 +47,7 @@
 	        });
 
 	    </script>
-		<input class="post" id="dm-up" type="submit" value="发送" >
+		<input class="dm-post" id="dm-up" type="submit" value="发送" >
 		</form>
 		<iframe style="position:absolute;border:0px solid #000" name="hiddenIFrame" ></iframe>
 			<div id="danmu"></div>

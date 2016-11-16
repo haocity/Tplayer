@@ -1,3 +1,4 @@
-# h5-danmu
-html5 弹幕系统
+# danmu
+css3弹幕系统
 后端 php
+未完成

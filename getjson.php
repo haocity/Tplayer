@@ -1,5 +1,7 @@
 <?php
 include 'config.php';
+header('Access-Control-Allow-Origin:*');  
+header('Content-Type: text/json;charset=utf-8');
 $b="set names utf8";
 $conn->query($b);
 $sql = "SELECT * FROM `1`";

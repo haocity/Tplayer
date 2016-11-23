@@ -23,6 +23,7 @@
 .cp-small {
     display: none;
     padding: 5px;
+    width: 126px;
     background-color: white;
     position: absolute;
     bottom: 30px;

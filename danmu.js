@@ -322,7 +322,7 @@ xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
         if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
             var response = JSON.parse(xhr.responseText);
-            $('dm-video-x-main').src=response.durl[0].url;
+            $('dm-video-x').src=response.durl[0].url;
         }
         else {
             console.log('Request was unsuccessful: ' + xhr.status);

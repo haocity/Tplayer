@@ -254,6 +254,13 @@ input[type=range]:focus::-ms-fill-upper {
     z-index: 7;
     display: none;
 }
+.dm-suspend{
+	-webkit-animation-play-state: paused !important;
+    animation-play-state: paused !important;
+}
+.md-iframe{
+	display: none;
+}
 
 .dm-spinner > div {
   background-color: #fff;

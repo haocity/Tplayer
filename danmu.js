@@ -87,7 +87,12 @@ xmlhttp.onreadystatechange = function() {
          danmu.video.currentTime=parseInt(this.value)*danmu.video.duration*0.0001;
          danmu.time=parseInt(danmu.video.currentTime)*10;
        }
-
+       //音量调节
+       $('dm-syk').onclick=function(){
+        var i= parseInt($('dm-syk-range').value)*0.01;
+        console.log(i);
+        $('dm-video-x').volume=i;
+       }
     function danmutime() {
       //定时器 0.1s执行一次
       danmu.time++;
@@ -166,18 +171,27 @@ xmlhttp.onreadystatechange = function() {
     //键盘
     document.onkeydown=function(event){
             var e = event || window.event || arguments.callee.caller.arguments[0];
-          
+            showbar();
             if(e && e.keyCode==39){ // right 键
                 $('video-control-range').value=parseInt( $('video-control-range').value)+50;
                   $('video-control-range').onclick();
               }         
-            if(e && e.keyCode==37){ // right 键
+            if(e && e.keyCode==37){ // left 键
                 $('video-control-range').value=parseInt( $('video-control-range').value)-50;
                 $('video-control-range').onclick();
             }  
-            if(e && e.keyCode==32){ // right 键
+            if(e && e.keyCode==32){ // space 键
                 $('dm-video-x').onclick()
-            }          
+            }
+             if(e && e.keyCode==38){ // up 键
+                $('dm-syk-range').value=parseInt($('dm-syk-range').value)+1;
+                $('dm-syk').onclick();
+            }
+             if(e && e.keyCode==40){ // down 键
+                $('dm-syk-range').value=parseInt($('dm-syk-range').value)-1;
+                $('dm-syk').onclick();
+            }
+
              
         }; 
     function danmupaixu() {

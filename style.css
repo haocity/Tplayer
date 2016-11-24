@@ -168,6 +168,12 @@
 			border: none !important;
 			background-color: #fff;
 		}
+		.dm-syk{
+			padding-left: 20px;
+			position: relative;
+			display: inline-block;
+			color: #fff;
+		}
 input[type=range] {
   -webkit-appearance: none;
   width: 100%;

@@ -74,7 +74,6 @@ xmlhttp.onreadystatechange = function() {
          $('dm-oneplay').style.display='none';
           if (danmu.dsq==0) {danmu.Interval=setInterval(danmutime, 100);danmu.dsq=1}
            var e = $("danmu").getElementsByTagName("div");
-            console.log('视频播放');
             this.style.display='none';
             $('video-control-paused').style.display='inline-block';
             danmu.video.play();
@@ -106,24 +105,26 @@ xmlhttp.onreadystatechange = function() {
       }
     }
     //视频缓冲事件
-    $('dm-video-x').addEventListener('waiting', function() {
+    $('dm-video-x').addEventListener('waiting',videohc);
+     function videohc() {
+      //console.log('loding');
        clearInterval(danmu.Interval);
        danmu.dsq=0;
       $('dm-spinner').style.display='block';
       var e = $("danmu").getElementsByTagName("div");
-      console.log('loding');
       for (var i = e.length - 1; i >= 0; i--) {
                 e[i].className="danmu dm-suspend";
             }; 
      
-    });
+    }
     $('dm-video-x').addEventListener('playing', function() {
+     // console.log('play');
       if (danmu.dsq==0) {danmu.Interval=setInterval(danmutime, 100);danmu.dsq=1}
       var e = $("danmu").getElementsByTagName("div");
       $('dm-spinner').style.display='none';
        $('video-control-alltime').innerHTML= getvideotime(danmu.video.duration).m+":"+getvideotime(danmu.video.duration).s;
       for (var i = e.length - 1; i >= 0; i--) {
-                e[i].className="danmu";
+                if (e[i].className!="danmu") {e[i].className="danmu";};
             };
       
     });

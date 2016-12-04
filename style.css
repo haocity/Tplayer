@@ -265,6 +265,10 @@ input[type=range]:focus::-ms-fill-upper {
 	-webkit-animation-play-state: paused !important;
     animation-play-state: paused !important;
 }
+#dm-syk-range {
+    position: relative;
+    left: 8px;
+}
 .md-iframe{
 	display: none;
 }

@@ -331,18 +331,5 @@ function sjc(time){
   if (time==danmu.sjc) {$('dm-video-y').style.opacity='0';}
 }
 
+$('dm-video-x').src="https://t4.haotown.cn//up/1.mp4";
 
-var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-        if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-            var response = JSON.parse(xhr.responseText);
-            $('dm-video-x').src=response.durl[0].url;
-        }
-        else {
-            console.log('Request was unsuccessful: ' + xhr.status);
-        }
-    }
-};
-xhr.open('get', 'https://api.prprpr.me/dplayer/video/bilibili?aid=6612136', true);
-xhr.send(null);

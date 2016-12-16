@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ColorPicker - pure JavaScript color picker without using images, external CSS or 1px divs.
  * Copyright © 2011 David Durman, All rights reserved.
  */

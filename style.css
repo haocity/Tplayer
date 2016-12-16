@@ -1,57 +1,49 @@
-		#danmu {
+			*{padding:0 ;margin:0 ;}
+			body{font-family: "微软雅黑";background: #000;overflow-x: hidden;}
+
+		.danmu{
+			color: #fff;
+			line-height: 31px;
+			 z-index: 6;
+			 padding: 0 4px;
+		}
+		.dm-left{
+			position: absolute;
+			will-change: transform;
+			right: 0;
+			font-size: 24px;
+			animation:dmleft 10s linear;
+			-webkit-animation:dmleft 10s linear ;
+			cursor: pointer;
+			white-space: nowrap;
+		    text-shadow: #000 0 2px 0;
+		}
+		.dm-top{
+			position: absolute;
+			left: 0;right: 0;
+			margin: 0 auto;
+			text-align: center;
+		}
+		@keyframes dmleft{
+			0% {
+				-webkit-transform: translateX(100%);
+				transform: translateX(100%)
+			}
+		}@-webkit-keyframes dmleft{
+			0% {
+				-webkit-transform: translateX(100%);
+				transform: translateX(100%)
+			}
+		}
+	#danmu {
 		    position: absolute;
 		    top: 0px;
 		    left: 0px;
 		    width: 100%;
+		    height: 100%;
 		    left: 0px;
-		    width: 100%;
+		   	overflow: hidden;
 		}
-
-		.danmu {
-		    color: #fff;
-		    font-weight: bold;
-		    padding-top: 2px;
-		    padding-left: 2px;
-		    position: absolute;
-		    font-size: 34px;
-		    left: -2000px;
-		    display: inline-block;
-		    animation: danmu 30s;
-			-webkit-animation:danmu 30s; 
-		    animation-timing-function: linear;
-			-webkit-animation-timing-function: linear;
-		    will-change: transform;
-		    white-space: nowrap;
-		    text-shadow: #000 0 2px 0;
-		    transition: transform 2s;
-		    -webkit-transition: transform 2s;
-		    z-index: 6;
-		 /* Safari */
-		}
-
-		.danmu:hover {
-		    transform: scale(1.2);
-		}
-
-		@keyframes danmu {
-		    from {
-		        left: 100%;
-		    }
-
-		    to {
-		        left: -2000px;
-		    }
-		}
-	@-webkit-keyframes danmu {
-		 from {
-		        left: 1280px;
-		    }
-
-		    to {
-		        left: -2000px;
-		    }
-		}
-
 		.dm-send {
 		    position: absolute;
 		    bottom: 10%;
@@ -109,11 +101,17 @@
 		.dm-video-main{
 			position: relative;
 		    top: 0;
+		    height: 517px;
+   			width: 922px;
+   			margin: 0 auto;
+		    
 		    background-color: #000;
 		    z-index: 5;
 		}
 		.dm-video{
 			background-color: #000;
+			height: 100%;
+			width: 100%;
 		}
 		.dm-video-y{
 			opacity: 1;
@@ -317,18 +315,48 @@ input[type=range]:focus::-ms-fill-upper {
     -webkit-transform: scaleY(1.0);
   }
 }
-:-webkit-full-screen .dm-video-main>.dm-video {
+:-webkit-full-screen .dm-video-main {
     height: 100% !important;
+    width: 100% !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
-:-moz-full-screen .dm-video-main>.dm-video {
+:-moz-full-screen .dm-video-main {
     height: 100% !important;
+    width: 100% !important;
+      position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
-:-ms-fullscreen .dm-video-main>.dm-video {
+:-ms-fullscreen .dm-video-main {
     height: 100% !important;
+    width: 100% !important;
+      position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
-:-full-screen .dm-video-main>.dm-video {
+:-full-screen .dm-video-main {
     height: 100% !important;
+    width: 100% !important;
+      position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
-:fullscreen .dm-video-main>.dm-video {
+:fullscreen .dm-video-main {
     height: 100% !important;
+    width: 100% !important;
+      position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }

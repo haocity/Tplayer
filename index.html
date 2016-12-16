@@ -6,11 +6,29 @@
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="stylesheet" type="text/css" href="color.css"/>
 		<script src="colorpicker.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.header{
+				text-align: center;
+			}
+			.header>.titile{
+				color: #fff;
+			}
+			.dm-video-warp{
+				position: relative;
+				height: 517px;
+				width: 922px;
+				margin: 0 auto;
+				z-index: 5;
+			}
+		</style>
 		<style>
 
 		</style>
 	</head>
 	<body>
+		<header class="header"><img src="logo-small.png"/>
+			<h1 class="titile">A HTML5 VIDEO PLAYER WITH BARRAGE</h1>
+		</header>
 		<iframe class="md-iframe" name="hiddenIFrame" ></iframe>
 		
 	<div class="dm-video-warp" id="dm-video-warp">
@@ -57,7 +75,7 @@
 
 				<div class="dm-dmk" id="dm-dmk">弹</div>
 				<div class="dm-syk" id="dm-syk">♫<input id="dm-syk-range" style="width:70px;" type="range" name="points" min="0" max="100"  value="100"/></div>
-				<svg onclick="FullScreen()" style="width: 20px;float: right;padding-right:40px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="dm-icon" style="" viewBox="0 0 1024 1024" version="1.1" p-id="1427" ><defs><style type="text/css"><![CDATA[]]></style></defs><path d="M971.862 52.538c-10.964-10.992-25.546-17.044-41.056-17.044L429.616 35.494l0 79.362 479.86 0 0 465.288 79.364 0L988.84 93.524C988.84 78.024 982.802 63.46 971.862 52.538z" p-id="1428"/><path d="M115.092 429.62 35.728 429.62l0 500.854c0 15.5 6.038 30.066 16.982 40.994 10.966 10.988 25.544 17.04 41.05 17.04l469.182 0 0-79.364L115.092 909.144 115.092 429.62z" p-id="1429"/><path d="M127.16 193.578l73.198 73.198-0.034 0.034 40.438 40.44 14.164 14.096 152.616 152.616c8.796 8.796 20.492 13.64 32.932 13.64 12.442 0 24.138-4.846 32.936-13.644 18.158-18.16 18.156-47.708-0.002-65.866l-141.318-141.318 0.094-0.094-40.484-40.486-14.162-13.97L192.812 127.492l146.47 0 0-92L101.16 35.492c-36.392 0-66 29.608-66 66l0 237.972 92 0L127.16 193.578z" p-id="1430"/><path d="M896.578 830.358l-73.198-73.198 0.034-0.034-40.44-40.44-14.148-14.084-152.622-152.62c-8.796-8.8-20.496-13.648-32.942-13.648-12.444 0-24.14 4.848-32.94 13.646-18.148 18.156-18.148 47.702 0.004 65.866l141.31 141.306-0.094 0.094 40.492 40.494 14.16 13.974 84.728 84.726-146.734 0 0 92 238.386 0c36.392 0 66-29.608 66-66l0-237.96-92 0L896.574 830.358z" p-id="1431"/></svg>
+				<svg onclick="FullScreen<br />()" style="width: 20px;float: right;padding-right:40px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="dm-icon" style="" viewBox="0 0 1024 1024" version="1.1" p-id="1427" ><defs><style type="text/css"><![CDATA[]]></style></defs><path d="M971.862 52.538c-10.964-10.992-25.546-17.044-41.056-17.044L429.616 35.494l0 79.362 479.86 0 0 465.288 79.364 0L988.84 93.524C988.84 78.024 982.802 63.46 971.862 52.538z" p-id="1428"/><path d="M115.092 429.62 35.728 429.62l0 500.854c0 15.5 6.038 30.066 16.982 40.994 10.966 10.988 25.544 17.04 41.05 17.04l469.182 0 0-79.364L115.092 909.144 115.092 429.62z" p-id="1429"/><path d="M127.16 193.578l73.198 73.198-0.034 0.034 40.438 40.44 14.164 14.096 152.616 152.616c8.796 8.796 20.492 13.64 32.932 13.64 12.442 0 24.138-4.846 32.936-13.644 18.158-18.16 18.156-47.708-0.002-65.866l-141.318-141.318 0.094-0.094-40.484-40.486-14.162-13.97L192.812 127.492l146.47 0 0-92L101.16 35.492c-36.392 0-66 29.608-66 66l0 237.972 92 0L127.16 193.578z" p-id="1430"/><path d="M896.578 830.358l-73.198-73.198 0.034-0.034-40.44-40.44-14.148-14.084-152.622-152.62c-8.796-8.8-20.496-13.648-32.942-13.648-12.444 0-24.14 4.848-32.94 13.646-18.148 18.156-18.148 47.702 0.004 65.866l141.31 141.306-0.094 0.094 40.492 40.494 14.16 13.974 84.728 84.726-146.734 0 0 92 238.386 0c36.392 0 66-29.608 66-66l0-237.96-92 0L896.574 830.358z" p-id="1431"/></svg>
 			</div> 
 		</div>
 		</div>
@@ -65,8 +83,7 @@
 	</div>
 			
 		<script type="text/javascript">
-		
-		 function $d(text) {
+function $d(text) {
     return document.getElementById(text)
 }
 function hasClass(elements, cName) {
@@ -106,13 +123,15 @@ tplayer.getdanmu = function() {
     xmlhttp.send();
 }
 tplayer.getdanmu();
-tplayer.send = function(text, color, wz,me) {
+tplayer.send = function(text, color, wz, me) {
     tplayer.width = tplayer.ddom.offsetWidth;
     tplayer.height = tplayer.ddom.offsetHeight;
     var dm = document.createElement("div");
     dm.appendChild(document.createTextNode(text));
     dm.style.color = color;
-    if(me){dm.style.border='1px solid #fff'}
+    if (me) {
+        dm.style.border = '1px solid #fff'
+    }
     if (wz == 1) {
         //left 弹幕
         var dtop = tplayer.getlefttop();
@@ -130,7 +149,7 @@ tplayer.send = function(text, color, wz,me) {
         },
         t * 1000 + 200);
         setTimeout(function() {
-            tplayer.danmuhide(e,1);
+            tplayer.danmuhide(e, 1);
         },
         16000)
     } else if (wz == 2) {
@@ -141,28 +160,25 @@ tplayer.send = function(text, color, wz,me) {
         tplayer.toparr[dtop] = 1;
         var e = $d('danmu').appendChild(dm);
         setTimeout(function() {
-          tplayer.danmuhide(e,2,dtop);
+            tplayer.danmuhide(e, 2, dtop);
         },
         5000);
     }
 
 }
-tplayer.danmuhide=function(e,id,topid){
-	if(hasClass(e,'dm-suspend'))
-	{
-		setTimeout(function() {
-          tplayer.danmuhide(e,id,topid);
+tplayer.danmuhide = function(e, id, topid) {
+    if (hasClass(e, 'dm-suspend')) {
+        setTimeout(function() {
+            tplayer.danmuhide(e, id, topid);
         },
         5000);
-	}
-	else{
-		e.remove()
-		if(id==2)
-		{
-			//顶部弹幕
-			tplayer.toparr[topid] = 0;
-		}
-	}
+    } else {
+        e.remove();
+        if (id == 2) {
+            //顶部弹幕
+            tplayer.toparr[topid] = 0;
+        }
+    }
 }
 tplayer.getlefttop = function() {
     var h;
@@ -199,8 +215,8 @@ $d('dm-dmk').onclick = function() {
 }
 //弹幕发送
 $d('dm-up').onclick = function() {
-	tplayer.send($d('dm-text').value,$d('dm-color').value,1,1);
-	
+    tplayer.send($d('dm-text').value, $d('dm-color').value, 1, 1);
+
 }
 //视频暂停
 $d('video-control-paused').onclick = function() {
@@ -233,7 +249,7 @@ $d('video-control-play').onclick = function() {
         tplayer.Interval = setInterval(danmutime, 100);
         tplayer.dsq = 1
     }
-  	$d('dm-video-y').style.opacity = '0';
+    $d('dm-video-y').style.opacity = '0';
     var e = $d("danmu").getElementsByTagName("div");
     this.style.display = 'none';
     $d('video-control-paused').style.display = 'inline-block';
@@ -244,8 +260,10 @@ $d('video-control-play').onclick = function() {
 
 }
 //控制台显示
-$d('dm-video-y').onmousemove=function(){showbar()}
-$d('video-control-range').onchange= function() {
+$d('dm-video-y').onmousemove = function() {
+    showbar()
+}
+$d('video-control-range').onchange = function() {
     tplayer.ddom.currentTime = parseInt(this.value) * tplayer.ddom.duration * 0.0001;
     tplayer.time = parseInt(tplayer.ddom.currentTime) * 10;
 }
@@ -306,11 +324,11 @@ document.onkeydown = function(event) {
     showbar();
     if (e && e.keyCode == 39) { // right 键
         $d('video-control-range').value = parseInt($d('video-control-range').value) + 50;
-        
+
     }
     if (e && e.keyCode == 37) { // left 键
         $d('video-control-range').value = parseInt($d('video-control-range').value) - 50;
-       
+
     }
     if (e && e.keyCode == 32) { // space 键
         $d('danmu').onclick();
@@ -377,6 +395,15 @@ function startfull() {
     } else if (elem.msRequestFullscreen) {
         elem.msRequestFullscreen();
     }
+    var w=$d("danmu").offsetWidth;
+    var e = $d("danmu").getElementsByTagName("div");
+    for (var i = e.length - 1; i >= 0; i--) {
+		if(hasClass(e[i],'dm-left'))
+		{
+			e[i].style.transform='translateX(-'+w+'px)'
+		}
+        
+    };
 }
 function outfull() {
     tplayer.full = 0;
@@ -396,9 +423,9 @@ function xFullScreen() {
 }
 
 function showbar() {
-	$d('dm-video-y').style.opacity = '1';
- 	tplayer.sjc++;
-  	var time = setTimeout(sjc, 2000, tplayer.sjc);
+    $d('dm-video-y').style.opacity = '1';
+    tplayer.sjc++;
+    var time = setTimeout(sjc, 2000, tplayer.sjc);
 }
 function sjc(time) {
     if (time >= tplayer.sjc) {

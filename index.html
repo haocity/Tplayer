@@ -48,12 +48,12 @@
 			  <div class="rect5"></div>
 			</div>
 			<div id="dm-video-y" class="dm-video-y">
-				<form class="dm-send" action="https://t5.haotown.cn/danmu/send.php" method="post" target="hiddenIFrame"  onsubmit="mxxx()" >
+				<form class="dm-send" action="https://t5.haotown.cn/danmu/send.php" method="post" target="hiddenIFrame"  onsubmit="tplayer.post()" >
 		<div class="dm-logo-small"></div>
 		<input class="dm-tucao" type="text" id="dm-text" name="dm-text" required="true" placeholder="客官，不来吐槽一下吗?"  autocomplete="off" >
 		<input type="text" id="dm-color" name="dm-color" style="display:none" value="#fff">
 		<input type="text" id="dm-time"  name="dm-time" style="display:none" value="0">
-
+		<input type="text" id="dm-place"  name="dm-place" style="display:none" value="1">
 		<div class="dm-colorbar" id="dm-colorbar"></div>
 		<div id="color-picker" class="cp-small"></div>
 		<input class="dm-post" id="dm-up" type="submit" value="发送" style="display:none;">
@@ -147,7 +147,7 @@ tplayer.send = function(text, color, wz, me) {
         setTimeout(function() {
             tplayer.leftarr[dtop] = 0;
         },
-        t * 1000 + 200);
+        t * 1000 + 500);
         setTimeout(function() {
             tplayer.danmuhide(e, 1);
         },
@@ -165,6 +165,19 @@ tplayer.send = function(text, color, wz, me) {
         5000);
     }
 
+}
+tplayer.post=function(){
+  $d("dm-text").readonly = "readonly";
+  //$("dm-text").style.background = "#f4f4f4";
+  $d("dm-up").disabled = 'true';
+  $d("dm-up").style.background = '#777479';
+  setTimeout(function() {
+  $d('dm-text').value = "";
+   //$("dm-text").style.background = "#fff";
+  $d("dm-up").disabled = '';
+  $d("dm-up").style.background = '#8715EF';
+  },
+  500)
 }
 tplayer.danmuhide = function(e, id, topid) {
     if (hasClass(e, 'dm-suspend')) {
@@ -215,7 +228,7 @@ $d('dm-dmk').onclick = function() {
 }
 //弹幕发送
 $d('dm-up').onclick = function() {
-    tplayer.send($d('dm-text').value, $d('dm-color').value, 1, 1);
+    tplayer.send($d('dm-text').value, $d('dm-color').value, $d('dm-place').value, 1);
 
 }
 //视频暂停
@@ -283,7 +296,8 @@ function danmutime() {
     for (var i = 0; i < tplayer.data.length; i++) {
         if (tplayer.data[i].time == tplayer.time) {
             console.log('send');
-            tplayer.send(tplayer.data[i].text, tplayer.data[i].color, 1);
+            tplayer.send(tplayer.data[i].text, tplayer.data[i].color, tplayer.data[i].place);
+            //delete tplayer.data[i];
         }
 
     }

@@ -59,7 +59,7 @@ return $str;
 echo 'time'.$_POST["dm-time"];
 $b="set names utf8";
 mysqli_query($conn,$b);
-$sql = "INSERT INTO `danmu`.`1` (`id`, `text`, `time`, `color`) VALUES (NULL, '".$text."', '".$_POST["dm-time"]."', '".$_POST["dm-color"]."');";
+$sql = "INSERT INTO `danmu`.`1` (`id`, `text`, `time`, `color`, `place`) VALUES (NULL, '".$text."', '".$_POST["dm-time"]."', '".$_POST["dm-color"]."', '".$_POST["dm-place"]."');";
 if (mysqli_query($conn, $sql)) {
     
 } else {

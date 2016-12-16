@@ -17,10 +17,10 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
 		$i++;
 		if($l2>$i){
-    		echo '{"id":"'. $row['id']. '","text":"'. $row['text']. '","color":"' . $row['color'].'","time":"'. $row['time'].'"},';
+    		echo '{"id":"'. $row['id']. '","text":"'. $row['text']. '","color":"' . $row['color'].'","time":"'. $row['time'].'","place":"'. $row['place'].'"},';
     	}
         else{
-        	 echo '{"id":"'. $row['id']. '","text":"'. $row['text']. '","color":"' . $row['color'].'","time":"'. $row['time'].'"';
+        	 echo '{"id":"'. $row['id']. '","text":"'. $row['text']. '","color":"' . $row['color'].'","time":"'. $row['time'].'","place":"' . $row['place'].'"';
         }
     }
 } else {

@@ -141,17 +141,17 @@ tplayer.send = function(text, color, wz,me) {
         tplayer.toparr[dtop] = 1;
         var e = $d('danmu').appendChild(dm);
         setTimeout(function() {
-          tplayer.danmuhide(e,2);
+          tplayer.danmuhide(e,2,dtop);
         },
         5000);
     }
 
 }
-tplayer.danmuhide=function(e,id){
+tplayer.danmuhide=function(e,id,topid){
 	if(hasClass(e,'dm-suspend'))
 	{
 		setTimeout(function() {
-          tplayer.danmuhide(e,2);
+          tplayer.danmuhide(e,id,topid);
         },
         5000);
 	}
@@ -160,7 +160,7 @@ tplayer.danmuhide=function(e,id){
 		if(id==2)
 		{
 			//顶部弹幕
-			tplayer.toparr[dtop] = 0;
+			tplayer.toparr[topid] = 0;
 		}
 	}
 }

@@ -274,6 +274,12 @@ input[type=range]:focus::-ms-fill-upper {
 .md-iframe {
 	display: none;
 }
+.dm-place2{
+	background-color: #3b3b3b;
+    margin: 2px 0 4px 0;
+    color: #fff;
+    cursor: pointer;
+}
 .dm-spinner > div {
 	background-color: #fff;
 	height: 100%;

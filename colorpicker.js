@@ -12,7 +12,7 @@
     
     var colorpickerHTMLSnippet = [
         
-        '<div class="picker-wrapper">',
+        '<div id="dm-place2" class="dm-place2">正向弹幕</div><div class="picker-wrapper">',
                 '<div class="picker"></div>',
                 '<div class="picker-indicator"></div>',
         '</div>',

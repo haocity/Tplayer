@@ -246,10 +246,15 @@ input[type=range]:focus::-ms-fill-upper {
 	background: rgba(18, 18, 18, 0.16);
 }
 /*loding*/
-	.dm-oneplay {
-	position: absolute;
-	top: 40%;
-	left: 44%;
+.dm-oneplay {
+	margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
 }
 .dm-spinner {
 	margin: 100px auto;

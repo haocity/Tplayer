@@ -1,11 +1,12 @@
 <?php
 include 'config.php';
+$id = $_GET['id']; 
 header('Access-Control-Allow-Origin:*');  
 header('Content-Type: text/json;charset=utf-8');
 $b="set names utf8";
 $conn->query($b);
-$sql = "SELECT * FROM `1`";
-$sql2="select count(id) FROM `1`";
+$sql = "SELECT * FROM `".$id."`";
+$sql2="select count(id) FROM `".$id."`";
 $result2 = $conn->query($sql2);
 $l=$result2->fetch_assoc();
 $l2=$l['count(id)'];

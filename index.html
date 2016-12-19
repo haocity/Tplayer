@@ -48,7 +48,7 @@
 			  <div class="rect5"></div>
 			</div>
 			<div id="dm-video-y" class="dm-video-y">
-				<form class="dm-send" action="https://t5.haotown.cn/danmu/send.php" method="post" target="hiddenIFrame"  onsubmit="tplayer.post()" >
+				<form class="dm-send" action="https://t5.haotown.cn/danmu/api/send.php?id=1" method="post" target="hiddenIFrame"  onsubmit="tplayer.post()" >
 		<div class="dm-logo-small"></div>
 		<input class="dm-tucao" type="text" id="dm-text" name="dm-text" required="true" placeholder="客官，不来吐槽一下吗?"  autocomplete="off" >
 		<input type="text" id="dm-color" name="dm-color" style="display:none" value="#fff">
@@ -119,7 +119,7 @@ tplayer.getdanmu = function() {
             tplayer.data = text.data;
         }
     }
-    xmlhttp.open("GET", "https://t5.haotown.cn/danmu/getjson.php", true);
+    xmlhttp.open("GET", "https://t5.haotown.cn/danmu/api/getjson.php?id=1", true);
     xmlhttp.send();
 }
 tplayer.getdanmu();

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>New danmu</title>
+		<title>TPlayer</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="stylesheet" type="text/css" href="color.css"/>
 		<script src="colorpicker.js" type="text/javascript" charset="utf-8"></script>
@@ -21,19 +21,16 @@
 				z-index: 5;
 			}
 		</style>
-		<style>
-
-		</style>
 	</head>
 	<body>
 		<header class="header"><img src="logo-small.png"/>
 			<h1 class="titile">A HTML5 VIDEO PLAYER WITH BARRAGE</h1>
 		</header>
-		<iframe class="md-iframe" name="hiddenIFrame" style="display: none;"></iframe>
+		<iframe class="md-iframe" name="hiddenIFrame" ></iframe>
 		
 	<div class="dm-video-warp" id="dm-video-warp">
 		<div class="dm-video-main" id="dm-video-main" >
-			<video   class="dm-video" src="" id="dm-video-x" poster="https://ooo.0o0.ooo/2016/11/23/5835765e6f779.jpg"></video>
+			<video   class="dm-video" src="" id="dm-video-x" ></video>
 			<div id="danmu"></div>
 			<div class="dm-oneplay" id="dm-oneplay">
 			<svg  style="width: 200px;height:200px;"  class="dm-icon"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +45,7 @@
 			  <div class="rect5"></div>
 			</div>
 			<div id="dm-video-y" class="dm-video-y">
-				<form class="dm-send" action="https://t5.haotown.cn/danmu/api/send.php?id=1" method="post" target="hiddenIFrame"  onsubmit="tplayer.post()" >
+				<form class="dm-send" id='dm-send'  method="post" target="hiddenIFrame"  onsubmit="tplayer.post()" >
 		<div class="dm-logo-small"></div>
 		<input class="dm-tucao" type="text" id="dm-text" name="dm-text" required="true" placeholder="客官，不来吐槽一下吗?"  autocomplete="off" >
 		<input type="text" id="dm-color" name="dm-color" style="display:none" value="#fff">
@@ -100,10 +97,14 @@ function removeClass(elements, cName) {
     };
 };
 var tplayer = new Object();
-tplayer.time = 0;
-tplayer.sjc = 0;
 tplayer.ddom = $d('dm-video-x');
 tplayer.ddom.src = "http://t4.haotown.cn/up/1.mp4";
+tplayer.ddom.poster="https://ooo.0o0.ooo/2016/11/23/5835765e6f779.jpg";
+tplayer.videoid=1;
+tplayer.serverurl="https://t5.haotown.cn/danmu/api/";
+$d('dm-send').action=tplayer.serverurl+"send.php?id="+tplayer.videoid;
+tplayer.time = 0;
+tplayer.sjc = 0;
 tplayer.dsq = 0;
 tplayer.leftarr = [];
 tplayer.toparr = [];
@@ -119,7 +120,7 @@ tplayer.getdanmu = function() {
             tplayer.data = text.data;
         }
     }
-    xmlhttp.open("GET", "https://t5.haotown.cn/danmu/api/getjson.php?id=1", true);
+    xmlhttp.open("GET", tplayer.serverurl+"/getjson.php?id="+tplayer.videoid, true);
     xmlhttp.send();
 }
 tplayer.getdanmu();
@@ -167,6 +168,7 @@ tplayer.send = function(text, color, wz, me) {
 
 }
 tplayer.post=function(){
+
   $d("dm-text").readonly = "readonly";
   //$("dm-text").style.background = "#f4f4f4";
   $d("dm-up").disabled = 'true';

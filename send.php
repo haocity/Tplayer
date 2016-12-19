@@ -18,8 +18,8 @@ function lib_replace_end_tag($str)
 {
 if (empty($str)) return false;
 $str = htmlspecialchars($str);
-$str=str_replace(">","＞",$str);
-$str=str_replace("<","＜",$str);
+$str=str_replace(">","】",$str);
+$str=str_replace("<","【",$str);
 $str=str_replace(" "," ",$str);
 $str=str_replace(" "," ",$str);
 $str=str_replace("    "," ",$str);

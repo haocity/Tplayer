@@ -226,14 +226,19 @@ tplayer.soundcookie=getCookie("tpsound");
    	  $d('dm-video-x').volume = parseInt($d('dm-syk-range').value) * 0.01;
     }
     else{
-     document.cookie="tpsound="+parseInt($d('dm-syk-range').value)+";path=/"; 
+     tplayer.changersound();
     }
-
+tplayer.changersound=function(){
+	var Days = 7; 
+    var exp = new Date();   
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie ="tpsound="+ parseInt($d('dm-syk-range').value) + ";expires=" + exp.toGMTString()+"&path=/";
+}
 //音量调节
 $d('dm-syk').onchange = function() {
     var i = parseInt($d('dm-syk-range').value) * 0.01;
     $d('dm-video-x').volume = i;
-    document.cookie="tpsound="+parseInt($d('dm-syk-range').value)+";path=/"; 
+    tplayer.changersound();
 }
 function danmutime() {
     //定时器 0.1s执行一次

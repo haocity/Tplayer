@@ -206,11 +206,34 @@ $d('video-control-range').onchange = function() {
     tplayer.ddom.currentTime = parseInt(this.value) * tplayer.ddom.duration * 0.0001;
     tplayer.time = parseInt(tplayer.ddom.currentTime) * 10;
 }
+function getCookie(Name) {
+    var cookieName = encodeURIComponent(Name) + "=",  
+        returnvalue = "",
+        cookieStart=document.cookie.indexOf(cookieName),
+        cookieEnd=null;
+    if (cookieStart>-1) {
+        cookieEnd = document.cookie.indexOf(";",cookieStart);
+        if (cookieEnd == -1){
+            cookieEnd = document.cookie.length;
+        }
+        returnvalue=decodeURIComponent(document.cookie.substring(cookieStart+cookieName.length, cookieEnd));  
+    } 
+    return returnvalue;
+ }
+tplayer.soundcookie=getCookie("tpsound");
+    if(tplayer.soundcookie){
+      $d('dm-syk-range').value=tplayer.soundcookie;
+   	  $d('dm-video-x').volume = parseInt($d('dm-syk-range').value) * 0.01;
+    }
+    else{
+     document.cookie="tpsound="+parseInt($d('dm-syk-range').value)+";path=/"; 
+    }
+
 //音量调节
-$d('dm-syk').onclick = function() {
+$d('dm-syk').onchange = function() {
     var i = parseInt($d('dm-syk-range').value) * 0.01;
-    console.log(i);
     $d('dm-video-x').volume = i;
+    document.cookie="tpsound="+parseInt($d('dm-syk-range').value)+";path=/"; 
 }
 function danmutime() {
     //定时器 0.1s执行一次
@@ -219,6 +242,21 @@ function danmutime() {
         $d('video-control-nowtime').innerHTML = getvideotime(tplayer.ddom.currentTime).m + ":" + getvideotime(tplayer.ddom.currentTime).s;
         $d('video-control-range').value = tplayer.ddom.currentTime / tplayer.ddom.duration * 10000;
     };
+    //每1秒时间校准 
+    if(tplayer.time % 10 == 0)
+    {
+    	var time=tplayer.ddom.currentTime*10;
+    	if(time+1<tplayer.time)
+    	{
+    		tplayer.time=time;
+    		console.log('时间校准')
+    	}
+    	else if(time-1>tplayer.time){
+    		tplayer.time=time;
+    		console.log('时间校准')
+    	}
+    	
+    }
     for (var i = 0; i < tplayer.data.length; i++) {
         if (tplayer.data[i].time == tplayer.time) {
             console.log('send');

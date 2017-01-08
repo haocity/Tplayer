@@ -11,7 +11,7 @@ http.createServer(function (req, res) {
     // 解析参数
     var p = querystring.parse(body);
     // 设置响应头部信息及编码
-    res.writeHead(200, {'Content-Type': 'application/json; charset=utf8'});
+    res.writeHead(200, {'Content-Type': 'application/json; charset=utf8','Access-Control-Allow-Origin':'*'});
     var now=new Date();
     var time=1900+now.getYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
     if(p.id&&p.time&&p.text&&p.color&&p.place) { // 输出提交的数据

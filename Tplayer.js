@@ -139,7 +139,13 @@ $d('dm-dmk').onclick = function() {
         $d('danmu').style.opacity = '1';
     }
 }
-
+//弹幕回车按下
+$d('dm-text').onkeydown = function(event) {
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+    if(e.keyCode==13){
+    	$d('dm-up').onclick()
+    }
+   }
 //弹幕发送
 $d('dm-up').onclick = function() {
 	tplayer.send($d('dm-text').value, $d('dm-color').value, $d('dm-place').value, 1);
@@ -200,6 +206,7 @@ $d('dm-oneplay').onclick = function() {
     this.style.display = 'none';
     $d('video-control-play').onclick();
 }
+
 $d('danmu').onclick = function() {
     if ($d('dm-video-x').paused) {
         $d('video-control-play').onclick();

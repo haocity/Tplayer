@@ -4,7 +4,7 @@ var url = require('url');
 var util = require('util');
 var querystring = require('querystring');
 http.createServer(function(req, res){
-    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.writeHead(200, {'Content-Type': 'application/json; charset=utf8','Access-Control-Allow-Origin':'*'});
     var c=JSON.stringify(url.parse(req.url, true));
     var e=JSON.parse(c).pathname;
     console.log(e);

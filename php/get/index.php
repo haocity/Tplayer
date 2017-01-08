@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include '../config.php';
 $id = $_GET['id']; 
 header('Access-Control-Allow-Origin:*');  
 header('Content-Type: text/json;charset=utf-8');

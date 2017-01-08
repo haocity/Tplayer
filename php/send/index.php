@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include '../config.php';
 header('Access-Control-Allow-Origin:*');  
 $id = $_POST['id']; 
 // $string = $_POST["dm-text"];

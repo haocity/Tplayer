@@ -71,7 +71,7 @@ body {
 .dm-tucao {
 	position: relative;
 	top: -12px;
-	width: 70%;
+	width: 50%;
 	display: inline-block;
 	line-height: 20px;
 	border: none;
@@ -80,7 +80,9 @@ body {
 }
 .dm-post {
 	position: relative;
+	display: inline-block;
 	top: -13px;
+	left: 20px;
 	background-color: #8715EF;
 	color: #fff;
 	border: 0px solid #000;

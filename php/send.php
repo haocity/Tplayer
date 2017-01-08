@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+header('Access-Control-Allow-Origin:*');  
 $id = $_POST['id']; 
 // $string = $_POST["dm-text"];
 // $pattern = '/"/';
@@ -32,14 +33,13 @@ $str=str_replace("'","“",$str);
 $str=str_replace("/n"," ",$str);
 return $str;
 }
-echo 'time'.$_POST["dm-time"];
 $b="set names utf8";
 mysqli_query($conn,$b);
 $sql = "INSERT INTO `danmu`.`".$id."` (`id`, `text`, `time`, `color`, `place`) VALUES (NULL, '".$text."', '".$_POST["time"]."', '".$_POST["color"]."', '".$_POST["place"]."');";
 if (mysqli_query($conn, $sql)) {
-    
+    echo "Send Success";
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Send Error";
 }
 
 mysqli_close($conn);

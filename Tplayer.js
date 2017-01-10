@@ -17,9 +17,9 @@ function removeClass(elements, cName) {
         elements.className = elements.className.replace(new RegExp("(\\s|^)" + cName + "(\\s|$)"), " ");
     }
 }
-
+ var tplayer = new Object();
 function Tplayer(Element, src, poster, server, videoid) {
-    var tplayer = new Object();
+   
     tplayer.videoid = videoid;
     tplayer.warp = Element;
     tplayer.vsrc = src;
@@ -37,6 +37,7 @@ function Tplayer(Element, src, poster, server, videoid) {
         tplayer.leftarr = [];
         tplayer.toparr = [];
         tplayer.dmheight = 31;
+        tplayer.time2=0;
         //弹幕行高
         tplayer.width = tplayer.ddom.offsetWidth;
         tplayer.height = tplayer.ddom.offsetHeight;
@@ -229,10 +230,21 @@ function Tplayer(Element, src, poster, server, videoid) {
         $d("dm-video-y").onmousemove = function() {
             showbar();
         };
-        $d("video-control-range").onchange = function() {
-            tplayer.ddom.currentTime = parseInt(this.value) * tplayer.ddom.duration * 1e-4;
-            tplayer.time = parseInt(tplayer.ddom.currentTime) * 10;
-        };
+//      $d("video-control-range").onchange = function() {
+//      	var value=this.value;
+//          tplayer.ddom.currentTime = parseInt(value) * tplayer.ddom.duration * 1e-4;
+//          tplayer.time2=parseInt(tplayer.ddom.currentTime) * 10;
+//          tplayer.time = parseInt(tplayer.ddom.currentTime) * 10;
+//          console.log('onchange'+value)
+//      };
+        $d("video-control-range").onclick=function(){
+        	var value=this.value;
+        	//console.log('change'+value)
+            tplayer.ddom.currentTime = parseInt(value) * tplayer.ddom.duration * 1e-4;
+            tplayer.time2=parseInt(value) * tplayer.ddom.duration * 1e-4;
+            tplayer.time = parseInt(value) * tplayer.ddom.duration * 1e-4;
+            
+        }
         function getCookie(Name) {
             var cookieName = encodeURIComponent(Name) + "=", returnvalue = "", cookieStart = document.cookie.indexOf(cookieName), cookieEnd = null;
             if (cookieStart > -1) {
@@ -264,26 +276,29 @@ function Tplayer(Element, src, poster, server, videoid) {
             tplayer.changersound();
         };
         function danmutime() {
-            //定时器 0.1s执行一次
-            tplayer.time++;
-            if (tplayer.time % 2 == 0) {
-                $d("video-control-nowtime").innerHTML = getvideotime(tplayer.ddom.currentTime).m + ":" + getvideotime(tplayer.ddom.currentTime).s;
+            //定时器 0.1s执行一次  time2为校准时间
+            if(!tplayer.time2){
+            	tplayer.time++;
+            	$d("video-control-nowtime").innerHTML = getvideotime(tplayer.ddom.currentTime).m + ":" + getvideotime(tplayer.ddom.currentTime).s;
                 $d("video-control-range").value = tplayer.ddom.currentTime / tplayer.ddom.duration * 1e4;
-            }
-            //每1秒时间校准 
-            if (tplayer.time % 10 == 0) {
+                // 检查时间与视频时间差
+                
                 var time = tplayer.ddom.currentTime * 10;
-                if (time + 1 < tplayer.time) {
-                    tplayer.time = time;
-                    console.log("时间校准");
-                } else if (time - 1 > tplayer.time) {
-                    tplayer.time = time;
-                    console.log("时间校准");
-                }
+                if (time + 10 < tplayer.time||time - 10 > tplayer.time) {
+                    tplayer.time2 = parseInt(time);
+                    //console.log("时间校准 time2已给予值");
+                	}
+           		
             }
+      		else{
+      			 tplayer.time=tplayer.time2;
+      			 tplayer.time2=0;
+      		}
+            //每1秒时间校准 
+           
             for (var i = 0; i < tplayer.data.length; i++) {
                 if (tplayer.data[i].time == tplayer.time) {
-                    console.log("send");
+                    //console.log("send");
                     tplayer.send(tplayer.data[i].text, tplayer.data[i].color, tplayer.data[i].place);
                 }
             }

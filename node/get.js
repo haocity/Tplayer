@@ -8,7 +8,7 @@ http.createServer(function(req, res){
     var getobj=querystring.parse(url.parse(req.url).query);
    try{
       if (getobj.id) {
-           connection.query('SELECT * FROM `'+parseInt(getobj.id)+'`', function(err, rows, fields) {
+           db.query('SELECT * FROM `'+parseInt(getobj.id)+'`', function(err, rows, fields) {
            if (err){
               res.end('{"success":0,"data":[{"id":0,"time":10,"text":"链接弹幕失败￣□￣｜｜","color":"#fff","place":1}]}');
             }

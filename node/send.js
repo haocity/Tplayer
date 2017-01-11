@@ -1,7 +1,6 @@
 require('./config.js');
 var http = require('http');
 var querystring = require('querystring');
-connection.connect();
 http.createServer(function (req, res) {
   try{
     var body = "";
@@ -16,7 +15,7 @@ http.createServer(function (req, res) {
       var now=new Date();
       var time=1900+now.getYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
       if(p.id&&p.time&&p.text&&p.color&&p.place) { // 输出提交的数据
-          connection.query("INSERT INTO `danmu`.`"+parseInt(p.id)+"` (`id`, `time`, `text`, `color`, `place`) VALUES (NULL, "+connection.escape(p.time)+", "+connection.escape(p.text)+", "+connection.escape(p.color)+", "+connection.escape(p.place)+")", function(err, rows, fields) {
+          db.query("INSERT INTO `danmu`.`"+parseInt(p.id)+"` (`id`, `time`, `text`, `color`, `place`) VALUES (NULL, "+db.escape(p.time)+", "+db.escape(p.text)+", "+db.escape(p.color)+", "+db.escape(p.place)+")", function(err, rows, fields) {
           if(err){
               res.end(`{"success":0,"container":"发送失败,可能没有找到弹幕库","time":"${time}"}`);
             }else{

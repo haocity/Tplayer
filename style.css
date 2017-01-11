@@ -137,7 +137,7 @@ body {
 	left: 0px;
 	width: 100%;
 	height: 45px;
-	overflow:hidden;
+	
 	background: linear-gradient(rgba(0, 0, 0, 0),rgba(0,0,0,0.8));
 	color: #fff;
 	line-height: 0px;
@@ -175,12 +175,40 @@ body {
 	background-color: #fff;
 }
 .dm-syk {
-	padding-left: 20px;
+	padding:10px 10px;
 	position: relative;
 	display: inline-block;
 	color: #fff;
 }
 /*ranger*/
+input[type=range] {
+	-webkit-appearance: none;
+	width: 100%;
+	margin: -1.05px 0;
+	border-radius: 10px;
+}
+input[type=range]:focus {
+	outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 11.1px;
+	cursor: pointer;
+	box-shadow: 0px 0px 1px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+	border-radius: 3px;
+	border: 0.2px solid rgba(0, 1, 1, 0);
+}
+input[type=range]::-webkit-slider-thumb {
+	box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
+	height: 9px;
+	width: 16px;
+	border-radius: 3px;
+	background: rgba(0,0,0,0.4);
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+
 			#tranger{
 				position: relative;
 				height: 11px;
@@ -191,7 +219,7 @@ body {
 				margin-top:18px;
 				padding: 0 5px;
 				margin-left: 80px;
-				margin-right: 240px;
+				margin-right: 170px;
 			}
 			.tranger-a{
 				position: relative;
@@ -210,7 +238,18 @@ body {
 				border-radius: 50%;
 				right: 7px;
 			}
-
+.dm-syk-ico{
+	position: relative;
+	top: 2px;
+}
+#dm-syk-range{
+	width: 0px;
+	display: block;
+	overflow: hidden;
+	margin-left: 14px;
+	transition: width 1s;
+	-webkit-transition: width 1s
+}
 /*loding*/
 .dm-oneplay {
 	margin: auto;
@@ -238,10 +277,7 @@ body {
 	-webkit-animation-play-state: paused !important;
 	animation-play-state: paused !important;
 }
-#dm-syk-range {
-	position: relative;
-	left: 8px;
-}
+
 .md-iframe {
 	display: none;
 }

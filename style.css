@@ -121,7 +121,6 @@ body {
 }
 .dm-video-y {
 	opacity: 0;
-	opacity: 1!important;
 	transition:opacity 1s;
 	-moz-transition:opacity 1s;
 	/* Firefox 4*/

@@ -398,20 +398,10 @@ function Tplayer(Element, src, poster, server, videoid) {
         };
         //颜色选择器
         ColorPicker(document.getElementById("color-picker"), function(hex, hsv, rgb) {
-            //console.log(hsv.h, hsv.s, hsv.v);         // [0-359], [0-1], [0-1]
-            //console.log(rgb.r, rgb.g, rgb.b);         // [0-255], [0-255], [0-255]
             document.getElementById("dm-color").value = hex;
             document.getElementById("dm-colorbar").style.background = hex;
         });
-        $d("video-full").addEventListener("click", FullScreen);
-        function FullScreen() {
-            if (xFullScreen()) {
-                outfull();
-            } else {
-                startfull();
-            }
-        }
-        $d("dm-place2").onclick = function() {
+           $d("dm-place2").onclick = function() {
             if ($d("dm-place").value == 1) {
                 $d("dm-place").value = 2;
                 this.innerText = "顶部弹幕";
@@ -420,17 +410,11 @@ function Tplayer(Element, src, poster, server, videoid) {
                 this.innerText = "正向弹幕";
             }
         };
-        function startfull() {
-            var elem = document.getElementById("dm-video-warp");
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.mozRequestFullScreen) {
-                elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-                elem.msRequestFullscreen();
-            }
+        $d("video-full").addEventListener("click", FullScreen);
+        function FullScreen() {
+        	var e=$d("dm-video-warp");
+ 			document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ? document.cancelFullScreen ? document.cancelFullScreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitCancelFullScreen && document.webkitCancelFullScreen() : e.requestFullscreen ? e.requestFullscreen() : e.mozRequestFullScreen ? e.mozRequestFullScreen() : e.webkitRequestFullscreen && e.webkitRequestFullscreen();
+        	 setTimeout(function (){
             var w = $d("danmu").offsetWidth;
             var e = $d("danmu").getElementsByTagName("div");
             for (var i = e.length - 1; i >= 0; i--) {
@@ -438,18 +422,7 @@ function Tplayer(Element, src, poster, server, videoid) {
                     e[i].style.transform = "translateX(-" + w + "px)";
                 }
             }
-        }
-        function outfull() {
-            tplayer.full = 0;
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            } else if (document.webkitCancelFullScreen) {
-                document.webkitCancelFullScreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
+            },1000);
         }
         function xFullScreen() {
             var c = document.webkitIsFullScreen || document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;

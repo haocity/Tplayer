@@ -5,9 +5,9 @@
 未完成  具体demo https://haocity.github.io/Tplayer/
 <img src="https://ooo.0o0.ooo/2016/12/20/5858df24293f5.png"><br>
 使用方式 引用Tplayer.js和colorpicker.js文件<br>
-<pre>		<script src="colorpicker.js" type="text/javascript" charset="utf-8"></script>
+<pre><code>	<script src="colorpicker.js" type="text/javascript" charset="utf-8"></script>
 		<script src="Tplayer.js" type="text/javascript" charset="utf-8"></script>
-</pre><br>
+</code></pre><br>
 执行<code>
 Tplayer(要放入视频Element,'视频地址','视频封面','视频后端地址',视频编号);
 </code><br>

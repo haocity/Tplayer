@@ -389,29 +389,9 @@ function Tplayer(Element, src, poster, server, videoid) {
                 s:tm
             };
         }
-        document.getElementById("dm-colorbar").onclick = function() {
-            if (document.getElementById("color-picker").style.display == "block") {
-                document.getElementById("color-picker").style.display = "none";
-            } else {
-                document.getElementById("color-picker").style.display = "block";
-            }
-        };
-        //颜色选择器
-        ColorPicker(document.getElementById("color-picker"), function(hex, hsv, rgb) {
-            document.getElementById("dm-color").value = hex;
-            document.getElementById("dm-colorbar").style.background = hex;
-        });
-           $d("dm-place2").onclick = function() {
-            if ($d("dm-place").value == 1) {
-                $d("dm-place").value = 2;
-                this.innerText = "顶部弹幕";
-            } else {
-                $d("dm-place").value = 1;
-                this.innerText = "正向弹幕";
-            }
-        };
-        $d("video-full").addEventListener("click", FullScreen);
-        function FullScreen() {
+        $d("video-full").addEventListener("click",
+        function(){
+        	console.log('qp');
         	var e=$d("dm-video-warp");
  			document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ? document.cancelFullScreen ? document.cancelFullScreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitCancelFullScreen && document.webkitCancelFullScreen() : e.requestFullscreen ? e.requestFullscreen() : e.mozRequestFullScreen ? e.mozRequestFullScreen() : e.webkitRequestFullscreen && e.webkitRequestFullscreen();
         	 setTimeout(function (){
@@ -424,10 +404,8 @@ function Tplayer(Element, src, poster, server, videoid) {
             }
             },1000);
         }
-        function xFullScreen() {
-            var c = document.webkitIsFullScreen || document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
-            return c;
-        }
+        );
+
         function showbar() {
             $d("dm-video-y").style.opacity = "1";
             tplayer.sjc++;
@@ -438,5 +416,28 @@ function Tplayer(Element, src, poster, server, videoid) {
                 $d("dm-video-y").style.opacity = "0";
             }
         }
+        document.getElementById("dm-colorbar").onclick = function() {
+            if (document.getElementById("color-picker").style.display == "block") {
+                document.getElementById("color-picker").style.display = "none";
+            } else {
+                document.getElementById("color-picker").style.display = "block";
+            }
+        };
+        //颜色选择器
+        ColorPicker(document.getElementById("color-picker"), function(hex, hsv, rgb) {
+            document.getElementById("dm-color").value = hex;
+            document.getElementById("dm-colorbar").style.background = hex;
+        });
+        $d("dm-place2").onclick = function() {
+            if ($d("dm-place").value == 1) {
+                $d("dm-place").value = 2;
+                this.innerText = "顶部弹幕";
+            } else {
+                $d("dm-place").value = 1;
+                this.innerText = "正向弹幕";
+            }
+        };
+
+
     };
 }

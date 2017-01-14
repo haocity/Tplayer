@@ -18,6 +18,22 @@ function removeClass(elements, cName) {
     }
 }
 
+function getstyle(a) {
+    for (var c = 0; c < document.styleSheets.length; c++) {
+        var d;
+        if (document.styleSheets[c].cssRules) {
+            d = document.styleSheets[c].cssRules;
+        } else {
+            d = document.styleSheets[c].rules;
+        }
+        for (var b = 0; b < d.length; b++) {
+            if (d[b].selectorText == a) {
+                return d[b].style;
+            }
+        }
+    }
+}
+
 function Tplayer(Element, src, poster, server, videoid) {
     var tplayer = new Object();
     tplayer.videoid = videoid;
@@ -79,9 +95,8 @@ function Tplayer(Element, src, poster, server, videoid) {
                 setTimeout(function() {
                     tplayer.leftarr[dtop] = 0;
                 }, t * 1e3 + 500);
-                setTimeout(function() {
-                    tplayer.danmuhide(e, 1);
-                }, 16e3);
+                dm.addEventListener("webkitAnimationEnd", tplayer.dmend);
+                dm.addEventListener("animationend", tplayer.dmend);
             } else if (wz == 2) {
                 //顶部弹幕
                 dm.className = "danmu dm-top";
@@ -90,21 +105,21 @@ function Tplayer(Element, src, poster, server, videoid) {
                 tplayer.toparr[dtop] = 1;
                 var e = $d("danmu").appendChild(dm);
                 setTimeout(function() {
-                    tplayer.danmuhide(e, 2, dtop);
+                    tplayer.danmuhide(e, dtop);
                 }, 5e3);
             }
         };
-        tplayer.danmuhide = function(e, id, topid) {
-            if (hasClass(e, "dm-suspend")) {
+        tplayer.dmend = function() {
+            this.remove();
+        };
+        tplayer.danmuhide = function(e, topid) {
+            if (tplayer.Element.paused) {
                 setTimeout(function() {
-                    tplayer.danmuhide(e, id, topid);
-                }, 5e3);
+                    tplayer.danmuhide(e, topid);
+                }, tplayer.width * 10 + 1e3);
             } else {
                 e.remove();
-                if (id == 2) {
-                    //顶部弹幕
-                    tplayer.toparr[topid] = 0;
-                }
+                tplayer.toparr[topid] = 0;
             }
         };
         tplayer.getlefttop = function() {
@@ -188,6 +203,11 @@ function Tplayer(Element, src, poster, server, videoid) {
             };
             xhr.send(postData);
         });
+        //弹幕速度
+        function dmspeend(v) {
+            getstyle(".dm-left").animation = "dmleft " + v + "s linear";
+            getstyle(".dm-left").webkitAnimation = "dmleft " + v + "s linear";
+        }
         //视频播放
         $d("video-control-play").onclick = function() {
             $d("dm-oneplay").style.display = "none";
@@ -222,7 +242,7 @@ function Tplayer(Element, src, poster, server, videoid) {
             $d("video-control-play").onclick();
         });
         $d("danmu").addEventListener("click", function() {
-            if ($d("dm-video-x").paused) {
+            if (tplayer.Element.paused) {
                 $d("video-control-play").onclick();
             } else {
                 $d("video-control-paused").onclick();
@@ -252,7 +272,7 @@ function Tplayer(Element, src, poster, server, videoid) {
         tplayer.soundcookie = getCookie("tpsound");
         if (tplayer.soundcookie) {
             $d("dm-syk-range").value = tplayer.soundcookie;
-            $d("dm-video-x").volume = parseInt($d("dm-syk-range").value) * .01;
+            tplayer.Element.volume = parseInt($d("dm-syk-range").value) * .01;
         } else {
             tplayer.changersound();
         }
@@ -278,7 +298,7 @@ function Tplayer(Element, src, poster, server, videoid) {
         };
         $d("dm-syk-range").addEventListener("click", function() {
             var i = parseInt($d("dm-syk-range").value) * .01;
-            $d("dm-video-x").volume = i;
+            tplayer.Element.volume = i;
             tplayer.changersound();
         });
         //定时器
@@ -286,24 +306,23 @@ function Tplayer(Element, src, poster, server, videoid) {
             var videotime = tplayer.Element.currentTime;
             $d("video-control-nowtime").innerHTML = getvideotime(videotime).m + ":" + getvideotime(videotime).s;
             $d("tranger-a").style.width = videotime / tplayer.alltime * 100 + "%";
-            var buff= tplayer.Element.buffered;
+            var buff = tplayer.Element.buffered;
             //判断缓存段
-            for (var i=0;i<buff.length;i++) {
-            	if(buff.start(i)<=videotime&&videotime<buff.end(i))
-            	{
-            		var width= tplayer.Element.buffered.end(i) / tplayer.alltime * 100+ "%";
-            		if($d("tranger-c").style.width!=width)
-            		{
-            			$d("tranger-c").style.width = width;
-            		}
-            		break;
-            	}
+            for (var i = 0; i < buff.length; i++) {
+                if (buff.start(i) <= videotime && videotime < buff.end(i)) {
+                    var width = tplayer.Element.buffered.end(i) / tplayer.alltime * 100 + "%";
+                    if ($d("tranger-c").style.width != width) {
+                        $d("tranger-c").style.width = width;
+                    }
+                    break;
+                }
             }
-            
-            for (var i = 0; i < tplayer.data.length; i++) {
-                if (tplayer.data[i].time == tplayer.time) {
-                    //console.log("send");
-                    tplayer.send(tplayer.data[i].text, tplayer.data[i].color, tplayer.data[i].place);
+            if (tplayer.data.length) {
+                for (var i = 0; i < tplayer.data.length; i++) {
+                    if (tplayer.data[i].time == tplayer.time) {
+                        //console.log("send");
+                        tplayer.send(tplayer.data[i].text, tplayer.data[i].color, tplayer.data[i].place);
+                    }
                 }
             }
             tplayer.time++;
@@ -341,7 +360,7 @@ function Tplayer(Element, src, poster, server, videoid) {
             };
         }
         //视频缓冲事件
-        $d("dm-video-x").addEventListener("waiting", videohc);
+        tplayer.Element.addEventListener("waiting", videohc);
         function videohc() {
             //console.log('loding');
             clearInterval(tplayer.Interval);
@@ -352,7 +371,7 @@ function Tplayer(Element, src, poster, server, videoid) {
                 addClass(e[i], "dm-suspend");
             }
         }
-        $d("dm-video-x").addEventListener("playing", function() {
+        tplayer.Element.addEventListener("playing", function() {
             // console.log('play');
             if (tplayer.dsq == 0) {
                 tplayer.Interval = setInterval(danmutime, 100);
@@ -411,11 +430,12 @@ function Tplayer(Element, src, poster, server, videoid) {
             var e = $d("dm-video-warp");
             document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ? document.cancelFullScreen ? document.cancelFullScreen() :document.mozCancelFullScreen ? document.mozCancelFullScreen() :document.webkitCancelFullScreen && document.webkitCancelFullScreen() :e.requestFullscreen ? e.requestFullscreen() :e.mozRequestFullScreen ? e.mozRequestFullScreen() :e.webkitRequestFullscreen && e.webkitRequestFullscreen();
             setTimeout(function() {
-                var w = $d("danmu").offsetWidth;
+                tplayer.width = tplayer.Element.offsetWidth;
                 var e = $d("danmu").getElementsByTagName("div");
+                dmspeend(tplayer.width / 100);
                 for (var i = e.length - 1; i >= 0; i--) {
                     if (hasClass(e[i], "dm-left")) {
-                        e[i].style.transform = "translateX(-" + w + "px)";
+                        e[i].style.transform = "translateX(-" + tplayer.width + "px)";
                     }
                 }
             }, 1e3);

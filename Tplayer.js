@@ -228,7 +228,7 @@ function Tplayer(Element, src, poster, server, videoid) {
                 $d("video-control-paused").onclick();
             }
         });
-        //控制台显示
+        //控件显示
         $d("dm-video-y").onmousemove = function() {
             showbar();
         };
@@ -286,7 +286,16 @@ function Tplayer(Element, src, poster, server, videoid) {
             var videotime = tplayer.ddom.currentTime;
             $d("video-control-nowtime").innerHTML = getvideotime(videotime).m + ":" + getvideotime(videotime).s;
             $d("tranger-a").style.width = videotime / tplayer.alltime * 100 + "%";
-            $d("tranger-c").style.width = tplayer.ddom.buffered.end(0) / tplayer.alltime * 100 + "%";
+            var buff= tplayer.ddom.buffered;
+            //判断缓存段
+            for (var i=0;i<buff.length;i++) {
+            	if(buff.start(i)<=videotime&&videotime<buff.end(i))
+            	{
+            		$d("tranger-c").style.width = tplayer.ddom.buffered.end(i) / tplayer.alltime * 100 + "%";
+            		break;
+            	}
+            }
+            
             for (var i = 0; i < tplayer.data.length; i++) {
                 if (tplayer.data[i].time == tplayer.time) {
                     //console.log("send");

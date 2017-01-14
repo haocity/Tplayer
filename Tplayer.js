@@ -30,7 +30,7 @@ function Tplayer(Element, src, poster, server, videoid) {
     window.onload = function() {
         tplayer.v = '<div class="dm-video-warp"id="dm-video-warp"><div class="dm-video-main"id="dm-video-main"><video class="dm-video"id="dm-video-x" src="' + tplayer.vsrc + '" poster="' + tplayer.vposter + '"></video><div id="danmu"></div><div class="dm-oneplay"id="dm-oneplay"><svg style="width: 200px;height:200px;"class="dm-icon"viewBox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M836.1152 512 194.2848 886.4v-748.8000000000001L836.1152 512z"/></svg></div><div class="dm-spinner"id="dm-spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><div id="dm-video-y"class="dm-video-y"><div class="dm-send"id="dm-send"><div class="dm-logo-small"></div><input class="dm-tucao"type="text"id="dm-text"required="true"placeholder="客官，不来吐槽一下吗?"autocomplete="off"><div class="tp-color"><div class="tp-color-bo" id="tp-color-bo" style="background-color: rgb(255, 255, 255)"></div><div class="tp-color-warp" id="tp-color-warp"><div class="tp-place" id="tp-place">◀滚动弹幕</div></div></div><input class="dm-post"id="dm-up"type="submit"value="发送"></div><div id="video-control"class="video-control"><div style="float:right;"><span id="video-control-alltime" style="padding-right:6px">0:00</span><div class="dm-dmk"id="dm-dmk">弹</div><div class="dm-syk"id="dm-syk"><span class="dm-syk-ico">♫</span><input id="dm-syk-range" type="range"name="points"min="0"max="100"value="100"/></div><svg id="video-full"style="width: 20px;padding-right:30px;top: 9px;"xmlns="http://www.w3.org/2000/svg"xmlns:xlink="http://www.w3.org/1999/xlink"class="dm-icon"style=""viewBox="0 0 1024 1024"version="1.1"p-id="1427"><defs><style type="text/css"><![CDATA[]]></style></defs><path d="M971.862 52.538c-10.964-10.992-25.546-17.044-41.056-17.044L429.616 35.494l0 79.362 479.86 0 0 465.288 79.364 0L988.84 93.524C988.84 78.024 982.802 63.46 971.862 52.538z"p-id="1428"/><path d="M115.092 429.62 35.728 429.62l0 500.854c0 15.5 6.038 30.066 16.982 40.994 10.966 10.988 25.544 17.04 41.05 17.04l469.182 0 0-79.364L115.092 909.144 115.092 429.62z"p-id="1429"/><path d="M127.16 193.578l73.198 73.198-0.034 0.034 40.438 40.44 14.164 14.096 152.616 152.616c8.796 8.796 20.492 13.64 32.932 13.64 12.442 0 24.138-4.846 32.936-13.644 18.158-18.16 18.156-47.708-0.002-65.866l-141.318-141.318 0.094-0.094-40.484-40.486-14.162-13.97L192.812 127.492l146.47 0 0-92L101.16 35.492c-36.392 0-66 29.608-66 66l0 237.972 92 0L127.16 193.578z"p-id="1430"/><path d="M896.578 830.358l-73.198-73.198 0.034-0.034-40.44-40.44-14.148-14.084-152.622-152.62c-8.796-8.8-20.496-13.648-32.942-13.648-12.444 0-24.14 4.848-32.94 13.646-18.148 18.156-18.148 47.702 0.004 65.866l141.31 141.306-0.094 0.094 40.492 40.494 14.16 13.974 84.728 84.726-146.734 0 0 92 238.386 0c36.392 0 66-29.608 66-66l0-237.96-92 0L896.574 830.358z"p-id="1431"/></svg></div><div style="float: left;"><svg id="video-control-play"class="dm-icon"viewBox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M836.1152 512 194.2848 886.4v-748.8000000000001L836.1152 512z"/></svg><svg id="video-control-paused"class="dm-icon"viewBox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M256.033769 192.014198l127.977743 0 0 639.933741-127.977743 0 0-639.933741ZM639.976 191.982l127.993 0 0 639.966-127.993 0 0-639.966z"/></svg><span id="video-control-nowtime">0:00</span></div><div id="tranger" class="tranger" ><div class="tranger-a" id="tranger-a"></div><div class="tranger-b"></div><div id="tranger-c" class="tranger-c"></div></div></div></div></div></div>';
         tplayer.warp.innerHTML = tplayer.v;
-        tplayer.ddom = $d("dm-video-x");
+        tplayer.Element = $d("dm-video-x");
         tplayer.time = 0;
         tplayer.sjc = 0;
         tplayer.dsq = 0;
@@ -40,8 +40,8 @@ function Tplayer(Element, src, poster, server, videoid) {
         tplayer.time2 = 0;
         tplayer.dmplace = 1;
         //弹幕行高
-        tplayer.width = tplayer.ddom.offsetWidth;
-        tplayer.height = tplayer.ddom.offsetHeight;
+        tplayer.width = tplayer.Element.offsetWidth;
+        tplayer.height = tplayer.Element.offsetHeight;
         tplayer.getdanmu = function() {
             var xmlhttp;
             xmlhttp = new XMLHttpRequest();
@@ -56,8 +56,8 @@ function Tplayer(Element, src, poster, server, videoid) {
         };
         tplayer.getdanmu();
         tplayer.send = function(text, color, wz, me) {
-            tplayer.width = tplayer.ddom.offsetWidth;
-            tplayer.height = tplayer.ddom.offsetHeight;
+            tplayer.width = tplayer.Element.offsetWidth;
+            tplayer.height = tplayer.Element.offsetHeight;
             var dm = document.createElement("div");
             dm.appendChild(document.createTextNode(text));
             dm.style.color = color;
@@ -199,7 +199,7 @@ function Tplayer(Element, src, poster, server, videoid) {
             var e = $d("danmu").getElementsByTagName("div");
             this.style.display = "none";
             $d("video-control-paused").style.display = "inline-block";
-            tplayer.ddom.play();
+            tplayer.Element.play();
             for (var i = e.length - 1; i >= 0; i--) {
                 removeClass(e[i], "dm-suspend");
             }
@@ -211,7 +211,7 @@ function Tplayer(Element, src, poster, server, videoid) {
             var e = $d("danmu").getElementsByTagName("div");
             this.style.display = "none";
             $d("video-control-play").style.display = "inline-block";
-            tplayer.ddom.pause();
+            tplayer.Element.pause();
             for (var i = e.length - 1; i >= 0; i--) {
                 addClass(e[i], "dm-suspend");
             }
@@ -258,7 +258,7 @@ function Tplayer(Element, src, poster, server, videoid) {
         }
         //获取视频总时间
         function getallvideotime() {
-            var time = tplayer.ddom.duration;
+            var time = tplayer.Element.duration;
             if (!time) {
                 setTimeout(function() {
                     getallvideotime();
@@ -283,15 +283,19 @@ function Tplayer(Element, src, poster, server, videoid) {
         });
         //定时器
         function danmutime() {
-            var videotime = tplayer.ddom.currentTime;
+            var videotime = tplayer.Element.currentTime;
             $d("video-control-nowtime").innerHTML = getvideotime(videotime).m + ":" + getvideotime(videotime).s;
             $d("tranger-a").style.width = videotime / tplayer.alltime * 100 + "%";
-            var buff= tplayer.ddom.buffered;
+            var buff= tplayer.Element.buffered;
             //判断缓存段
             for (var i=0;i<buff.length;i++) {
             	if(buff.start(i)<=videotime&&videotime<buff.end(i))
             	{
-            		$d("tranger-c").style.width = tplayer.ddom.buffered.end(i) / tplayer.alltime * 100 + "%";
+            		var width= tplayer.Element.buffered.end(i) / tplayer.alltime * 100+ "%";
+            		if($d("tranger-c").style.width!=width)
+            		{
+            			$d("tranger-c").style.width = width;
+            		}
             		break;
             	}
             }
@@ -308,8 +312,8 @@ function Tplayer(Element, src, poster, server, videoid) {
         $d("tranger").onmousedown = function() {
             var xbl = show_coords(event, this);
             $d("tranger-a").style.width = xbl.xbl * 100 + "%";
-            tplayer.ddom.currentTime = xbl.xbl * tplayer.alltime;
-            tplayer.time = parseInt(tplayer.ddom.currentTime * 10);
+            tplayer.Element.currentTime = xbl.xbl * tplayer.alltime;
+            tplayer.time = parseInt(tplayer.Element.currentTime * 10);
         };
         //获取元素的纵坐标（相对于窗口）
         function getTop(e) {
@@ -323,15 +327,15 @@ function Tplayer(Element, src, poster, server, videoid) {
             if (e.offsetParent != null) offset += getLeft(e.offsetParent);
             return offset;
         }
-        function show_coords(event, dom) {
-            var x = event.clientX - getLeft(dom);
-            var y = event.clientY - getTop(dom);
-            var xbl = x / dom.offsetWidth;
-            var ybl = y / dom.offsetTop;
+        function show_coords(event, elem) {
+            var x = event.clientX - getLeft(elem);
+            var y = event.clientY - getTop(elem);
+            var xbl = x / elem.offsetWidth;
+            var ybl = y / elem.offsetTop;
             return {
                 x:x,
                 y:y,
-                w:dom.offsetWidth,
+                w:elem.offsetWidth,
                 xbl:xbl,
                 ybl:ybl
             };
@@ -367,13 +371,13 @@ function Tplayer(Element, src, poster, server, videoid) {
             showbar();
             if (e && e.keyCode == 39) {
                 // right 键
-                var time = tplayer.ddom.currentTime;
-                tplayer.ddom.currentTime = time + 5;
+                var time = tplayer.Element.currentTime;
+                tplayer.Element.currentTime = time + 5;
             }
             if (e && e.keyCode == 37) {
                 // left 键
-                var time = tplayer.ddom.currentTime;
-                tplayer.ddom.currentTime = time - 5;
+                var time = tplayer.Element.currentTime;
+                tplayer.Element.currentTime = time - 5;
             }
             if (e && e.keyCode == 32) {
                 // space 键

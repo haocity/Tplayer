@@ -236,6 +236,7 @@ input[type=range]::-webkit-slider-thumb {
 			    background-color: rgba(207, 198, 198, 0.47);
 			    border-radius: 6px;
 			    z-index: 2;
+			    overflow: hidden;
 			}
 .dm-syk-ico{
 	position: relative;

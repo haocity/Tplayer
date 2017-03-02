@@ -307,7 +307,6 @@ function Tplayer(Element, src, poster, server, videoid) {
         //定时器
         function danmutime() {
             var videotime = tplayer.Element.currentTime;
-            $d("video-control-nowtime").innerHTML = getvideotime(videotime).m + ":" + getvideotime(videotime).s;
             $d("tranger-a").style.width = videotime / tplayer.alltime * 100 + "%";
             var buff = tplayer.Element.buffered;
             //判断缓存段
@@ -330,6 +329,15 @@ function Tplayer(Element, src, poster, server, videoid) {
             }
             tplayer.time++;
         }
+        //定时器二 1s执行一次
+        setInterval(function(){
+            var videotime = tplayer.Element.currentTime;
+            $d("video-control-nowtime").innerHTML = getvideotime(videotime).m + ":" + getvideotime(videotime).s;
+             var t=$d('dm-send').offsetWidth-280+'px';
+            if ($d('dm-text').style.width!=t) {
+                $d('dm-text').style.width=t;
+            };
+        }, 1000);
         //进度条
         $d("tranger").onmousedown = function() {
             var xbl = show_coords(event, this);

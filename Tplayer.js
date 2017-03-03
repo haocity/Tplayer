@@ -33,7 +33,6 @@ function getstyle(a) {
         }
     }
 }
-
 function Tplayer(Element, src, poster, server, videoid) {
     var tplayer = new Object();
     tplayer.videoid = videoid;
@@ -48,13 +47,11 @@ function Tplayer(Element, src, poster, server, videoid) {
         tplayer.warp.innerHTML = tplayer.v;
         tplayer.Element = $d("dm-video-x");
         tplayer.danmuelement = $d("danmu");
-        tplayer.time = 0;
         tplayer.sjc = 0;
         tplayer.dsq = 0;
         tplayer.leftarr = [];
         tplayer.toparr = [];
         tplayer.dmheight = 31;
-        tplayer.time2 = 0;
         tplayer.dmplace = 1;
         //弹幕行高
         tplayer.width = tplayer.Element.offsetWidth;
@@ -179,7 +176,7 @@ function Tplayer(Element, src, poster, server, videoid) {
                 id:tplayer.videoid,
                 text:$d("dm-text").value,
                 color:$d("tp-color-bo").style.backgroundColor,
-                time:tplayer.time,
+                time:parseInt(tplayer.Element.currentTime * 10 - 5),
                 place:tplayer.dmplace
             };
             postData = function(obj) {
@@ -321,29 +318,27 @@ function Tplayer(Element, src, poster, server, videoid) {
             }
             if (tplayer.data.length) {
                 for (var i = 0; i < tplayer.data.length; i++) {
-                    if (tplayer.data[i].time == tplayer.time) {
+                    if (tplayer.data[i].time == parseInt(tplayer.Element.currentTime * 10)) {
                         //console.log("send");
                         tplayer.send(tplayer.data[i].text, tplayer.data[i].color, tplayer.data[i].place);
                     }
                 }
             }
-            tplayer.time++;
         }
         //定时器二 1s执行一次
-        setInterval(function(){
+        setInterval(function() {
             var videotime = tplayer.Element.currentTime;
             $d("video-control-nowtime").innerHTML = getvideotime(videotime).m + ":" + getvideotime(videotime).s;
-             var t=$d('dm-send').offsetWidth-280+'px';
-            if ($d('dm-text').style.width!=t) {
-                $d('dm-text').style.width=t;
-            };
-        }, 1000);
+            var t = $d("dm-send").offsetWidth - 280 + "px";
+            if ($d("dm-text").style.width != t) {
+                $d("dm-text").style.width = t;
+            }
+        }, 1e3);
         //进度条
         $d("tranger").onmousedown = function() {
             var xbl = show_coords(event, this);
             $d("tranger-a").style.width = xbl.xbl * 100 + "%";
             tplayer.Element.currentTime = xbl.xbl * tplayer.alltime;
-            tplayer.time = parseInt(tplayer.Element.currentTime * 10);
         };
         //获取元素的纵坐标（相对于窗口）
         function getTop(e) {

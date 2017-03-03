@@ -176,7 +176,7 @@ function Tplayer(Element, src, poster, server, videoid) {
                 id:tplayer.videoid,
                 text:$d("dm-text").value,
                 color:$d("tp-color-bo").style.backgroundColor,
-                time:parseInt(tplayer.Element.currentTime * 10 - 5),
+                time:parseInt(tplayer.Element.currentTime * 10),
                 place:tplayer.dmplace
             };
             postData = function(obj) {

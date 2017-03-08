@@ -11,7 +11,7 @@
 			position: relative;
 			background-color: #AC2727;
 		}
-		.menu{
+		.dm-rightmenu{
 			position: absolute;
 			display: inline-block;
 			width: 130px;
@@ -21,13 +21,16 @@
 			background-color: rgba(0,0,0,0.8);
 			color: #fff;
 			z-index: 9999;
-			
 		}
-		.menu li{
+		.dm-rightmenu a{
+			color: #fff;
+			text-decoration: none;
+		}
+		.dm-rightmenu li{
 			padding: 2px 5px;
 			cursor: pointer;
 		}
-		.menu li:hover{
+		.dm-rightmenu li:hover{
 			padding-left:7px ;
 			background-color:rgba(255,255,255,0.2);
 		}
@@ -37,9 +40,9 @@
 
 	</style>
 </head>
-<body>
+<body style="margin-top: 400px;">
 	<div class="container">
-		<ul class="menu">
+		<ul class="dm-rightmenu">
 				<li class="tp-speend-con">播放速度
 					<ul class="tp-speend">
 						<li>0.5</li>
@@ -50,45 +53,50 @@
 						<li>2</li>
 					</ul>
 				</li>
-				<li>意见反馈</li>
-				<li>关于作者</li>
-				<li>About Tplayer</li>
+				<a href="https://github.com/haocity/Tplayer/issues" target="_blank"><li>意见反馈</li></a>
+				<a href="https://www.haotown.cn/about.html" target="_blank"><li>关于作者</li></a>
+				<a href="https://github.com/haocity/Tplayer" target="_blank"><li>About Tplayer</li></a>			
 		</div>
 	</div>
 	
 	<script type="text/javascript">
-		function $d(ele){
+		function $c(ele){
 			return document.querySelectorAll(ele);
 		}
-		$d('.tp-speend-con')[0].addEventListener('click',function(){
-			var t= $d('.tp-speend')[0];
+		$c('.tp-speend-con')[0].addEventListener('click',function(){
+			var t= $c('.tp-speend')[0];
 			if(t.style.display=='block'){
 				t.style.display='none'
 			}else{
 				t.style.display='block'
 			}
 		});
-		var container=$d('.container')[0];
-		var menu=$d('.menu')[0];
-		$d('.container')[0].onmousedown=function(){
+		var container=$c('.container')[0];
+		var rightmenu=$c('.dm-rightmenu')[0];
+		$c('.container')[0].onmousedown=function(){
 			if(event.button==2){
+				rightmenu.style.display='block';
 				var evt = window.event || arguments[0];
+				console.log(evt.clientX);
 				var leftedge = evt.clientX-container.offsetLeft;
-        var topedge = evt.clientY-container.offsetTop;
-        
-        	 if (window.document.all)
-            {
-                this.IContextMenuHander = function(){return false;};
-                document.attachEvent("oncontextmenu", this.IContextMenuHander);
-            }
-            else
-            {
-                this.IContextMenuHander = document.oncontextmenu;
-                document.oncontextmenu = function(){return false;};
-            }
-        	console.log('left'+leftedge+'top'+topedge);
-        	menu.style.top=topedge+'px';
-        	menu.style.left=leftedge+'px';
+        		var topedge = evt.clientY+document.body.scrollTop-container.offsetTop;
+        		var tweidth=container.offsetWidth;
+        		var theigtht=container.offsetHeight;
+	        	if(leftedge+rightmenu.offsetWidth>tweidth){leftedge=tweidth-rightmenu.offsetWidth}
+	        	if(topedge+rightmenu.offsetHeight>theigtht){topedge=theigtht-rightmenu.offsetHeight}
+	        	 if (window.document.all)
+	            {
+	                this.IContextmenuHander = function(){return false;};
+	                document.attachEvent("oncontextmenu", this.IContextmenuHander);
+	            }
+	            else
+	            {
+	                this.IContextmenuHander = document.oncontextmenu;
+	                document.oncontextmenu = function(){return false;};
+	            }
+	        	console.log('left'+leftedge+'top'+topedge);
+	        	rightmenu.style.top=topedge+'px';
+	        	rightmenu.style.left=leftedge+'px';
 			}
 		}
 		

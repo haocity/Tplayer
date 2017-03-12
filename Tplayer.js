@@ -527,11 +527,13 @@ function Tplayer(Element, src, poster, server, videoid) {
 			 if(event.button==2){
 				rightmenu.style.display='block';
 				var evt = window.event || arguments[0];
-				var leftedge,topedge;
-				if($d('danmu').offsetHeight==document.documentElement.clientHeight)
+				var leftedge,topedge,danmuheight=$d('danmu').offsetHeight,danmuwidth=$d('danmu').offsetWidth;
+				if(danmuheight==document.documentElement.clientHeight)
 				{
 					topedge= evt.clientY;
 					leftedge= evt.clientX;
+					if(leftedge+rightmenu.offsetWidth>danmuwidth){leftedge=danmuwidth-rightmenu.offsetWidth}
+					if(topedge+rightmenu.offsetWidth>danmuheight){topedge=danmuheight-rightmenu.offsetHeight}
 				}else{
 					topedge= evt.clientY+document.body.scrollTop-container.offsetTop;
 					leftedge= evt.clientX-container.offsetLeft;

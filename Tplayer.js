@@ -527,12 +527,20 @@ function Tplayer(Element, src, poster, server, videoid) {
 			 if(event.button==2){
 				rightmenu.style.display='block';
 				var evt = window.event || arguments[0];
-				var leftedge = evt.clientX-container.offsetLeft;
-        		var topedge = evt.clientY+document.body.scrollTop-container.offsetTop;
-        		var tweidth=container.offsetWidth;
-        		var theigtht=container.offsetHeight;
-	        	if(leftedge+rightmenu.offsetWidth>tweidth){leftedge=tweidth-rightmenu.offsetWidth}
-	        	if(topedge+rightmenu.offsetHeight>theigtht){topedge=theigtht-rightmenu.offsetHeight}
+				var leftedge,topedge;
+				if($d('danmu').offsetHeight==document.documentElement.clientHeight)
+				{
+					topedge= evt.clientY;
+					leftedge= evt.clientX;
+				}else{
+					topedge= evt.clientY+document.body.scrollTop-container.offsetTop;
+					leftedge= evt.clientX-container.offsetLeft;
+					var tweidth=container.offsetWidth;
+	        		var theigtht=container.offsetHeight;
+		        	if(leftedge+rightmenu.offsetWidth>tweidth){leftedge=tweidth-rightmenu.offsetWidth}
+		        	if(topedge+rightmenu.offsetHeight>theigtht){topedge=theigtht-rightmenu.offsetHeight}
+				}
+        	
 	        	 if (window.document.all)
 	            {
 	                this.IContextmenuHander = function(){return false;};

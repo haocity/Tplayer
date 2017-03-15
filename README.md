@@ -13,8 +13,20 @@
 ```
 执行
 ```
-Tplayer(要放入视频Element,'视频地址','视频封面','视频后端地址',视频编号);
+Tplayer(Element,videourl,videoposter,danmuserver,danmuid,videotype);
 ```
-后端 使用了node - php 用户可以自由选择
+
+| Field              | Type                  | Description                              |
+| ------------------ | --------------------- | ---------------------------------------- |
+| `Element`          | `Element Object`      | 要插入播放器的元素                       |
+| `videourl`         | `String`              | 视频播放地址                             |
+| `videoposter`      | `String`              | 视频封面地址                             |
+| `videourl`         | `String`              | 弹幕服务器地址                           |
+| `danmuid`          | `Int`              	 | 弹幕ID                                   |
+| `videotype`        | `String`              | 视频格式 支持flv与mp4 使用flv时需引用flv.js                           |
+
+后端 `node`
+
+
 
 

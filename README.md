@@ -1,5 +1,4 @@
 # HAOTOWN TPlayer
-*****
 ![image](https://ooo.0o0.ooo/2016/12/16/585359df46d72.png)
 @(CSS3)[Javascript]
 本项目是一款基于css3和js弹幕系统。<br>

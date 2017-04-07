@@ -6,9 +6,9 @@ mysql      = require('mysql');
   function handleConnect() {
     db = mysql.createConnection({
       host     : 'localhost',
-      user     : 'haocity',
-      password : 'haocity521',
-      database : 'danmu'
+      user     : 'user',
+      password : 'password',
+      database : 'database'
     }); 
     db.connect(function(err) {        
       if(err) {                                    

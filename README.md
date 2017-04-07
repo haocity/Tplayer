@@ -2,7 +2,7 @@
 ![image](https://ooo.0o0.ooo/2016/12/16/585359df46d72.png)
 @(CSS3)[Javascript]
 本项目是一款基于css3和js弹幕系统。<br>
-未全部完善  [具体demo][3]
+未全部完善  [具体demo][https://haocity.github.io/Tplayer/]
 ![image](https://ooo.0o0.ooo/2016/12/20/5858df24293f5.png)
 ## 使用方式
 引用Tplayer.js和colorpicker.js文件
@@ -26,8 +26,5 @@ Tplayer(Element,videourl,videoposter,danmuserver,danmuid,videotype);
 
 
 后端 `node`
-[flv.js github][2]
-[flv.js cdn][1]
-  [1]: http://www.bootcdn.cn/flv.js/
-  [2]: https://github.com/Bilibili/flv.js
-  [3]: https://haocity.github.io/Tplayer/
+[flv.js github][https://github.com/Bilibili/flv.js/]
+[flv.js cdn][http://www.bootcdn.cn/flv.js/]

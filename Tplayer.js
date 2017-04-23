@@ -351,8 +351,9 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             }
         }, 1e3);
         //进度条
-        $d("tranger").onmousedown = function() {
-            var xbl = show_coords(event, this);
+        $d("tranger").onmousedown = function(event) {
+        	var e = event || window.event || arguments.callee.caller.arguments[0];
+            var xbl = show_coords(e, this);
             $d("tranger-a").style.width = xbl.xbl * 100 + "%";
             tplayer.Element.currentTime = xbl.xbl * tplayer.alltime;
             tplayer.nowdata = JSON.parse(tplayer.data).data;
@@ -534,10 +535,11 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
                 };
             }
         }
-        $c("#danmu")[0].onmousedown = function() {
+        $c("#danmu")[0].onmousedown = function(event) {
+        	var e = event || window.event || arguments.callee.caller.arguments[0];
             var container = $c(".dm-video-warp")[0];
             var rightmenu = $c(".dm-rightmenu")[0];
-            if (event.button == 2) {
+            if (e.button == 2) {
                 rightmenu.style.display = "block";
                 var evt = window.event || arguments[0];
                 var leftedge, topedge, danmuheight = $d("danmu").offsetHeight, danmuwidth = $d("danmu").offsetWidth;
@@ -575,7 +577,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
                 }
                 rightmenu.style.top = topedge + "px";
                 rightmenu.style.left = leftedge + "px";
-            } else if (event.button == 0) {
+            } else if (e.button == 0) {
                 //如果左按键
                 if (rightmenu.style.display == "block") {
                     rightmenu.style.display = "none";

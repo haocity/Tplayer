@@ -119,6 +119,9 @@
 	width: 100%;
 	height: 100%;
 	background-color: #000;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }
 .dm-video {
 	background-color: #000;
@@ -129,11 +132,7 @@
 	opacity: 0;
 	transition: opacity 1s;
 	-moz-transition: opacity 1s;
-	/* Firefox 4*/
 	-webkit-transition: opacity 1s;
-	/* Safari and Chrome*/
-	-o-transition: opacity 1s;
-	/* Opera*/
 }
 .video-control {
 	position: absolute;

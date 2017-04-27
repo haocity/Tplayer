@@ -457,3 +457,9 @@ input[type=range]::-webkit-slider-thumb {
 	display: none;
 	margin: 4px 0 4px 30px;
 }
+.tp-copy-input{
+	width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+}

@@ -32,10 +32,40 @@
 		</header>
 		<div id="v-dom"></div>
 		<div class="introduction">
-			
+		<a href='http://acg.tv/sm29146509'>sm29146509</a> あずにゃん：想做一下这样的琪露诺~
 		</div>
 		<script type="text/javascript">
-		Tplayer($d('v-dom'),'https://t4.haotown.cn/danmu/res/1.mp4','https://app.haotown.cn/danmu/res/1.jpg','https://t5.haotown.cn/danmu/',1,'mp4');
+		Tplayer($d('v-dom'),'https://t4.haotown.cn/danmu/res/1.mp4','https://ooo.0o0.ooo/2017/04/27/590166d5436e9.jpg','https://t5.haotown.cn/danmu/',1,'mp4');
 		</script>
+
+		<div id="v-dom2"></div>
+		<div class="introduction">
+		Grawori's-Studioルーム（youtube.com/watch?v=lr8RwDej-MY）【MMD】Tda-Hood_MikuでProblem 
+		</div>
+		<script type="text/javascript">
+		function video2(){
+			xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        var t = xmlhttp.responseText;
+                        var videosrcarr = JSON.parse(t).video;
+                        if (videosrcarr) {
+                        	console.log(videosrcarr[0]);
+                            Tplayer($d('v-dom2'),videosrcarr[0],'https://ooo.0o0.ooo/2017/04/27/5901656a5f61b.jpg','https://t5.haotown.cn/danmu/',2,'mp4');
+                        } else {
+                            setTimeout(function() {video2()},100)
+                        }
+                    } else {
+                        setTimeout(function() {video2()},100)
+                    }
+                }
+            };
+            xmlhttp.open("GET", "https://t5.haotown.cn/acfun/video/?ac=3655101_2", true);
+            xmlhttp.send();
+        }
+         video2();
+		</script>
+
 	</body>
 </html>

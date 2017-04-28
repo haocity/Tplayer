@@ -29,7 +29,7 @@
 	padding: 0 4px;
 	font-family: Avenir Next,Helvetica,Arial,Lantinghei SC,Microsoft YaHei,sans-serif;
 }
-.dm-left {
+.tp-left {
 	position: absolute;
 	will-change: transform;
 	right: 0;
@@ -40,7 +40,7 @@
 	white-space: nowrap;
 	text-shadow: #000 0 2px 0;
 }
-.dm-top {
+.tp-top {
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -72,7 +72,7 @@
 	left: 0px;
 	overflow: hidden;
 }
-.dm-send {
+.tp-send {
 	position: absolute;
 	bottom: 10%;
 	left: 50%;
@@ -86,7 +86,7 @@
 	z-index: 6;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
-.dm-text {
+.tp-text {
 	position: relative;
 	top: -12px;
 	width: 50%;
@@ -96,7 +96,7 @@
 	background-color: transparent;
 	outline: none;
 }
-.dm-up {
+.tp-up {
 	position: relative;
 	display: inline-block;
 	top: -13px;
@@ -108,13 +108,13 @@
 	border-radius: 4px;
 	padding: 3px 20px;
 }
-.dm-logo-small {
+.tp-logo-small {
 	width: 114px;
 	height: 35px;
 	background-image: url(logo-small.png);
 	display: inline-block;
 }
-.dm-video-main {
+.tp-video-main {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -123,18 +123,18 @@
 	-moz-user-select: none;
 	user-select: none;
 }
-.dm-video {
+.tp-video {
 	background-color: #000;
 	height: 100%;
 	width: 100%;
 }
-.dm-video-y {
+.tp-video-con {
 	opacity: 0;
 	transition: opacity 1s;
 	-moz-transition: opacity 1s;
 	-webkit-transition: opacity 1s;
 }
-.video-control {
+.tp-control {
 	position: absolute;
 	bottom: 0;
 	padding-bottom: 10px;
@@ -146,7 +146,7 @@
 	line-height: 0px;
 	user-select: none;
 }
-.dm-icon {
+.tp-icon {
 	position: relative;
 	top: 6px;
 	padding-left: 10px;
@@ -156,7 +156,7 @@
 	cursor: pointer;
 	fill: #fff;
 }
-.dm-dmk {
+.tp-danmu-switch {
 	position: relative;
 	display: inline-block;
 	border: 2px solid #fff;
@@ -169,12 +169,12 @@
 	text-align: center;
 	cursor: pointer;
 }
-.dm-dmk-c {
+.tp-danmu-switch-c {
 	color: #000 !important;
 	border: none !important;
 	background-color: #fff;
 }
-.dm-syk {
+.tp-syk {
 	padding: 10px 10px;
 	position: relative;
 	display: inline-block;
@@ -205,7 +205,7 @@ input[type=range]::-webkit-slider-thumb {
 	cursor: pointer;
 	-webkit-appearance: none;
 }
-.tranger {
+.tp-tranger {
 	position: relative;
 	height: 11px;
 	background-color: rgba(0, 0, 0, 0.17);
@@ -217,7 +217,7 @@ input[type=range]::-webkit-slider-thumb {
 	margin-left: 80px;
 	margin-right: 170px;
 }
-.tranger-a {
+.tp-tranger>.tp-tranger-a {
 	position: relative;
 	display: inline-block;
 	background-color: rgba(255, 255, 255, 0.4);
@@ -226,7 +226,7 @@ input[type=range]::-webkit-slider-thumb {
 	border-radius: 6px;
 	z-index: 3;
 }
-.tranger-b {
+.tp-tranger>.tp-tranger-b {
 	position: relative;
 	display: inline-block;
 	background-color: #FFFFFF;
@@ -235,7 +235,7 @@ input[type=range]::-webkit-slider-thumb {
 	border-radius: 50%;
 	right: 7px;
 }
-.tranger-c {
+.tp-tranger>.tp-tranger-c {
 	position: absolute;
 	top: 0px;
 	width: 0%;
@@ -245,11 +245,11 @@ input[type=range]::-webkit-slider-thumb {
 	z-index: 2;
 	overflow: hidden;
 }
-.dm-syk-ico {
+.tp-syk-ico {
 	position: relative;
 	top: 2px;
 }
-.dm-syk-range {
+.tp-syk-range {
 	width: 60px;
 	display: block;
 	overflow: hidden;
@@ -257,7 +257,7 @@ input[type=range]::-webkit-slider-thumb {
 	margin-left: 20px;
 }
 /*loding*/
-	.dm-oneplay {
+	.tp-oneplay {
 	margin: auto;
 	position: absolute;
 	top: 0;
@@ -267,7 +267,7 @@ input[type=range]::-webkit-slider-thumb {
 	width: 200px;
 	height: 200px;
 }
-.dm-spinner {
+.tp-spinner {
 	margin: 100px auto;
 	width: 50px;
 	height: 40px;
@@ -279,20 +279,20 @@ input[type=range]::-webkit-slider-thumb {
 	z-index: 7;
 	display: none;
 }
-.dm-suspend {
+.tp-suspend {
 	-webkit-animation-play-state: paused !important;
 	animation-play-state: paused !important;
 }
 .md-iframe {
 	display: none;
 }
-.dm-place2 {
+.tp-place2 {
 	background-color: #3b3b3b;
 	margin: 2px 0 4px 0;
 	color: #fff;
 	cursor: pointer;
 }
-.dm-spinner > div {
+.tp-spinner > div {
 	background-color: #fff;
 	height: 100%;
 	width: 6px;
@@ -300,19 +300,19 @@ input[type=range]::-webkit-slider-thumb {
 	-webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
 	animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
-.dm-spinner .rect2 {
+.tp-spinner .rect2 {
 	-webkit-animation-delay: -1.1s;
 	animation-delay: -1.1s;
 }
-.dm-spinner .rect3 {
+.tp-spinner .rect3 {
 	-webkit-animation-delay: -1.0s;
 	animation-delay: -1.0s;
 }
-.dm-spinner .rect4 {
+.tp-spinner .rect4 {
 	-webkit-animation-delay: -0.9s;
 	animation-delay: -0.9s;
 }
-.dm-spinner .rect5 {
+.tp-spinner .rect5 {
 	-webkit-animation-delay: -0.8s;
 	animation-delay: -0.8s;
 }
@@ -344,7 +344,7 @@ input[type=range]::-webkit-slider-thumb {
 	cursor: pointer;
 	fill: #fff;
 }
-:-webkit-full-screen .dm-video-main {
+:-webkit-full-screen .tp-video-main {
 	height: 100% !important;
 	width: 100% !important;
 	position: fixed;
@@ -353,7 +353,7 @@ input[type=range]::-webkit-slider-thumb {
 	right: 0;
 	bottom: 0;
 }
-:-moz-full-screen .dm-video-main {
+:-moz-full-screen .tp-video-main {
 	height: 100% !important;
 	width: 100% !important;
 	position: fixed;
@@ -362,7 +362,7 @@ input[type=range]::-webkit-slider-thumb {
 	right: 0;
 	bottom: 0;
 }
-:-ms-fullscreen .dm-video-main {
+:-ms-fullscreen .tp-video-main {
 	height: 100% !important;
 	width: 100% !important;
 	position: fixed;
@@ -371,7 +371,7 @@ input[type=range]::-webkit-slider-thumb {
 	right: 0;
 	bottom: 0;
 }
-:-full-screen .dm-video-main {
+:-full-screen .tp-video-main {
 	height: 100% !important;
 	width: 100% !important;
 	position: fixed;
@@ -380,7 +380,7 @@ input[type=range]::-webkit-slider-thumb {
 	right: 0;
 	bottom: 0;
 }
-:fullscreen .dm-video-main {
+:fullscreen .tp-video-main {
 	height: 100% !important;
 	width: 100% !important;
 	position: fixed;
@@ -429,7 +429,7 @@ input[type=range]::-webkit-slider-thumb {
 	text-align: center;
 	padding-bottom: 4px;
 }
-.dm-rightmenu {
+.tp-rightmenu {
 	display: none;
 	position: absolute;
 	width: 130px;
@@ -441,15 +441,15 @@ input[type=range]::-webkit-slider-thumb {
 	color: #fff;
 	z-index: 9999;
 }
-.dm-rightmenu a {
+.tp-rightmenu a {
 	color: #fff;
 	text-decoration: none;
 }
-.dm-rightmenu li {
+.tp-rightmenu li {
 	padding: 2px 5px;
 	cursor: pointer;
 }
-.dm-rightmenu li:hover {
+.tp-rightmenu li:hover {
 	padding-left: 7px;
 	background-color: rgba(255,255,255,0.2);
 }

@@ -29,46 +29,43 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tplayer.geturl = tplayer.serverurl + "get/?id=" + tplayer.videoid;
     tplayer.sendurl = tplayer.serverurl + "send/";
     tplayer.videotype = videotype;
-    tplayer.v = '<div class="dm-video-warp"><div class="dm-video-main"><ul class="dm-rightmenu"><li class="tp-copy"><textarea class="tp-copy-input">复制弹幕</textarea></li><li class="tp-speend-con">播放速度<ul class="tp-speend"><li>0.5</li><li>0.75</li><li>正常</li><li>1.25</li><li>1.5</li><li>2</li></ul></li><a href="https://github.com/haocity/Tplayer/issues"target="_blank"><li>意见反馈</li></a><a href="https://www.haotown.cn/about.html"target="_blank"><li>关于作者</li></a><a href="https://github.com/haocity/Tplayer"target="_blank"><li>About Tplayer</li></a></ul><div class="video-end">				<svg t="1493275296747" class="replay"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3488" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100"><path d="M48.012564 368.005052 256.007345 368.005052C282.50851 368.005052 303.987849 346.493648 303.987849 319.992484 303.987849 293.459261 282.50851 272.011981 256.007345 272.011981L172.518731 272.011981C247.808645 165.585172 371.698941 95.994406 512.016029 95.994406 741.749327 95.994406 928.004256 282.249339 928.004256 511.981298 928.004256 741.731959 741.749327 927.954828 512.016029 927.954828 282.249335 927.954828 95.994406 741.730625 95.994406 511.981298 95.994406 485.481472 74.513729 464.00213 48.012564 464.00213 21.479342 464.00213 0 485.481472 0 511.981298 0 794.734285 229.213614 1023.981298 512.017367 1023.981298 794.75299 1023.981298 1024 794.734285 1024 511.981298 1024 229.214949 794.751652 0 512.017367 0 340.405743 0 188.81594 84.590769 95.99574 214.213612L95.99574 128.003676C95.99574 101.471785 74.515063 79.991108 48.013903 79.991108 21.480677 79.991108 0.001338 101.471785 0.001338 128.003676L0.001338 319.993822C0 346.493645 21.479339 368.005052 48.012564 368.005052" p-id="3489" fill="#ffffff"></path></svg></div><video class="dm-video"></video><div class="danmu-warp"></div><div class="dm-oneplay"><svg style="width: 200px;height:200px;"class="dm-icon"viewbox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M836.1152 512 194.2848 886.4v-748.8000000000001L836.1152 512z"/></svg></div><div class="dm-spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><div class="dm-video-y"><div class="dm-send"><div class="dm-logo-small"></div><input type="text"class="dm-text"required="true"placeholder="客官，不来吐槽一下吗?"autocomplete="off"/><div class="tp-color"><div class="tp-color-bo"style="background-color: rgb(255, 255, 255)"></div><div class="tp-con"><div class="tp-place">◀滚动弹幕</div><div class="tp-color-warp"></div></div></div><input class="dm-up"type="submit"value="发送"/></div><div class="video-control"><div style="float:right;"><span class="video-control-alltime"style="padding:0 6px 0 12px">0:00</span><div class="dm-dmk">弹</div><div class="dm-syk"><span class="dm-syk-ico">♫</span><input class="dm-syk-range"type="range"name="points"min="0"max="100"value="100"/></div><svg class="video-full" xmlns="http://www.w3.org/2000/svg"xmlns:xlink="http://www.w3.org/1999/xlink"class="dm-icon"viewbox="0 0 1024 1024"version="1.1"p-id="1427"><defs><style type="text/css"><![CDATA[]]></style></defs><path d="M971.862 52.538c-10.964-10.992-25.546-17.044-41.056-17.044L429.616 35.494l0 79.362 479.86 0 0 465.288 79.364 0L988.84 93.524C988.84 78.024 982.802 63.46 971.862 52.538z"p-id="1428"/><path d="M115.092 429.62 35.728 429.62l0 500.854c0 15.5 6.038 30.066 16.982 40.994 10.966 10.988 25.544 17.04 41.05 17.04l469.182 0 0-79.364L115.092 909.144 115.092 429.62z"p-id="1429"/><path d="M127.16 193.578l73.198 73.198-0.034 0.034 40.438 40.44 14.164 14.096 152.616 152.616c8.796 8.796 20.492 13.64 32.932 13.64 12.442 0 24.138-4.846 32.936-13.644 18.158-18.16 18.156-47.708-0.002-65.866l-141.318-141.318 0.094-0.094-40.484-40.486-14.162-13.97L192.812 127.492l146.47 0 0-92L101.16 35.492c-36.392 0-66 29.608-66 66l0 237.972 92 0L127.16 193.578z"p-id="1430"/><path d="M896.578 830.358l-73.198-73.198 0.034-0.034-40.44-40.44-14.148-14.084-152.622-152.62c-8.796-8.8-20.496-13.648-32.942-13.648-12.444 0-24.14 4.848-32.94 13.646-18.148 18.156-18.148 47.702 0.004 65.866l141.31 141.306-0.094 0.094 40.492 40.494 14.16 13.974 84.728 84.726-146.734 0 0 92 238.386 0c36.392 0 66-29.608 66-66l0-237.96-92 0L896.574 830.358z"p-id="1431"/></svg></div><div style="float: left;"><svg class="video-control-play dm-icon"viewbox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M836.1152 512 194.2848 886.4v-748.8000000000001L836.1152 512z"/></svg><svg class="video-control-paused dm-icon"style="display:none"viewbox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M256.033769 192.014198l127.977743 0 0 639.933741-127.977743 0 0-639.933741ZM639.976 191.982l127.993 0 0 639.966-127.993 0 0-639.966z"/></svg><span class="video-control-nowtime">0:00</span></div><div class="tranger"><div class="tranger-a"></div><div class="tranger-b"></div><div class="tranger-c"></div></div></div></div></div></div><style class="css" type="text/css"></style>';
+    tplayer.v = '<div class="tp-video-warp"><div class="tp-video-main"><ul class="tp-rightmenu"><li class="tp-copy-warp"><textarea class="tp-copy-input">复制弹幕</textarea></li><li class="tp-speend-con">播放速度<ul class="tp-speend"><li>0.5</li><li>0.75</li><li>正常</li><li>1.25</li><li>1.5</li><li>2</li></ul></li><a href="https://github.com/haocity/Tplayer/issues"target="_blank"><li>意见反馈</li></a><a href="https://www.haotown.cn/about.html"target="_blank"><li>关于作者</li></a><a href="https://github.com/haocity/Tplayer"target="_blank"><li>About Tplayer</li></a></ul><div class="video-end"><svg t="1493275296747"class="replay"viewBox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"p-id="3488"xmlns:xlink="http://www.w3.org/1999/xlink"width="100"height="100"><path d="M48.012564 368.005052 256.007345 368.005052C282.50851 368.005052 303.987849 346.493648 303.987849 319.992484 303.987849 293.459261 282.50851 272.011981 256.007345 272.011981L172.518731 272.011981C247.808645 165.585172 371.698941 95.994406 512.016029 95.994406 741.749327 95.994406 928.004256 282.249339 928.004256 511.981298 928.004256 741.731959 741.749327 927.954828 512.016029 927.954828 282.249335 927.954828 95.994406 741.730625 95.994406 511.981298 95.994406 485.481472 74.513729 464.00213 48.012564 464.00213 21.479342 464.00213 0 485.481472 0 511.981298 0 794.734285 229.213614 1023.981298 512.017367 1023.981298 794.75299 1023.981298 1024 794.734285 1024 511.981298 1024 229.214949 794.751652 0 512.017367 0 340.405743 0 188.81594 84.590769 95.99574 214.213612L95.99574 128.003676C95.99574 101.471785 74.515063 79.991108 48.013903 79.991108 21.480677 79.991108 0.001338 101.471785 0.001338 128.003676L0.001338 319.993822C0 346.493645 21.479339 368.005052 48.012564 368.005052"p-id="3489"fill="#ffffff"></path></svg></div><video class="tp-video"></video><div class="danmu-warp"></div><div class="tp-oneplay"><svg style="width: 200px;height:200px;"class="tp-icon"viewbox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M836.1152 512 194.2848 886.4v-748.8000000000001L836.1152 512z"/></svg></div><div class="tp-spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><div class="tp-video-con"><div class="tp-send"><div class="tp-logo-small"></div><input type="text"class="tp-text"required="true"placeholder="客官，不来吐槽一下吗?"autocomplete="off"/><div class="tp-color"><div class="tp-color-bo"style="background-color: rgb(255, 255, 255)"></div><div class="tp-con"><div class="tp-place">◀滚动弹幕</div><div class="tp-color-warp"></div></div></div><input class="tp-up"type="submit"value="发送"/></div><div class="tp-control"><div style="float:right;"><span class="tp-control-alltime"style="padding:0 6px 0 12px">0:00</span><div class="tp-danmu-switch">弹</div><div class="tp-syk"><span class="tp-syk-ico">♫</span><input class="tp-syk-range"type="range"name="points"min="0"max="100"value="100"/></div><svg class="video-full"xmlns="http://www.w3.org/2000/svg"xmlns:xlink="http://www.w3.org/1999/xlink"class="tp-icon"viewbox="0 0 1024 1024"version="1.1"p-id="1427"><path d="M971.862 52.538c-10.964-10.992-25.546-17.044-41.056-17.044L429.616 35.494l0 79.362 479.86 0 0 465.288 79.364 0L988.84 93.524C988.84 78.024 982.802 63.46 971.862 52.538z"p-id="1428"/><path d="M115.092 429.62 35.728 429.62l0 500.854c0 15.5 6.038 30.066 16.982 40.994 10.966 10.988 25.544 17.04 41.05 17.04l469.182 0 0-79.364L115.092 909.144 115.092 429.62z"p-id="1429"/><path d="M127.16 193.578l73.198 73.198-0.034 0.034 40.438 40.44 14.164 14.096 152.616 152.616c8.796 8.796 20.492 13.64 32.932 13.64 12.442 0 24.138-4.846 32.936-13.644 18.158-18.16 18.156-47.708-0.002-65.866l-141.318-141.318 0.094-0.094-40.484-40.486-14.162-13.97L192.812 127.492l146.47 0 0-92L101.16 35.492c-36.392 0-66 29.608-66 66l0 237.972 92 0L127.16 193.578z"p-id="1430"/><path d="M896.578 830.358l-73.198-73.198 0.034-0.034-40.44-40.44-14.148-14.084-152.622-152.62c-8.796-8.8-20.496-13.648-32.942-13.648-12.444 0-24.14 4.848-32.94 13.646-18.148 18.156-18.148 47.702 0.004 65.866l141.31 141.306-0.094 0.094 40.492 40.494 14.16 13.974 84.728 84.726-146.734 0 0 92 238.386 0c36.392 0 66-29.608 66-66l0-237.96-92 0L896.574 830.358z"p-id="1431"/></svg></div><div style="float: left;"><svg class="tp-control-play tp-icon"viewbox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M836.1152 512 194.2848 886.4v-748.8000000000001L836.1152 512z"/></svg><svg class="tp-control-paused tp-icon"style="display:none"viewbox="0 0 1024 1024"version="1.1"xmlns="http://www.w3.org/2000/svg"><path fill="#fff"d="M256.033769 192.014198l127.977743 0 0 639.933741-127.977743 0 0-639.933741ZM639.976 191.982l127.993 0 0 639.966-127.993 0 0-639.966z"/></svg><span class="tp-control-nowtime">0:00</span></div><div class="tp-tranger"><div class="tp-tranger-a"></div><div class="tp-tranger-b"></div><div class="tp-tranger-c"></div></div></div></div></div></div><style class="css"type="text/css"></style>';
     tplayer.ele.warp.innerHTML = tplayer.v;
     //ele
     function $c(ele) {
         return tplayer.ele.warp.querySelectorAll(ele);
     }
-    tplayer.ele.video = $c(".dm-video")[0];
-    tplayer.ele.dm_dmk = $c(".dm-dmk")[0];
-    //弹幕开关
-    tplayer.ele.dm_text = $c(".dm-text")[0];
-    //弹幕文本框
-    tplayer.ele.dm_up = $c(".dm-up")[0];
-    //弹幕发送
+    tplayer.ele.video = $c(".tp-video")[0];
+    tplayer.ele.danmu_switch = $c(".tp-danmu-switch")[0];
+    tplayer.ele.tp_text = $c(".tp-text")[0];
+    tplayer.ele.tp_up = $c(".tp-up")[0];
     tplayer.ele.tp_color_bo = $c(".tp-color-bo")[0];
-    tplayer.ele.video_control_play = $c(".video-control-play")[0];
-    tplayer.ele.dm_oneplay = $c(".dm-oneplay")[0];
+    tplayer.ele.video_control_play = $c(".tp-control-play")[0];
+    tplayer.ele.tp_oneplay = $c(".tp-oneplay")[0];
     tplayer.ele.danmu_warp = $c(".danmu-warp")[0];
-    tplayer.ele.dm_video_y = $c(".dm-video-y")[0];
-    tplayer.ele.video_control_paused = $c(".video-control-paused")[0];
-    tplayer.ele.dm_syk_range = $c(".dm-syk-range")[0];
-    tplayer.ele.alltime = $c(".video-control-alltime")[0];
-    tplayer.ele.tranger_a = $c(".tranger-a")[0];
-    tplayer.ele.tranger_c = $c(".tranger-c")[0];
-    tplayer.ele.nowtime = $c(".video-control-nowtime")[0];
-    tplayer.ele.dm_spinner = $c(".dm-spinner")[0];
+    tplayer.ele.video_con = $c(".tp-video-con")[0];
+    tplayer.ele.video_control_paused = $c(".tp-control-paused")[0];
+    tplayer.ele.tp_syk_range = $c(".tp-syk-range")[0];
+    tplayer.ele.alltime = $c(".tp-control-alltime")[0];
+    tplayer.ele.tranger_a = $c(".tp-tranger-a")[0];
+    tplayer.ele.tranger_c = $c(".tp-tranger-c")[0];
+    tplayer.ele.nowtime = $c(".tp-control-nowtime")[0];
+    tplayer.ele.tp_spinner = $c(".tp-spinner")[0];
     tplayer.ele.full = $c(".video-full")[0];
     tplayer.ele.tp_con = $c(".tp-con")[0];
     tplayer.ele.tp_color_warp = $c(".tp-color-warp")[0];
     tplayer.ele.tp_place = $c(".tp-place")[0];
-    tplayer.ele.dm_send = $c(".dm-send")[0];
-    tplayer.ele.tranger = $c(".tranger")[0];
-    tplayer.ele.dm_video_warp = $c(".dm-video-warp")[0];
+    tplayer.ele.tp_send = $c(".tp-send")[0];
+    tplayer.ele.tranger = $c(".tp-tranger")[0];
+    tplayer.ele.tp_video_warp = $c(".tp-video-warp")[0];
     tplayer.ele.tp_speend_con = $c(".tp-speend-con")[0];
     tplayer.ele.tp_speend = $c(".tp-speend")[0];
-    tplayer.ele.dm_video = $c(".dm-video")[0];
-    tplayer.ele.dm_video_warp = $c(".dm-video-warp")[0];
-    tplayer.ele.dm_rightmenu = $c(".dm-rightmenu")[0];
+    tplayer.ele.tp_video = $c(".tp-video")[0];
+    tplayer.ele.tp_video_warp = $c(".tp-video-warp")[0];
+    tplayer.ele.tp_rightmenu = $c(".tp-rightmenu")[0];
     tplayer.ele.end = $c(".video-end")[0];
     tplayer.ele.replay = $c(".replay")[0];
-    tplayer.ele.copy=$c('.tp-copy')[0];
+    tplayer.ele.copy=$c('.tp-copy-warp')[0];
     tplayer.ele.copytext=$c('.tp-copy-input')[0];
     tplayer.ele.css = $c(".css")[0];
     if (tplayer.videotype == "flv") {
@@ -127,7 +124,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             var dtop = tplayer.getlefttop();
             dm.style.top = dtop * tplayer.dmheight + "px";
             tplayer.leftarr[dtop] = 1;
-            dm.className = "danmu dm-left";
+            dm.className = "danmu tp-left";
             dm.style.transform = "translateX(-" + tplayer.width + "px)";
             var e = tplayer.ele.danmu_warp.appendChild(dm);
             var s1 = e.offsetWidth;
@@ -141,7 +138,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             dm.addEventListener("animationend", tplayer.dmend);
         } else if (wz == 2) {
             //顶部弹幕
-            dm.className = "danmu dm-top";
+            dm.className = "danmu tp-top";
             var dtop = tplayer.gettoptop();
             dm.style.top = dtop * tplayer.dmheight + "px";
             tplayer.toparr[dtop] = 1;
@@ -195,38 +192,38 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         tplayer.ele.end.style.display = "block";
     };
     //弹幕开关
-    tplayer.ele.dm_dmk.addEventListener("click", function() {
-        if (this.className == "dm-dmk") {
-            this.className = "dm-dmk dm-dmk-c";
+    tplayer.ele.danmu_switch.addEventListener("click", function() {
+        if (this.className == "tp-danmu-switch") {
+            this.className = "tp-danmu-switch tp-danmu-switch-c";
             tplayer.ele.danmu_warp.style.opacity = "0";
         } else {
-            this.className = "dm-dmk";
+            this.className = "tp-danmu-switch";
             tplayer.ele.danmu_warp.style.opacity = "1";
         }
     });
     //弹幕回车按下
-    tplayer.ele.dm_text.onkeydown = function(event) {
+    tplayer.ele.tp_text.onkeydown = function(event) {
         var e = event || window.event || arguments.callee.caller.arguments[0];
         if (e.keyCode == 13) {
-            tplayer.ele.dm_up.click();
+            tplayer.ele.tp_up.click();
         }
     };
     //弹幕发送
-    tplayer.ele.dm_up.addEventListener("click", function() {
-        tplayer.send(tplayer.ele.dm_text.value, tplayer.ele.tp_color_bo.style.backgroundColor, tplayer.dmplace, 1);
-        tplayer.ele.dm_text.readonly = "readonly";
-        //$("dm-text").style.background = "#f4f4f4";
-        tplayer.ele.dm_up.disabled = "true";
-        tplayer.ele.dm_up.style.background = "#777479";
+    tplayer.ele.tp_up.addEventListener("click", function() {
+        tplayer.send(tplayer.ele.tp_text.value, tplayer.ele.tp_color_bo.style.backgroundColor, tplayer.dmplace, 1);
+        tplayer.ele.tp_text.readonly = "readonly";
+        //$("tp-text").style.background = "#f4f4f4";
+        tplayer.ele.tp_up.disabled = "true";
+        tplayer.ele.tp_up.style.background = "#777479";
         setTimeout(function() {
-            tplayer.ele.dm_text.value = "";
-            //$("dm-text").style.background = "#fff";
-            tplayer.ele.dm_up.disabled = "";
-            tplayer.ele.dm_up.style.background = "#8715EF";
+            tplayer.ele.tp_text.value = "";
+            //$("tp-text").style.background = "#fff";
+            tplayer.ele.tp_up.disabled = "";
+            tplayer.ele.tp_up.style.background = "#8715EF";
         }, 500);
         var postData = {
             id:tplayer.videoid,
-            text:tplayer.ele.dm_text.value,
+            text:tplayer.ele.tp_text.value,
             color:tplayer.ele.tp_color_bo.style.backgroundColor,
             time:parseInt(tplayer.ele.video.currentTime * 10),
             place:tplayer.dmplace
@@ -255,22 +252,22 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     });
     //弹幕速度
     function dmspeend(v) {
-        tplayer.ele.css.innerText = ".dm-left {animation: dmleft " + v + "s linear;-webkit-animation: dmleft " + v + "s linear;}";
+        tplayer.ele.css.innerText = ".tp-left {animation: dmleft " + v + "s linear;-webkit-animation: dmleft " + v + "s linear;}";
     }
     //视频播放
     tplayer.ele.video_control_play.onclick = function() {
-        tplayer.ele.dm_oneplay.style.display = "none";
+        tplayer.ele.tp_oneplay.style.display = "none";
         if (tplayer.dsq == 0) {
             tplayer.Interval = setInterval(danmutime, 100);
             tplayer.dsq = 1;
         }
-        tplayer.ele.dm_video_y.style.opacity = "0";
+        tplayer.ele.video_con.style.opacity = "0";
         var e = tplayer.ele.danmu_warp.getElementsByTagName("div");
         this.style.display = "none";
         tplayer.ele.video_control_paused.style.display = "inline-block";
         tplayer.ele.video.play();
         for (var i = e.length - 1; i >= 0; i--) {
-            removeClass(e[i], "dm-suspend");
+            removeClass(e[i], "tp-suspend");
         }
         tplayer.ele.end.style.display = "none";
     };
@@ -283,16 +280,16 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         tplayer.ele.video_control_play.style.display = "inline-block";
         tplayer.ele.video.pause();
         for (var i = e.length - 1; i >= 0; i--) {
-            addClass(e[i], "dm-suspend");
+            addClass(e[i], "tp-suspend");
         }
-        tplayer.ele.dm_spinner.style.display = "none";
+        tplayer.ele.tp_spinner.style.display = "none";
     };
-    tplayer.ele.dm_oneplay.addEventListener("click", function() {
+    tplayer.ele.tp_oneplay.addEventListener("click", function() {
         this.style.display = "none";
         tplayer.ele.video_control_play.onclick();
     });
     //控件显示
-    tplayer.ele.dm_video_y.onmousemove = function() {
+    tplayer.ele.video_con.onmousemove = function() {
         showbar();
     };
     function getCookie(Name) {
@@ -310,12 +307,12 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         var Days = 7;
         var exp = new Date();
         exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1e3);
-        document.cookie = "tpsound=" + parseInt(tplayer.ele.dm_syk_range.value) + ";expires=" + exp.toGMTString() + "&path=/";
+        document.cookie = "tpsound=" + parseInt(tplayer.ele.tp_syk_range.value) + ";expires=" + exp.toGMTString() + "&path=/";
     };
     tplayer.soundcookie = getCookie("tpsound");
     if (tplayer.soundcookie) {
-        tplayer.ele.dm_syk_range.value = tplayer.soundcookie;
-        tplayer.ele.video.volume = parseInt(tplayer.ele.dm_syk_range.value) * .01;
+        tplayer.ele.tp_syk_range.value = tplayer.soundcookie;
+        tplayer.ele.video.volume = parseInt(tplayer.ele.tp_syk_range.value) * .01;
     } else {
         tplayer.changersound();
     }
@@ -333,8 +330,8 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     }
     getallvideotime();
     //音量调节
-    tplayer.ele.dm_syk_range.addEventListener("click", function() {
-        var i = parseInt(tplayer.ele.dm_syk_range.value) * .01;
+    tplayer.ele.tp_syk_range.addEventListener("click", function() {
+        var i = parseInt(tplayer.ele.tp_syk_range.value) * .01;
         tplayer.ele.video.volume = i;
         tplayer.changersound();
     });
@@ -368,9 +365,9 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     setInterval(function() {
         var videotime = tplayer.ele.video.currentTime;
         tplayer.ele.nowtime.innerHTML = getvideotime(videotime).m + ":" + getvideotime(videotime).s;
-        var t = tplayer.ele.dm_send.offsetWidth - 280 + "px";
-        if (tplayer.ele.dm_text.style.width != t) {
-            tplayer.ele.dm_text.style.width = t;
+        var t = tplayer.ele.tp_send.offsetWidth - 280 + "px";
+        if (tplayer.ele.tp_text.style.width != t) {
+            tplayer.ele.tp_text.style.width = t;
         }
     }, 1e3);
     //进度条
@@ -412,10 +409,10 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         //console.log('loding');
         clearInterval(tplayer.Interval);
         tplayer.dsq = 0;
-        tplayer.ele.dm_spinner.style.display = "block";
+        tplayer.ele.tp_spinner.style.display = "block";
         var e = tplayer.ele.danmu_warp.getElementsByTagName("div");
         for (var i = e.length - 1; i >= 0; i--) {
-            addClass(e[i], "dm-suspend");
+            addClass(e[i], "tp-suspend");
         }
     }
     tplayer.ele.video.addEventListener("playing", function() {
@@ -425,10 +422,10 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             tplayer.dsq = 1;
         }
         var e = tplayer.ele.danmu_warp.getElementsByTagName("div");
-        tplayer.ele.dm_spinner.style.display = "none";
+        tplayer.ele.tp_spinner.style.display = "none";
         tplayer.ele.alltime.innerHTML = getvideotime(tplayer.alltime).m + ":" + getvideotime(tplayer.alltime).s;
         for (var i = e.length - 1; i >= 0; i--) {
-            removeClass(e[i], "dm-suspend");
+            removeClass(e[i], "tp-suspend");
         }
     });
     //键盘
@@ -456,13 +453,13 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }
         if (e && e.keyCode == 38) {
             // up 键
-            tplayer.ele.dm_syk_range.value = parseInt(tplayer.ele.dm_syk_range.value) + 1;
-            tplayer.ele.dm_syk_range.click();
+            tplayer.ele.tp_syk_range.value = parseInt(tplayer.ele.tp_syk_range.value) + 1;
+            tplayer.ele.tp_syk_range.click();
         }
         if (e && e.keyCode == 40) {
             // down 键
-            tplayer.ele.dm_syk_range.value = parseInt(tplayer.ele.dm_syk_range.value) - 1;
-            tplayer.ele.dm_syk_range.click();
+            tplayer.ele.tp_syk_range.value = parseInt(tplayer.ele.tp_syk_range.value) - 1;
+            tplayer.ele.tp_syk_range.click();
         }
     };
     function getvideotime(time) {
@@ -479,27 +476,27 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         };
     }
     tplayer.ele.full.addEventListener("click", function() {
-        var e = tplayer.ele.dm_video_warp;
+        var e = tplayer.ele.tp_video_warp;
         document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ? document.cancelFullScreen ? document.cancelFullScreen() :document.mozCancelFullScreen ? document.mozCancelFullScreen() :document.webkitCancelFullScreen && document.webkitCancelFullScreen() :e.requestFullscreen ? e.requestFullscreen() :e.mozRequestFullScreen ? e.mozRequestFullScreen() :e.webkitRequestFullscreen && e.webkitRequestFullscreen();
         setTimeout(function() {
             tplayer.width = tplayer.ele.video.offsetWidth;
             var e = tplayer.ele.danmu_warp.getElementsByTagName("div");
             dmspeend(tplayer.width / 100);
             for (var i = e.length - 1; i >= 0; i--) {
-                if (hasClass(e[i], "dm-left")) {
+                if (hasClass(e[i], "tp-left")) {
                     e[i].style.transform = "translateX(-" + tplayer.width + "px)";
                 }
             }
         }, 1e3);
     });
     function showbar() {
-        tplayer.ele.dm_video_y.style.opacity = "1";
+        tplayer.ele.video_con.style.opacity = "1";
         tplayer.sjc++;
         var time = setTimeout(sjc, 2e3, tplayer.sjc);
     }
     function sjc(time) {
         if (time >= tplayer.sjc) {
-            tplayer.ele.dm_video_y.style.opacity = "0";
+            tplayer.ele.video_con.style.opacity = "0";
         }
     }
     //颜色
@@ -550,18 +547,18 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         if (s != "NaN") {
             e.onclick = function() {
                 var t = parseFloat(this.innerText).toFixed(2);
-                tplayer.ele.dm_video.playbackRate = t;
+                tplayer.ele.tp_video.playbackRate = t;
             };
         } else {
             e.onclick = function() {
-                tplayer.ele.dm_video.playbackRate = 1;
+                tplayer.ele.tp_video.playbackRate = 1;
             };
         }
     }
     tplayer.ele.danmu_warp.onmousedown = function(event) {
         var ev = event || window.event || arguments.callee.caller.arguments[0];
-        var container = tplayer.ele.dm_video_warp;
-        var rightmenu = tplayer.ele.dm_rightmenu;
+        var container = tplayer.ele.tp_video_warp;
+        var rightmenu = tplayer.ele.tp_rightmenu;
         if (ev.button == 2) {
         	var target = ev.target || ev.srcElement;
         	if(hasClass(target, "danmu")){

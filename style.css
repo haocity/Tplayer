@@ -145,6 +145,7 @@
 	color: #fff;
 	line-height: 0px;
 	user-select: none;
+	z-index: 888;
 }
 .tp-icon {
 	position: relative;
@@ -247,7 +248,8 @@ input[type=range]::-webkit-slider-thumb {
 }
 .tp-syk-ico {
 	position: relative;
-	top: 2px;
+	top: 9px;
+	font-size: 1.6em;
 }
 .tp-syk-range {
 	width: 60px;

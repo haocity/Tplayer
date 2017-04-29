@@ -95,6 +95,8 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tplayer.dmplace = 1;
     if (/android/i.test(navigator.userAgent) || /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
         tplayer.phone = true;
+        tplayer.ele.video_con.style.opacity='1';
+        tplayer.ele.video_con.style.display='none';
     }
     //弹幕行高
     tplayer.width = tplayer.ele.video.offsetWidth;
@@ -265,7 +267,9 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             tplayer.Interval = setInterval(danmutime, 100);
             tplayer.dsq = 1;
         }
+        if(!tplayer.phone){
         tplayer.ele.video_con.style.opacity = "0";
+        }
         var e = tplayer.ele.danmu_warp.getElementsByTagName("div");
         this.style.display = "none";
         tplayer.ele.video_control_paused.style.display = "inline-block";
@@ -297,8 +301,8 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         tplayer.ele.danmu_warp.addEventListener("click", function() {
             var e = tplayer.ele.video_con;
             if (e.style.display == "block") {
-                e.style.display = "none";
                 console.log("隐藏");
+                e.style.display = "none"
             } else {
                 e.style.display = "block";
                 console.log("显示");
@@ -508,12 +512,14 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }, 1e3);
     });
     function showbar() {
+    	if(!tplayer.phone){
         tplayer.ele.video_con.style.opacity = "1";
         tplayer.sjc++;
         var time = setTimeout(sjc, 2e3, tplayer.sjc);
+       }
     }
     function sjc(time) {
-        if (time >= tplayer.sjc) {
+        if (time >= tplayer.sjc&&!tplayer.phone) {
             tplayer.ele.video_con.style.opacity = "0";
         }
     }

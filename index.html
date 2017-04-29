@@ -3,12 +3,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>TPlayer</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="renderer" content="webkit">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<script src="Tplayer.min.js" type="text/javascript" charset="utf-8"></script>
+		
 		<style type="text/css">
-		body{
-			background-color: #000000;
-		}
 			.header{
 				text-align: center;
 			}
@@ -23,7 +24,7 @@
 				z-index: 5;
 			}
 			.introduction{
-				width: 912px;
+				width: 922px;
 				color: #fff;
 				margin: 20px auto 20px auto;
 			}
@@ -31,13 +32,33 @@
 				color: #fff;
 				text-decoration:none;
 			}
+			.tp-video{
+				margin-bottom: -4px;
+			}
+			body {
+			    background-color:#000;
+			}
+			
+			@media screen and (max-width: 910px) {
+			    body{
+			        background-color:lightblue;
+			    }
+			    .tp-video-warp{
+			    	height: auto;
+			    	width: auto;
+			    }
+			    .introduction{
+			    	width: auto;
+			    }
+			    
+			}
 		</style>
 	</head>
 	<body>
 		<header class="header"><img src="logo-small.png"/>
 			<h1 class="titile">A HTML5 VIDEO PLAYER WITH BARRAGE</h1>
 		</header>
-		<div id="v-dom" style="min-height: 500px;"></div>
+		<div id="v-dom"></div>
 		<div class="introduction">
 		<a href='http://acg.tv/sm29146509'>sm29146509</a> あずにゃん：想做一下这样的琪露诺~
 		</div>
@@ -45,7 +66,7 @@
 		Tplayer($d('v-dom'),'https://t4.haotown.cn/danmu/res/1.mp4','https://ooo.0o0.ooo/2017/04/27/590166d5436e9.jpg','https://t5.haotown.cn/danmu/',1,'mp4');
 		</script>
 
-		<div id="v-dom2" style="min-height: 500px;"></div>
+		<div id="v-dom2"></div>
 		<div class="introduction">
 		Grawori's-Studioルーム（youtube.com/watch?v=lr8RwDej-MY）【MMD】Tda-Hood_MikuでProblem 
 		</div>

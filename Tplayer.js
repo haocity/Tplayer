@@ -57,7 +57,6 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tplayer.ele.tp_place = $c(".tp-place")[0];
     tplayer.ele.tp_send = $c(".tp-send")[0];
     tplayer.ele.tranger = $c(".tp-tranger")[0];
-    tplayer.ele.tp_video_warp = $c(".tp-video-warp")[0];
     tplayer.ele.tp_speend_con = $c(".tp-speend-con")[0];
     tplayer.ele.tp_speend = $c(".tp-speend")[0];
     tplayer.ele.tp_video = $c(".tp-video")[0];
@@ -65,8 +64,8 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tplayer.ele.tp_rightmenu = $c(".tp-rightmenu")[0];
     tplayer.ele.end = $c(".video-end")[0];
     tplayer.ele.replay = $c(".replay")[0];
-    tplayer.ele.copy=$c('.tp-copy-warp')[0];
-    tplayer.ele.copytext=$c('.tp-copy-input')[0];
+    tplayer.ele.copy = $c(".tp-copy-warp")[0];
+    tplayer.ele.copytext = $c(".tp-copy-input")[0];
     tplayer.ele.css = $c(".css")[0];
     if (tplayer.videotype == "flv") {
         try {
@@ -94,6 +93,9 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tplayer.toparr = [];
     tplayer.dmheight = 31;
     tplayer.dmplace = 1;
+    if (/android/i.test(navigator.userAgent) || /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        tplayer.phone = true;
+    }
     //弹幕行高
     tplayer.width = tplayer.ele.video.offsetWidth;
     tplayer.height = tplayer.ele.video.offsetHeight;
@@ -206,6 +208,8 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         var e = event || window.event || arguments.callee.caller.arguments[0];
         if (e.keyCode == 13) {
             tplayer.ele.tp_up.click();
+        } else if (e.keyCode == 32) {
+            e.stopPropagation();
         }
     };
     //弹幕发送
@@ -289,9 +293,22 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         tplayer.ele.video_control_play.onclick();
     });
     //控件显示
-    tplayer.ele.video_con.onmousemove = function() {
-        showbar();
-    };
+    if (tplayer.phone) {
+        tplayer.ele.danmu_warp.addEventListener("click", function() {
+            var e = tplayer.ele.video_con;
+            if (e.style.display == "block") {
+                e.style.display = "none";
+                console.log("隐藏");
+            } else {
+                e.style.display = "block";
+                console.log("显示");
+            }
+        });
+    } else {
+        tplayer.ele.video_con.onmousemove = function() {
+            showbar();
+        };
+    }
     function getCookie(Name) {
         var cookieName = encodeURIComponent(Name) + "=", returnvalue = "", cookieStart = document.cookie.indexOf(cookieName), cookieEnd = null;
         if (cookieStart > -1) {
@@ -330,7 +347,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     }
     getallvideotime();
     //音量调节
-    tplayer.ele.tp_syk_range.addEventListener("click", function() {
+    tplayer.ele.tp_syk_range.addEventListener("input", function() {
         var i = parseInt(tplayer.ele.tp_syk_range.value) * .01;
         tplayer.ele.video.volume = i;
         tplayer.changersound();
@@ -365,9 +382,11 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     setInterval(function() {
         var videotime = tplayer.ele.video.currentTime;
         tplayer.ele.nowtime.innerHTML = getvideotime(videotime).m + ":" + getvideotime(videotime).s;
-        var t = tplayer.ele.tp_send.offsetWidth - 280 + "px";
-        if (tplayer.ele.tp_text.style.width != t) {
-            tplayer.ele.tp_text.style.width = t;
+        if (!tplayer.phone) {
+            var t = tplayer.ele.tp_send.offsetWidth - 280 + "px";
+            if (tplayer.ele.tp_text.style.width != t) {
+                tplayer.ele.tp_text.style.width = t;
+            }
         }
     }, 1e3);
     //进度条
@@ -429,7 +448,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }
     });
     //键盘
-    document.onkeydown = function(event) {
+    document.addEventListener("keydown", function(event) {
         var e = event || window.event || arguments.callee.caller.arguments[0];
         showbar();
         if (e && e.keyCode == 39) {
@@ -445,6 +464,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }
         if (e && e.keyCode == 32) {
             // space 键
+            event.preventDefault();
             if (tplayer.ele.video.paused) {
                 tplayer.ele.video_control_play.onclick();
             } else {
@@ -454,14 +474,12 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         if (e && e.keyCode == 38) {
             // up 键
             tplayer.ele.tp_syk_range.value = parseInt(tplayer.ele.tp_syk_range.value) + 1;
-            tplayer.ele.tp_syk_range.click();
         }
         if (e && e.keyCode == 40) {
             // down 键
             tplayer.ele.tp_syk_range.value = parseInt(tplayer.ele.tp_syk_range.value) - 1;
-            tplayer.ele.tp_syk_range.click();
         }
-    };
+    });
     function getvideotime(time) {
         var tm;
         var m = parseInt(time / 60);
@@ -559,66 +577,68 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         var ev = event || window.event || arguments.callee.caller.arguments[0];
         var container = tplayer.ele.tp_video_warp;
         var rightmenu = tplayer.ele.tp_rightmenu;
-        if (ev.button == 2) {
-        	var target = ev.target || ev.srcElement;
-        	if(hasClass(target, "danmu")){
-        		tplayer.ele.copytext.innerHTML=target.innerHTML;
-        		tplayer.ele.copy.style.display='block';
-        		tplayer.ele.copy.onclick=function(){
-        			tplayer.ele.copytext.select();
-        			document.execCommand("Copy");
-        			rightmenu.style.display = "none";
-        		}
-        	}else{
-        		tplayer.ele.copy.style.display='none';
-        	}
-            rightmenu.style.display = "block";
-            var evt = window.event || arguments[0];
-            var leftedge, topedge, danmuheight = tplayer.ele.danmu_warp.offsetHeight, danmuwidth = tplayer.ele.danmu_warp.offsetWidth;
-            if (danmuheight == document.documentElement.clientHeight) {
-                topedge = evt.clientY;
-                leftedge = evt.clientX;
-                if (leftedge + rightmenu.offsetWidth > danmuwidth) {
-                    leftedge = danmuwidth - rightmenu.offsetWidth;
-                }
-                if (topedge + rightmenu.offsetWidth > danmuheight) {
-                    topedge = danmuheight - rightmenu.offsetHeight;
-                }
-            } else {
-                topedge = evt.clientY + document.body.scrollTop - container.offsetTop;
-                leftedge = evt.clientX - container.offsetLeft;
-                var tweidth = container.offsetWidth;
-                var theigtht = container.offsetHeight;
-                if (leftedge + rightmenu.offsetWidth > tweidth) {
-                    leftedge = tweidth - rightmenu.offsetWidth;
-                }
-                if (topedge + rightmenu.offsetHeight > theigtht) {
-                    topedge = theigtht - rightmenu.offsetHeight;
-                }
-            }
-            if (window.document.all) {
-                this.IContextmenuHander = function() {
-                    return false;
-                };
-                document.attachEvent("oncontextmenu", this.IContextmenuHander);
-            } else {
-                this.IContextmenuHander = document.oncontextmenu;
-                document.oncontextmenu = function() {
-                    return false;
-                };
-            }
-            rightmenu.style.top = topedge + "px";
-            rightmenu.style.left = leftedge + "px";
-        } else if (ev.button == 0) {
-            //如果左按键
-            if (rightmenu.style.display == "block") {
-                rightmenu.style.display = "none";
-            } else {
-                //视频暂停
-                if (tplayer.ele.video.paused) {
-                    tplayer.ele.video_control_play.onclick();
+        if (tplayer.phone) {} else {
+            if (ev.button == 2) {
+                var target = ev.target || ev.srcElement;
+                if (hasClass(target, "danmu")) {
+                    tplayer.ele.copytext.innerHTML = target.innerHTML;
+                    tplayer.ele.copy.style.display = "block";
+                    tplayer.ele.copy.onclick = function() {
+                        tplayer.ele.copytext.select();
+                        document.execCommand("Copy");
+                        rightmenu.style.display = "none";
+                    };
                 } else {
-                    tplayer.ele.video_control_paused.onclick();
+                    tplayer.ele.copy.style.display = "none";
+                }
+                rightmenu.style.display = "block";
+                var evt = window.event || arguments[0];
+                var leftedge, topedge, danmuheight = tplayer.ele.danmu_warp.offsetHeight, danmuwidth = tplayer.ele.danmu_warp.offsetWidth;
+                if (danmuheight == document.documentElement.clientHeight) {
+                    topedge = evt.clientY;
+                    leftedge = evt.clientX;
+                    if (leftedge + rightmenu.offsetWidth > danmuwidth) {
+                        leftedge = danmuwidth - rightmenu.offsetWidth;
+                    }
+                    if (topedge + rightmenu.offsetWidth > danmuheight) {
+                        topedge = danmuheight - rightmenu.offsetHeight;
+                    }
+                } else {
+                    topedge = evt.clientY + document.body.scrollTop - container.offsetTop;
+                    leftedge = evt.clientX - container.offsetLeft;
+                    var tweidth = container.offsetWidth;
+                    var theigtht = container.offsetHeight;
+                    if (leftedge + rightmenu.offsetWidth > tweidth) {
+                        leftedge = tweidth - rightmenu.offsetWidth;
+                    }
+                    if (topedge + rightmenu.offsetHeight > theigtht) {
+                        topedge = theigtht - rightmenu.offsetHeight;
+                    }
+                }
+                if (window.document.all) {
+                    this.IContextmenuHander = function() {
+                        return false;
+                    };
+                    document.attachEvent("oncontextmenu", this.IContextmenuHander);
+                } else {
+                    this.IContextmenuHander = document.oncontextmenu;
+                    document.oncontextmenu = function() {
+                        return false;
+                    };
+                }
+                rightmenu.style.top = topedge + "px";
+                rightmenu.style.left = leftedge + "px";
+            } else if (ev.button == 0) {
+                //如果左按键
+                if (rightmenu.style.display == "block") {
+                    rightmenu.style.display = "none";
+                } else {
+                    //视频暂停
+                    if (tplayer.ele.video.paused) {
+                        tplayer.ele.video_control_play.onclick();
+                    } else {
+                        tplayer.ele.video_control_paused.onclick();
+                    }
                 }
             }
         }

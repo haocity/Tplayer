@@ -77,43 +77,43 @@
 	bottom: 10%;
 	left: 50%;
 	width: 60%;
-	height: 35px;
+	height: 2.4em;
 	border-radius: 5px;
 	margin: 0 0 0 -30%;
 	text-align: center;
-	padding: 4px 0;
 	background-color: rgba(255, 255, 255, 0.79);
 	z-index: 6;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+	padding: 0 10px;
 }
 .tp-text {
-	position: relative;
-	top: -12px;
-	width: 50%;
-	display: inline-block;
-	line-height: 20px;
+    width: 100%;
+    box-sizing: border-box;
 	border: none;
 	background-color: transparent;
 	outline: none;
+    font-size: 1em;
+    line-height: 2.4em;
 }
 .tp-up {
-	position: relative;
-	display: inline-block;
-	top: -13px;
-	left: 20px;
+	position: absolute;
+	right: 1em;
 	background-color: #8715EF;
 	color: #fff;
 	border: 0px solid #000;
 	line-height: 20px;
 	border-radius: 4px;
 	padding: 3px 20px;
+	top: 50%;
+    transform: translate(0,-50%);
 }
-.tp-logo-small {
-	width: 114px;
-	height: 35px;
-	background-image: url(logo-small.png);
-	display: inline-block;
+.tp-color-btn{
+	position: absolute;
+	right: 5.5em;
+	top: 50%;
+    transform: translate(0,-50%);
 }
+
 .tp-video-main {
 	position: relative;
 	width: 100%;
@@ -404,8 +404,6 @@ input[type=range]::-webkit-slider-thumb {
 }
 .tp-color {
 	display: inline-block;
-	margin-right: 2px;
-	border-radius: 4px;
 	cursor: pointer;
 }
 .tp-color-warp {
@@ -421,7 +419,6 @@ input[type=range]::-webkit-slider-thumb {
 }
 .tp-color-bo {
 	position: relative;
-	bottom: 8px;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
@@ -474,6 +471,9 @@ input[type=range]::-webkit-slider-thumb {
     cursor: pointer;
     font-family: Avenir Next,Helvetica,Arial,Lantinghei SC,Microsoft YaHei,sans-serif;
 }
+.tp-control-alltime-phone{
+	display: none;
+}
 @media screen and (max-width: 700px) {
 	.tp-tranger{
 		position: absolute;
@@ -498,5 +498,11 @@ input[type=range]::-webkit-slider-thumb {
 		left: initial;
 		right: 10%;
     	width: 80%;
+	}
+	.tp-control-alltime{
+		display: none;
+	}
+	.tp-control-alltime-phone{
+		display: inline-block;
 	}
 }

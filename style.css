@@ -481,18 +481,6 @@ input[type=range]::-webkit-slider-thumb {
 	    bottom: 4px;
 	    margin: 0;
 	}
-	.tp-send>.tp-logo-small{
-		display: none;
-	}
-	.tp-send>.tp-text{
-		top: 0;
-	}
-	.tp-send>.tp-color>.tp-color-bo{
-		bottom: -8px;
-	} 
-	.tp-send>.tp-up{
-		top:0;
-	}
 	.tp-video-con>.tp-send{
 		bottom: 60px;
 		left: initial;

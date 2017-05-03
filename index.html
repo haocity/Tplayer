@@ -7,7 +7,8 @@
 	    <meta name="renderer" content="webkit">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="stylesheet" type="text/css" href="style.css"/>
-		<script src="Tplayer.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="flv.js" type="text/javascript" charset="utf-8"></script>
+		<script src="Tplayer.js" type="text/javascript" charset="utf-8"></script>
 		
 		<style type="text/css">
 			.header{
@@ -38,6 +39,9 @@
 			body {
 			    background-color:#000;
 			}
+			#v-dom2{
+				min-width: 200px;
+			}
 			
 			@media screen and (max-width: 910px) {
 			    body{
@@ -65,11 +69,17 @@
 		<script type="text/javascript">
 		Tplayer($d('v-dom'),'https://t4.haotown.cn/danmu/res/1.mp4','https://ooo.0o0.ooo/2017/04/27/590166d5436e9.jpg','https://t5.haotown.cn/danmu/',1,'mp4');
 		</script>
-
 		<div id="v-dom2"></div>
 		<div class="introduction">
 		Grawori's-Studioルーム（youtube.com/watch?v=lr8RwDej-MY）【MMD】Tda-Hood_MikuでProblem 
 		</div>
+		<div id="v-dom3"></div>
+		<div class="introduction">
+		FLV.JS Test 如此饥渴，如此邪恶……禽兽放开那些羊！它们是我的！！
+		</div>
+		<script type="text/javascript">
+		Tplayer($d('v-dom3'),'1.flv','https://ooo.0o0.ooo/2017/05/02/59087cc93323f.jpg','https://t5.haotown.cn/danmu/',3,'flv');
+		</script>
 		<script type="text/javascript">
 		function video2(){
 			xmlhttp = new XMLHttpRequest();

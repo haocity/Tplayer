@@ -579,6 +579,37 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             };
         }
     }
+    function tpeixtfull(){
+    	setTimeout(function(){
+    	dmspeend(tp.width / 100);
+    	tp.width = tp.ele.video.offsetWidth;
+        var e = tp.ele.danmu_warp.getElementsByTagName("div");
+        dmspeend(tp.width / 100);
+            for (var i = e.length - 1; i >= 0; i--) {
+	            if (hasClass(e[i], "tp-left")) {
+	                 e[i].style.transform = "translateX(-" + tp.width + "px)";
+	            }
+            }
+    	},1000);
+    }
+    document.addEventListener('webkitfullscreenchange',function(c){
+    	if(document.webkitFullscreenElement){
+    		console.log('进入全屏');
+    		}else{
+    		console.log('退出全屏');
+			tpeixtfull();
+    	}
+    	
+    });
+    document.addEventListener('mozfullscreenchange',function(c){
+    	if(document.mozFullscreenElement){
+    		console.log('进入全屏')
+    		}else{
+    		console.log('退出全屏');
+    		tpeixtfull();
+    	}
+    	
+    });
     tp.ele.danmu_warp.onmousedown = function(event) {
         var ev = event || window.event || arguments.callee.caller.arguments[0];
         var container = tp.ele.tp_video_warp;

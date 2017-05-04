@@ -209,12 +209,10 @@ input[type=range]::-webkit-slider-thumb {
 .tp-tranger {
 	position: relative;
 	height: 11px;
-	background-color: rgba(0, 0, 0, 0.17);
 	border-radius: 6px;
 	cursor: pointer;
 	overflow: hidden;
 	margin-top: 18px;
-	padding: 0 5px;
 	margin-left: 80px;
 	margin-right: 170px;
 }

@@ -18,6 +18,7 @@ function removeClass(elements, cName) {
     }
 }
 
+
 function Tplayer(Element, src, poster, server, videoid, videotype) {
     var tp = new Object();
     tp.ele = new Object();
@@ -98,6 +99,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tp.toparr = [];
     tp.dmheight = 31;
     tp.dmplace = 1;
+    tp.data=[];
     if (/android/i.test(navigator.userAgent) || /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
         tp.phone = true;
         tp.ele.video_con.style.opacity='1';
@@ -106,19 +108,26 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     //弹幕行高
     tp.width = tp.ele.video.offsetWidth;
     tp.height = tp.ele.video.offsetHeight;
-    tp.getdanmu = function() {
+    tp.adddanmu = function(url) {
         var xmlhttp;
+        console.log(tp.geturl);
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                tp.data = xmlhttp.responseText;
-                tp.nowdata = JSON.parse(tp.data).data;
+                var t=JSON.parse(xmlhttp.responseText);
+                if(t.success==1){
+                	for(var i=0;i<t.data.length;i++)
+                	{
+                		tp.data.push(t.data[i]);
+                	}
+                }
+                tp.nowdata=tp.data.slice(0);
             }
         };
-        xmlhttp.open("GET", tp.geturl, true);
+        xmlhttp.open("GET", url, true);
         xmlhttp.send();
     };
-    tp.getdanmu();
+    tp.adddanmu(tp.geturl);
     tp.send = function(text, color, wz, me) {
         tp.width = tp.ele.video.offsetWidth;
         tp.height = tp.ele.video.offsetHeight;
@@ -379,6 +388,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }
         if (tp.nowdata) {
             for (var i = 0; i < tp.nowdata.length; i++) {
+            	
                 if (tp.nowdata[i]) {
                     if (tp.nowdata[i].time == parseInt(tp.ele.video.currentTime * 10)) {
                         tp.send(tp.nowdata[i].text, tp.nowdata[i].color, tp.nowdata[i].place);
@@ -399,7 +409,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         var xbl = show_coords(e, this);
         tp.ele.tranger_a.style.width = xbl.xbl * 100 + "%";
         tp.ele.video.currentTime = xbl.xbl * tp.alltime;
-        tp.nowdata = JSON.parse(tp.data).data;
+         tp.nowdata =tp.data.slice(0);
     };
     //获取元素的纵坐标（相对于窗口）
     function getTop(e) {
@@ -464,7 +474,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             // left 键
             var time = tp.ele.video.currentTime;
             tp.ele.video.currentTime = time - 5;
-            tp.nowdata = JSON.parse(tp.data).data;
+            tp.nowdata =tp.data.slice(0);
         }
         if (e && e.keyCode == 32) {
             // space 键
@@ -689,4 +699,5 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             this.innerText = "◀滚动弹幕";
         }
     });
+    return tp
 }

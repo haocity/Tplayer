@@ -271,7 +271,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         xhr.send(postData);
     });
     //弹幕速度
-    function dmspeend(v) {
+    tp.dmspeend=function (v) {
         tp.ele.css.innerText = ".tp-left {animation: dmleft " + v + "s linear;-webkit-animation: dmleft " + v + "s linear;}";
     }
     //视频播放
@@ -513,7 +513,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         setTimeout(function() {
             tp.width = tp.ele.video.offsetWidth;
             var e = tp.ele.danmu_warp.getElementsByTagName("div");
-            dmspeend(tp.width / 100);
+            tp.dmspeend(tp.width / 100);
             for (var i = e.length - 1; i >= 0; i--) {
                 if (hasClass(e[i], "tp-left")) {
                     e[i].style.transform = "translateX(-" + tp.width + "px)";
@@ -589,12 +589,11 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             };
         }
     }
-    function tpeixtfull(){
+    tp.eixtfull = function(){
     	setTimeout(function(){
-    	dmspeend(tp.width / 100);
+    	tp.dmspeend(tp.width / 100);
     	tp.width = tp.ele.video.offsetWidth;
         var e = tp.ele.danmu_warp.getElementsByTagName("div");
-        dmspeend(tp.width / 100);
             for (var i = e.length - 1; i >= 0; i--) {
 	            if (hasClass(e[i], "tp-left")) {
 	                 e[i].style.transform = "translateX(-" + tp.width + "px)";
@@ -607,7 +606,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     		console.log('进入全屏');
     		}else{
     		console.log('退出全屏');
-			tpeixtfull();
+			tp.eixtfull();
     	}
     	
     });
@@ -616,7 +615,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     		console.log('进入全屏')
     		}else{
     		console.log('退出全屏');
-    		tpeixtfull();
+    		tp.eixtfull();
     	}
     	
     });

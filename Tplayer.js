@@ -117,7 +117,12 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
                 var t=JSON.parse(xmlhttp.responseText);
                 if(t.success==1){
                 	if(t.data){for(var i=0;i<t.data.length;i++){tp.data.push(t.data[i])}}
-					if(t.danmu){for(var i=0;i<t.danmu.length;i++){tp.data.push(unescape(t.danmu[i]))}}
+					if(t.danmu){
+						for(var i=0;i<t.danmu.length;i++){
+							t.danmu[i].text=unescape(t.danmu[i].text);
+					    	tp.data.push(t.danmu[i])
+						}
+					}
 					//这里是为了兼容tdplayer的弹幕
                 }
                 tp.nowdata=tp.data.slice(0);

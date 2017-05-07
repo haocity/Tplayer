@@ -151,7 +151,8 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             var e = tp.ele.danmu_warp.appendChild(dm);
             var s1 = e.offsetWidth;
             var s2 = s1 + tp.width;
-            var v = s2 / 10;
+            var time=tp.width/100;
+            var v = s2 / time;
             var t = s1 / v;
             setTimeout(function() {
                 tp.leftarr[dtop] = 0;

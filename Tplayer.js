@@ -18,7 +18,6 @@ function removeClass(elements, cName) {
     }
 }
 
-
 function Tplayer(Element, src, poster, server, videoid, videotype) {
     var tp = new Object();
     tp.ele = new Object();
@@ -35,44 +34,43 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     function $c(ele) {
         return Element.querySelectorAll(ele);
     }
-	function eleload(){
-		this.warp = Element;
-	    this.video = $c(".tp-video")[0];
-	    this.danmu_switch = $c(".tp-danmu-switch")[0];
-	    this.tp_text = $c(".tp-text")[0];
-	    this.tp_up = $c(".tp-up")[0];
-	    this.tp_color_bo = $c(".tp-color-bo")[0];
-	    this.video_control_play = $c(".tp-control-play")[0];
-	    this.tp_oneplay = $c(".tp-oneplay")[0];
-	    this.danmu_warp = $c(".danmu-warp")[0];
-	    this.video_con = $c(".tp-video-con")[0];
-	    this.video_control_paused = $c(".tp-control-paused")[0];
-	    this.tp_syk_range = $c(".tp-syk-range")[0];
-	    this.alltime = $c(".tp-control-alltime")[0];
-	    this.tranger_a = $c(".tp-tranger-a")[0];
-	    this.tranger_c = $c(".tp-tranger-c")[0];
-	    this.nowtime = $c(".tp-control-nowtime")[0];
-	    this.tp_spinner = $c(".tp-spinner")[0];
-	    this.full = $c(".video-full")[0];
-	    this.tp_con = $c(".tp-con")[0];
-	    this.tp_color_warp = $c(".tp-color-warp")[0];
-	    this.tp_place = $c(".tp-place")[0];
-	    this.tp_send = $c(".tp-send")[0];
-	    this.tranger = $c(".tp-tranger")[0];
-	    this.tp_speend_con = $c(".tp-speend-con")[0];
-	    this.tp_speend = $c(".tp-speend")[0];
-	    this.tp_video = $c(".tp-video")[0];
-	    this.tp_video_warp = $c(".tp-video-warp")[0];
-	    this.tp_rightmenu = $c(".tp-rightmenu")[0];
-	    this.end = $c(".video-end")[0];
-	    this.replay = $c(".replay")[0];
-	    this.copy = $c(".tp-copy-warp")[0];
-	    this.copytext = $c(".tp-copy-input")[0];
-	    this.css = $c(".css")[0];
-	    this.alltime_phone= $c(".tp-control-alltime-phone")[0];
-	}
-	tp.ele=new eleload;
-
+    function eleload() {
+        this.warp = Element;
+        this.video = $c(".tp-video")[0];
+        this.danmu_switch = $c(".tp-danmu-switch")[0];
+        this.tp_text = $c(".tp-text")[0];
+        this.tp_up = $c(".tp-up")[0];
+        this.tp_color_bo = $c(".tp-color-bo")[0];
+        this.video_control_play = $c(".tp-control-play")[0];
+        this.tp_oneplay = $c(".tp-oneplay")[0];
+        this.danmu_warp = $c(".danmu-warp")[0];
+        this.video_con = $c(".tp-video-con")[0];
+        this.video_control_paused = $c(".tp-control-paused")[0];
+        this.tp_syk_range = $c(".tp-syk-range")[0];
+        this.alltime = $c(".tp-control-alltime")[0];
+        this.tranger_a = $c(".tp-tranger-a")[0];
+        this.tranger_c = $c(".tp-tranger-c")[0];
+        this.nowtime = $c(".tp-control-nowtime")[0];
+        this.tp_spinner = $c(".tp-spinner")[0];
+        this.full = $c(".video-full")[0];
+        this.tp_con = $c(".tp-con")[0];
+        this.tp_color_warp = $c(".tp-color-warp")[0];
+        this.tp_place = $c(".tp-place")[0];
+        this.tp_send = $c(".tp-send")[0];
+        this.tranger = $c(".tp-tranger")[0];
+        this.tp_speend_con = $c(".tp-speend-con")[0];
+        this.tp_speend = $c(".tp-speend")[0];
+        this.tp_video = $c(".tp-video")[0];
+        this.tp_video_warp = $c(".tp-video-warp")[0];
+        this.tp_rightmenu = $c(".tp-rightmenu")[0];
+        this.end = $c(".video-end")[0];
+        this.replay = $c(".replay")[0];
+        this.copy = $c(".tp-copy-warp")[0];
+        this.copytext = $c(".tp-copy-input")[0];
+        this.css = $c(".css")[0];
+        this.alltime_phone = $c(".tp-control-alltime-phone")[0];
+    }
+    tp.ele = new eleload();
     if (tp.videotype == "flv") {
         try {
             if (flvjs.isSupported()) {
@@ -99,11 +97,11 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tp.toparr = [];
     tp.dmheight = 31;
     tp.dmplace = 1;
-    tp.data=[];
+    tp.data = [];
     if (/android/i.test(navigator.userAgent) || /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
         tp.phone = true;
-        tp.ele.video_con.style.opacity='1';
-        tp.ele.video_con.style.display='none';
+        tp.ele.video_con.style.opacity = "1";
+        tp.ele.video_con.style.display = "none";
     }
     //弹幕行高
     tp.width = tp.ele.video.offsetWidth;
@@ -114,18 +112,21 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                var t=JSON.parse(xmlhttp.responseText);
-                if(t.success==1){
-                	if(t.data){for(var i=0;i<t.data.length;i++){tp.data.push(t.data[i])}}
-					if(t.danmu){
-						for(var i=0;i<t.danmu.length;i++){
-							t.danmu[i].text=unescape(t.danmu[i].text);
-					    	tp.data.push(t.danmu[i])
-						}
-					}
-					//这里是为了兼容tdplayer的弹幕
+                var t = JSON.parse(xmlhttp.responseText);
+                if (t.success == 1) {
+                    if (t.data) {
+                        for (var i = 0; i < t.data.length; i++) {
+                            tp.data.push(t.data[i]);
+                        }
+                    }
+                    if (t.danmu) {
+                        for (var i = 0; i < t.danmu.length; i++) {
+                            t.danmu[i].text = unescape(t.danmu[i].text);
+                            tp.data.push(t.danmu[i]);
+                        }
+                    }
                 }
-                tp.nowdata=tp.data.slice(0);
+                tp.nowdata = tp.data.slice(0);
             }
         };
         xmlhttp.open("GET", url, true);
@@ -151,7 +152,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             var e = tp.ele.danmu_warp.appendChild(dm);
             var s1 = e.offsetWidth;
             var s2 = s1 + tp.width;
-            var time=tp.width/100;
+            var time = tp.width / 100;
             var v = s2 / time;
             var t = s1 / v;
             setTimeout(function() {
@@ -209,7 +210,6 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     //重播
     tp.ele.replay.addEventListener("click", function() {
         tp.ele.video_control_play.onclick();
-       
     });
     //播放完成
     tp.ele.video.onended = function() {
@@ -217,7 +217,6 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     };
     //弹幕开关
     tp.ele.danmu_switch.addEventListener("click", function() {
-       
         if (this.className == "tp-danmu-switch") {
             this.className = "tp-danmu-switch tp-danmu-switch-c";
             tp.ele.danmu_warp.style.opacity = "0";
@@ -237,7 +236,6 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     };
     //弹幕发送
     tp.ele.tp_up.addEventListener("click", function() {
-       
         tp.send(tp.ele.tp_text.value, tp.ele.tp_color_bo.style.backgroundColor, tp.dmplace, 1);
         tp.ele.tp_text.readonly = "readonly";
         //$("tp-text").style.background = "#f4f4f4";
@@ -279,19 +277,18 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         xhr.send(postData);
     });
     //弹幕速度
-    tp.dmspeend=function (v) {
+    tp.dmspeend = function(v) {
         tp.ele.css.innerText = ".tp-left {animation: dmleft " + v + "s linear;-webkit-animation: dmleft " + v + "s linear;}";
-    }
+    };
     //视频播放
     tp.ele.video_control_play.onclick = function() {
-       
         tp.ele.tp_oneplay.style.display = "none";
         if (tp.dsq == 0) {
             tp.Interval = setInterval(danmutime, 100);
             tp.dsq = 1;
         }
-        if(!tp.phone){
-        tp.ele.video_con.style.opacity = "0";
+        if (!tp.phone) {
+            tp.ele.video_con.style.opacity = "0";
         }
         var e = tp.ele.danmu_warp.getElementsByTagName("div");
         this.style.display = "none";
@@ -304,7 +301,6 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     };
     //视频暂停
     tp.ele.video_control_paused.onclick = function() {
-       
         clearInterval(tp.Interval);
         tp.dsq = 0;
         var e = tp.ele.danmu_warp.getElementsByTagName("div");
@@ -319,16 +315,14 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tp.ele.tp_oneplay.addEventListener("click", function() {
         this.style.display = "none";
         tp.ele.video_control_play.onclick();
-       
     });
     //控件显示
     if (tp.phone) {
         tp.ele.danmu_warp.addEventListener("click", function() {
-           
             var e = tp.ele.video_con;
             if (e.style.display == "block") {
                 console.log("隐藏");
-                e.style.display = "none"
+                e.style.display = "none";
             } else {
                 e.style.display = "block";
                 console.log("显示");
@@ -351,6 +345,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         return returnvalue;
     }
     tp.changersound = function() {
+        tp.ele.video.volume = parseInt(tp.ele.tp_syk_range.value) * .01;
         var Days = 7;
         var exp = new Date();
         exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1e3);
@@ -373,14 +368,12 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         } else {
             tp.alltime = time;
             tp.ele.alltime.innerHTML = getvideotime(tp.alltime).m + ":" + getvideotime(tp.alltime).s;
-            tp.ele.alltime_phone.innerHTML ='&nbsp;/&nbsp;'+getvideotime(tp.alltime).m + ":" + getvideotime(tp.alltime).s;
+            tp.ele.alltime_phone.innerHTML = "&nbsp;/&nbsp;" + getvideotime(tp.alltime).m + ":" + getvideotime(tp.alltime).s;
         }
     }
     getallvideotime();
     //音量调节
     tp.ele.tp_syk_range.addEventListener("input", function() {
-        var i = parseInt(tp.ele.tp_syk_range.value) * .01;
-        tp.ele.video.volume = i;
         tp.changersound();
     });
     //定时器
@@ -400,7 +393,6 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }
         if (tp.nowdata) {
             for (var i = 0; i < tp.nowdata.length; i++) {
-            	
                 if (tp.nowdata[i]) {
                     if (tp.nowdata[i].time == parseInt(tp.ele.video.currentTime * 10)) {
                         tp.send(tp.nowdata[i].text, tp.nowdata[i].color, tp.nowdata[i].place);
@@ -421,7 +413,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         var xbl = show_coords(e, this);
         tp.ele.tranger_a.style.width = xbl.xbl * 100 + "%";
         tp.ele.video.currentTime = xbl.xbl * tp.alltime;
-         tp.nowdata =tp.data.slice(0);
+        tp.nowdata = tp.data.slice(0);
     };
     //获取元素的纵坐标（相对于窗口）
     function getTop(e) {
@@ -474,19 +466,21 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }
     });
     //键盘
-    tp.ele.tp_video_warp.addEventListener('click',function(){
-         setTimeout(function(){ tp.ele.tp_video_warp.xz=true;},200);
-    }, false)
-    document.addEventListener('click', function(e){
-         if (e.target==tp.ele.danmu_warp) {
-            tp.ele.tp_video_warp.xz=true
-         }else{
-            tp.ele.tp_video_warp.xz=false
-         }
-    }, false)
+    tp.ele.tp_video_warp.addEventListener("click", function() {
+        setTimeout(function() {
+            tp.ele.tp_video_warp.xz = true;
+        }, 200);
+    }, false);
+    document.addEventListener("click", function(e) {
+        if (e.target == tp.ele.danmu_warp) {
+            tp.ele.tp_video_warp.xz = true;
+        } else {
+            tp.ele.tp_video_warp.xz = false;
+        }
+    }, false);
     document.addEventListener("keydown", function(event) {
         var e = event || window.event || arguments.callee.caller.arguments[0];
-        if(tp.ele.tp_video_warp.xz==true){
+        if (tp.ele.tp_video_warp.xz == true) {
             showbar();
             if (e && e.keyCode == 39) {
                 // right 键
@@ -497,7 +491,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
                 // left 键
                 var time = tp.ele.video.currentTime;
                 tp.ele.video.currentTime = time - 5;
-                tp.nowdata =tp.data.slice(0);
+                tp.nowdata = tp.data.slice(0);
             }
             if (e && e.keyCode == 32) {
                 // space 键
@@ -512,11 +506,13 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
                 // up 键
                 event.preventDefault();
                 tp.ele.tp_syk_range.value = parseInt(tp.ele.tp_syk_range.value) + 1;
+                tp.changersound();
             }
             if (e && e.keyCode == 40) {
                 // down 键
                 event.preventDefault();
                 tp.ele.tp_syk_range.value = parseInt(tp.ele.tp_syk_range.value) - 1;
+                tp.changersound();
             }
         }
     });
@@ -548,14 +544,14 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }, 1e3);
     });
     function showbar() {
-    	if(!tp.phone){
-        tp.ele.video_con.style.opacity = "1";
-        tp.sjc++;
-        var time = setTimeout(sjc, 2e3, tp.sjc);
-       }
+        if (!tp.phone) {
+            tp.ele.video_con.style.opacity = "1";
+            tp.sjc++;
+            var time = setTimeout(sjc, 2e3, tp.sjc);
+        }
     }
     function sjc(time) {
-        if (time >= tp.sjc&&!tp.phone) {
+        if (time >= tp.sjc && !tp.phone) {
             tp.ele.video_con.style.opacity = "0";
         }
     }
@@ -615,35 +611,33 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             };
         }
     }
-    tp.eixtfull = function(){
-    	setTimeout(function(){
-    	tp.dmspeend(tp.width / 100);
-    	tp.width = tp.ele.video.offsetWidth;
-        var e = tp.ele.danmu_warp.getElementsByTagName("div");
+    tp.eixtfull = function() {
+        setTimeout(function() {
+            tp.dmspeend(tp.width / 100);
+            tp.width = tp.ele.video.offsetWidth;
+            var e = tp.ele.danmu_warp.getElementsByTagName("div");
             for (var i = e.length - 1; i >= 0; i--) {
-	            if (hasClass(e[i], "tp-left")) {
-	                 e[i].style.transform = "translateX(-" + tp.width + "px)";
-	            }
+                if (hasClass(e[i], "tp-left")) {
+                    e[i].style.transform = "translateX(-" + tp.width + "px)";
+                }
             }
-    	},1000);
-    }
-    document.addEventListener('webkitfullscreenchange',function(c){
-    	if(document.webkitFullscreenElement){
-    		console.log('进入全屏');
-    		}else{
-    		console.log('退出全屏');
-			tp.eixtfull();
-    	}
-    	
+        }, 1e3);
+    };
+    document.addEventListener("webkitfullscreenchange", function(c) {
+        if (document.webkitFullscreenElement) {
+            console.log("进入全屏");
+        } else {
+            console.log("退出全屏");
+            tp.eixtfull();
+        }
     });
-    document.addEventListener('mozfullscreenchange',function(c){
-    	if(document.mozFullscreenElement){
-    		console.log('进入全屏')
-    		}else{
-    		console.log('退出全屏');
-    		tp.eixtfull();
-    	}
-    	
+    document.addEventListener("mozfullscreenchange", function(c) {
+        if (document.mozFullscreenElement) {
+            console.log("进入全屏");
+        } else {
+            console.log("退出全屏");
+            tp.eixtfull();
+        }
     });
     tp.ele.danmu_warp.onmousedown = function(event) {
         var ev = event || window.event || arguments.callee.caller.arguments[0];
@@ -724,5 +718,5 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             this.innerText = "◀滚动弹幕";
         }
     });
-    return tp
+    return tp;
 }

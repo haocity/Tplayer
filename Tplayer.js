@@ -209,6 +209,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     //重播
     tp.ele.replay.addEventListener("click", function() {
         tp.ele.video_control_play.onclick();
+       
     });
     //播放完成
     tp.ele.video.onended = function() {
@@ -216,6 +217,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     };
     //弹幕开关
     tp.ele.danmu_switch.addEventListener("click", function() {
+       
         if (this.className == "tp-danmu-switch") {
             this.className = "tp-danmu-switch tp-danmu-switch-c";
             tp.ele.danmu_warp.style.opacity = "0";
@@ -235,6 +237,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     };
     //弹幕发送
     tp.ele.tp_up.addEventListener("click", function() {
+       
         tp.send(tp.ele.tp_text.value, tp.ele.tp_color_bo.style.backgroundColor, tp.dmplace, 1);
         tp.ele.tp_text.readonly = "readonly";
         //$("tp-text").style.background = "#f4f4f4";
@@ -281,6 +284,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     }
     //视频播放
     tp.ele.video_control_play.onclick = function() {
+       
         tp.ele.tp_oneplay.style.display = "none";
         if (tp.dsq == 0) {
             tp.Interval = setInterval(danmutime, 100);
@@ -300,6 +304,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     };
     //视频暂停
     tp.ele.video_control_paused.onclick = function() {
+       
         clearInterval(tp.Interval);
         tp.dsq = 0;
         var e = tp.ele.danmu_warp.getElementsByTagName("div");
@@ -314,10 +319,12 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tp.ele.tp_oneplay.addEventListener("click", function() {
         this.style.display = "none";
         tp.ele.video_control_play.onclick();
+       
     });
     //控件显示
     if (tp.phone) {
         tp.ele.danmu_warp.addEventListener("click", function() {
+           
             var e = tp.ele.video_con;
             if (e.style.display == "block") {
                 console.log("隐藏");
@@ -467,36 +474,50 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }
     });
     //键盘
+    tp.ele.tp_video_warp.addEventListener('click',function(){
+         setTimeout(function(){ tp.ele.tp_video_warp.xz=true;},200);
+    }, false)
+    document.addEventListener('click', function(e){
+         if (e.target==tp.ele.danmu_warp) {
+            tp.ele.tp_video_warp.xz=true
+         }else{
+            tp.ele.tp_video_warp.xz=false
+         }
+    }, false)
     document.addEventListener("keydown", function(event) {
         var e = event || window.event || arguments.callee.caller.arguments[0];
-        showbar();
-        if (e && e.keyCode == 39) {
-            // right 键
-            var time = tp.ele.video.currentTime;
-            tp.ele.video.currentTime = time + 5;
-        }
-        if (e && e.keyCode == 37) {
-            // left 键
-            var time = tp.ele.video.currentTime;
-            tp.ele.video.currentTime = time - 5;
-            tp.nowdata =tp.data.slice(0);
-        }
-        if (e && e.keyCode == 32) {
-            // space 键
-            event.preventDefault();
-            if (tp.ele.video.paused) {
-                tp.ele.video_control_play.onclick();
-            } else {
-                tp.ele.video_control_paused.onclick();
+        if(tp.ele.tp_video_warp.xz==true){
+            showbar();
+            if (e && e.keyCode == 39) {
+                // right 键
+                var time = tp.ele.video.currentTime;
+                tp.ele.video.currentTime = time + 5;
             }
-        }
-        if (e && e.keyCode == 38) {
-            // up 键
-            tp.ele.tp_syk_range.value = parseInt(tp.ele.tp_syk_range.value) + 1;
-        }
-        if (e && e.keyCode == 40) {
-            // down 键
-            tp.ele.tp_syk_range.value = parseInt(tp.ele.tp_syk_range.value) - 1;
+            if (e && e.keyCode == 37) {
+                // left 键
+                var time = tp.ele.video.currentTime;
+                tp.ele.video.currentTime = time - 5;
+                tp.nowdata =tp.data.slice(0);
+            }
+            if (e && e.keyCode == 32) {
+                // space 键
+                event.preventDefault();
+                if (tp.ele.video.paused) {
+                    tp.ele.video_control_play.onclick();
+                } else {
+                    tp.ele.video_control_paused.onclick();
+                }
+            }
+            if (e && e.keyCode == 38) {
+                // up 键
+                event.preventDefault();
+                tp.ele.tp_syk_range.value = parseInt(tp.ele.tp_syk_range.value) + 1;
+            }
+            if (e && e.keyCode == 40) {
+                // down 键
+                event.preventDefault();
+                tp.ele.tp_syk_range.value = parseInt(tp.ele.tp_syk_range.value) - 1;
+            }
         }
     });
     function getvideotime(time) {

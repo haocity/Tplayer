@@ -10,9 +10,8 @@ CSS3+Javascript 本项目是一款基于css3和js弹幕系统。
 ![image](https://ooo.0o0.ooo/2016/12/20/5858df24293f5.png)
 
 ## 使用方式
-引用Tplayer.js和colorpicker.js文件
+引用Tplayer.js文件
 ```
-<script src="colorpicker.js" type="text/javascript" charset="utf-8"></script>
 <script src="Tplayer.js" type="text/javascript" charset="utf-8"></script>
 ```
 执行

@@ -94,7 +94,7 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
     tp.danmuelement = tp.ele.danmu_warp;
     tp.sjc = 0;
     tp.dsq = 0;
-    tp.leftarr = [];
+    tp.leftarr = {t:[],v:[],out:[],w:[]};
     tp.toparr = [];
     tp.dmheight = 31;
     tp.dmplace = 1;
@@ -145,20 +145,18 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
         }
         if (wz == 1) {
             //left 弹幕
-            var dtop = tp.getlefttop();
-            dm.style.top = dtop * tp.dmheight + "px";
-            tp.leftarr[dtop] = 1;
             dm.className = "danmu tp-left";
             dm.style.transform = "translateX(-" + tp.width + "px)";
-            var e = tp.ele.danmu_warp.appendChild(dm);
-            var s1 = e.offsetWidth;
-            var s2 = s1 + tp.width;
+            tp.ele.danmu_warp.appendChild(dm); 
             var time = tp.width / 100;
-            var v = s2 / time;
-            var t = s1 / v;
-            setTimeout(function() {
-                tp.leftarr[dtop] = 0;
-            }, t * 1e3 + 500);
+            var v=(dm.offsetWidth+tp.width)/time;
+            var outt=dm.offsetWidth/v;
+            dtop=tp.getlefttop(v,dm.offsetWidth);
+            setTimeout(function(){
+                tp.leftarr.out[dtop]=false
+            },outt*1000)
+            //console.log('可以在'+dtop+'发送');
+            dm.style.top = dtop * tp.dmheight + "px";
             dm.addEventListener("webkitAnimationEnd", tp.dmend);
             dm.addEventListener("animationend", tp.dmend);
         } else if (wz == 2) {
@@ -186,19 +184,43 @@ function Tplayer(Element, src, poster, server, videoid, videotype) {
             tp.toparr[topid] = 0;
         }
     };
-    tp.getlefttop = function() {
+    tp.getlefttop = function(v,ww) {
         var h;
-        for (var i = 0; i <= tp.leftarr.length; i++) {
-            if (!tp.leftarr[i]) {
-                //console.log('第'+i+'可以发射弹幕');
-                h = i;
-                break;
+        let t=tp.ele.video.currentTime;
+        let allt=tp.width/100;
+        for (var i = 0; i <= tp.leftarr.t.length; i++) {
+            if (!tp.leftarr.out[i]) {
+                 if (tp.leftarr.v[i]>=v) {
+                       h = i;
+                       break;
+                    }else {
+                       if (!tp.leftarr.t[i]) {break}
+                       //追上的时间和距离
+                       let tt=tp.width/100-t+tp.leftarr.t[i];
+                       let sz= tt*(v-tp.leftarr.v[i]);
+                       //间隔距离 这里-20是为了防止跟太紧
+                       let so=(t-tp.leftarr.t[i])*tp.leftarr.v[i]-tp.leftarr.w[i]-20;
+                       //console.log(`${i}弹幕会在上一弹幕尾部飞行${tt}秒 速度差${v-tp.leftarr.v[i]} 会追上路程 ${sz}  判断时距离 ${so}`)
+                       if (sz<so) {
+                            h = i;
+                            break;
+                       }
+                    }
             }
         }
+        if (typeof(h)=='undefined') {
+            h=tp.leftarr.t.length;
+            //console.log('开辟新通道');
+        }
+        tp.leftarr.t[h]=t;
+        tp.leftarr.v[h]=v;
+        tp.leftarr.out[h]=true;
+        tp.leftarr.w[h]=ww;
         return h;
     };
     tp.gettoptop = function() {
         var h;
+
         for (var i = 0; i <= tp.toparr.length; i++) {
             if (!tp.toparr[i]) {
                 //console.log('第'+i+'可以发射弹幕');

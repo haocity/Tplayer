@@ -199,6 +199,7 @@
 .tp-syk {
 	padding: 10px 10px;
 	position: relative;
+	top: -8px;
 	display: inline-block;
 	color: #fff;
 }

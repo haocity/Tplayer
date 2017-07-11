@@ -21,7 +21,7 @@ mysql      = require('mysql');
       if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
         handleConnect();                       
       } else {                                      
-        throw err;                                  
+        console.log(err)		
       }
     });
   }
@@ -33,10 +33,11 @@ http.createServer(function(req, res){
       if (getobj.id) {
           handleConnect();
 		  console.log('查询id: '+getobj.id+'的弹幕');
+		   db.query('CREATE TABLE IF NOT EXISTS `'+getobj.id+'` (`id` int(4) NOT NULL, `time` int(6) NOT NULL,`text` varchar(200) NOT NULL,`color` varchar(20) NOT NULL,`place` int(1) NOT NULL) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT="Tplayer"');
            db.query('SELECT * FROM `'+parseInt(getobj.id)+'`', function(err, rows, fields) {
            if (err){
               res.end('{"success":0,"data":[{"id":0,"time":10,"text":"链接弹幕失败￣□￣｜｜","color":"#fff","place":1}]}');
-            }
+			}
             var i=0;
             i++
             var d= rows;
@@ -46,6 +47,7 @@ http.createServer(function(req, res){
           res.end('{"success":0,"data":[{"id":0,"time":10,"text":"链接弹幕失败￣□￣｜｜","color":"#fff","place":1}]}');
       }
       db.end();
+	  console.log('关闭连接');
     }
     catch(err){
       console.log('发生错误了'+eer)
@@ -68,15 +70,10 @@ http.createServer(function (req, res) {
       if(p.id&&p.time&&p.text&&p.color&&p.place) { // 输出提交的数据
          handleConnect();
           db.query("INSERT INTO `danmu`.`"+parseInt(p.id)+"` (`id`, `time`, `text`, `color`, `place`) VALUES (NULL, "+db.escape(p.time)+", "+db.escape(p.text)+", "+db.escape(p.color)+", "+db.escape(p.place)+")", function(err, rows, fields) {
-          if(err){
-              res.end(`{"success":0,"container":"发送失败,可能没有找到弹幕库","time":"${time}"}`);
-			  console.log(`发送弹幕失败:${eer}`)
-              db.end();
-            }else{
-              res.end(`{"success":1,"container":"发送成功","time":"${time}"}`);
-			  console.log(`发送弹幕完成表:${p.id}内容:${p.text}`)
-              db.end();
-            }
+           res.end(`{"success":1,"container":"发送成功","time":"${time}"}`);
+		    console.log(`发送弹幕完成表:${p.id}内容:${p.text}`)
+            db.end();
+            
           })
       } else {  
           res.end(`{"success":0,"container":"请求参数错误","time":"${time}"}`);

@@ -310,9 +310,11 @@ class Tplayer{
             let v=(dm.offsetWidth+this.width)/time
             let outt=dm.offsetWidth/v
             let dtop=this.getlefttop(v,dm.offsetWidth)
+            this.leftarr.out[dtop]=true
             setTimeout(function(){
                 _this.leftarr.out[dtop]=false
-            },outt*1000)
+            },outt*1000+200)
+            
             dm.style.top = dtop * this.dmheight + "px"
             dm.addEventListener("webkitAnimationEnd",function(){_this.dmend(dm)})
             dm.addEventListener("animationend",function(){_this.dmend(dm)})

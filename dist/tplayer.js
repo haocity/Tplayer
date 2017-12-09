@@ -397,9 +397,11 @@ var Tplayer = function () {
                     var v = (dm.offsetWidth + this.width) / _time;
                     var outt = dm.offsetWidth / v;
                     var dtop = this.getlefttop(v, dm.offsetWidth);
+                    this.leftarr.out[dtop] = true;
                     setTimeout(function () {
                         _this.leftarr.out[dtop] = false;
-                    }, outt * 1000);
+                    }, outt * 1000 + 200);
+
                     dm.style.top = dtop * this.dmheight + "px";
                     dm.addEventListener("webkitAnimationEnd", function () {
                         _this.dmend(dm);

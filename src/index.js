@@ -1504,7 +1504,7 @@ class Tplayer{
                         topedge = danmakuheight - rightmenu.offsetHeight;
                     }
                 } else {
-                    topedge = ev.clientY + document.body.scrollTop - this.getTop(this.ele.tplayer);
+                    topedge = ev.clientY + document.documentElement.scrollTop - this.getTop(this.ele.tplayer);
                     leftedge = ev.clientX - this.getLeft(this.ele.tplayer);
                     let tweidth = container.offsetWidth;
                     let theigtht = container.offsetHeight;

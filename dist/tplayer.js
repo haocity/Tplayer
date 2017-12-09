@@ -279,35 +279,59 @@ var Tplayer = function () {
             this.videosrcarr = this.options.video.url;
         }
 
-        for (var _i = 0; _i < this.videosrcarr.length; _i++) {
+        if (this.options.video.type == "flv") {
             var video = document.createElement("video");
-            if (this.options.video.type == "hls") {
-                console.log('这是hls视频 启动加载');
-                var hls = new Hls();
-                hls.loadSource(this.videosrcarr[_i]);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                    console.log('可以开始加载');
-                    if (this.options.video.autoplay) {
-                        this.play();
-                        //		     		if(this.options.autoplay==2){
-                        //		     			this.ele.full.click();
-                        //		     		}
-                    }
+            var arr = new Array();
+            for (var _i = 0; _i < this.videosrcarr.length; _i++) {
+                arr.push({ url: this.videosrcarr[_i] });
+            }
+            if (flvjs && flvjs.isSupported()) {
+                console.log('这是flv视频 启动加载');
+                var flvPlayer = flvjs.createPlayer({
+                    type: 'flv',
+                    segments: arr
                 });
-            } else {
-                video.src = this.videosrcarr[_i];
-            }
-            video.className = "tp-video";
-            if (_i != 0) {
-                video.style.display = "none";
-                video.preload = "meta";
-            } else {
-                video.preload = "auto";
+                flvPlayer.attachMediaElement(video);
+                flvPlayer.load();
                 this.Element = video;
+                video.className = "tp-video";
+                video.preload = "auto";
+                this.ele.tplayer.appendChild(video);
+            } else {
+                console.error("请预先加载flv.js");
             }
+        } else {
+            for (var _i2 = 0; _i2 < this.videosrcarr.length; _i2++) {
+                var _video = document.createElement("video");
+                if (this.options.video.type == "hls") {
+                    if (hls && hls.isSupported()) {
+                        console.log('这是hls视频 启动加载');
+                        var _hls = new Hls();
+                        _hls.loadSource(this.videosrcarr[_i2]);
+                        _hls.attachMedia(_video);
+                        _hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                            console.log('可以开始加载');
+                            if (this.options.video.autoplay) {
+                                this.play();
+                            }
+                        });
+                    } else {
+                        console.error("请预先加载hls.js");
+                    }
+                } else {
+                    _video.src = this.videosrcarr[_i2];
+                }
+                _video.className = "tp-video";
+                if (_i2 != 0) {
+                    _video.style.display = "none";
+                    _video.preload = "meta";
+                } else {
+                    _video.preload = "auto";
+                    this.Element = _video;
+                }
 
-            this.ele.tplayer.appendChild(video);
+                this.ele.tplayer.appendChild(_video);
+            }
         }
         //封面
         if (this.options.video.pic) {
@@ -344,8 +368,8 @@ var Tplayer = function () {
             });
             this.videoelearr = this.ele.tplayer.getElementsByTagName("video");
             this.videotimearr = [];
-            for (var _i2 = 0; _i2 < this.videoelearr.length; _i2++) {
-                this.getallvideotime(this.videoelearr[_i2], _i2);
+            for (var _i3 = 0; _i3 < this.videoelearr.length; _i3++) {
+                this.getallvideotime(this.videoelearr[_i3], _i3);
             }
 
             //样式
@@ -443,16 +467,16 @@ var Tplayer = function () {
                         _this.nowduan = arg + 1;
                         var oldele = _this.videoelearr[arg];
                         var nowele = _this.videoelearr[arg + 1];
-                        for (var _i11 = 0; _i11 < _this.videoelearr.length; _i11++) {
-                            if (_i11 != _this.nowduan) {
-                                var _ele = _this.videoelearr[_i11];
+                        for (var _i12 = 0; _i12 < _this.videoelearr.length; _i12++) {
+                            if (_i12 != _this.nowduan) {
+                                var _ele = _this.videoelearr[_i12];
                                 if (_ele.style.display != "none") {
                                     _ele.style.display = "none";
                                 }
                                 _ele.currentTime = 0;
                                 _ele.pause();
                             } else {
-                                var _ele2 = _this.videoelearr[_i11];
+                                var _ele2 = _this.videoelearr[_i12];
                                 _this.Element = _ele2;
                                 _ele2.style.display = "block";
                                 _ele2.currentTime = 0;
@@ -469,8 +493,8 @@ var Tplayer = function () {
                             _this.leftarr = { t: [], v: [], out: [], w: [] };
                             _this.toparr = [];
                             var arr = _this.$c('.danmaku');
-                            for (var _i12 = arr.length - 1; _i12 >= 0; _i12--) {
-                                arr[_i12].parentNode.removeChild(arr[_i12]);
+                            for (var _i13 = arr.length - 1; _i13 >= 0; _i13--) {
+                                arr[_i13].parentNode.removeChild(arr[_i13]);
                             }
                         }
                     }
@@ -731,8 +755,8 @@ var Tplayer = function () {
                 var oldduan = _this.nowduan - 1,
                     oldtime = 0,
                     time2 = 0;
-                for (var _i3 = 0; _i3 <= oldduan; _i3++) {
-                    oldtime += _this.videotimearr[_i3];
+                for (var _i4 = 0; _i4 <= oldduan; _i4++) {
+                    oldtime += _this.videotimearr[_i4];
                 }
                 if (buff.length) {
                     time2 = oldtime + buff.end(buff.length - 1);
@@ -767,11 +791,11 @@ var Tplayer = function () {
                 _this.tiao(xbl.xbl * _this.alltime);
             };
 
-            for (var _i4 = 0; _i4 < this.videoelearr.length; _i4++) {
-                this.videoelearr[_i4].addEventListener("waiting", function () {
+            for (var _i5 = 0; _i5 < this.videoelearr.length; _i5++) {
+                this.videoelearr[_i5].addEventListener("waiting", function () {
                     _this.videohc();
                 });
-                this.videoelearr[_i4].addEventListener("playing", function () {
+                this.videoelearr[_i5].addEventListener("playing", function () {
                     _this.tdplay();
                 });
             }
@@ -842,9 +866,9 @@ var Tplayer = function () {
                     _this.width = _this.ele.tplayer_main.offsetWidth;
                     var e = _this.ele.danmaku_warp.getElementsByTagName("div");
                     _this.dmspeend(_this.width / 100);
-                    for (var _i5 = 0; _i5 < e.length; _i5++) {
-                        if (hasClass(e[_i5], "tp-left")) {
-                            e[_i5].style.transform = "translateX(-" + _this.width + "px)";
+                    for (var _i6 = 0; _i6 < e.length; _i6++) {
+                        if (hasClass(e[_i6], "tp-left")) {
+                            e[_i6].style.transform = "translateX(-" + _this.width + "px)";
                         }
                     }
                 }, 1e3);
@@ -898,20 +922,20 @@ var Tplayer = function () {
                 }
             });
             var videospeendele = this.ele.tp_speend.childNodes;
-            for (var _i6 = 0; _i6 < videospeendele.length; _i6++) {
-                var e = videospeendele[_i6];
-                var s = parseFloat(videospeendele[_i6].innerText).toFixed(2);
+            for (var _i7 = 0; _i7 < videospeendele.length; _i7++) {
+                var e = videospeendele[_i7];
+                var s = parseFloat(videospeendele[_i7].innerText).toFixed(2);
                 if (s != "NaN") {
                     e.onclick = function () {
                         var t = parseFloat(this.innerText).toFixed(2);
-                        for (var _i7 = 0; _i7 < _this.videoelearr.length; _i7++) {
-                            _this.videoelearr[_i7].playbackRate = t;
+                        for (var _i8 = 0; _i8 < _this.videoelearr.length; _i8++) {
+                            _this.videoelearr[_i8].playbackRate = t;
                         }
                     };
                 } else {
                     e.onclick = function () {
-                        for (var _i8 = 0; _i8 < _this.videoelearr.length; _i8++) {
-                            _this.videoelearr[_i8].playbackRate = 1;
+                        for (var _i9 = 0; _i9 < _this.videoelearr.length; _i9++) {
+                            _this.videoelearr[_i9].playbackRate = 1;
                         }
                     };
                 }
@@ -934,10 +958,10 @@ var Tplayer = function () {
                     this.innerText = '\u89C6\u9891\u6BD4\u4F8B \u5168\u5C4F';
                     _this.ele.tplayer.style.transform = 'none';
                     _this.ele.tplayer.style.webkitTransform = 'none';
-                    for (var _i9 = 0; _i9 < _this.videoelearr.length; _i9++) {
-                        _this.videoelearr[_i9].style.height = 'auto';
-                        _this.videoelearr[_i9].style.width = 'auto';
-                        _this.videoelearr[_i9].className = "";
+                    for (var _i10 = 0; _i10 < _this.videoelearr.length; _i10++) {
+                        _this.videoelearr[_i10].style.height = 'auto';
+                        _this.videoelearr[_i10].style.width = 'auto';
+                        _this.videoelearr[_i10].className = "";
                     }
                     setTimeout(function () {
                         var w1 = _this.ele.tplayer.offsetWidth;
@@ -950,10 +974,10 @@ var Tplayer = function () {
                         _this.ele.tplayer.style.webkitTransformOrigin = 'left top';
                     }, 0);
                 } else {
-                    for (var _i10 = 0; _i10 < _this.videoelearr.length; _i10++) {
-                        _this.videoelearr[_i10].style.height = '100%';
-                        _this.videoelearr[_i10].style.width = '100%';
-                        _this.videoelearr[_i10].className = ".tp-video";
+                    for (var _i11 = 0; _i11 < _this.videoelearr.length; _i11++) {
+                        _this.videoelearr[_i11].style.height = '100%';
+                        _this.videoelearr[_i11].style.width = '100%';
+                        _this.videoelearr[_i11].className = ".tp-video";
                         _this.ele.tplayer.style.webkitTransformOrigin = 'center';
                     }
                     this.ratio = 1;
@@ -1214,8 +1238,8 @@ var Tplayer = function () {
                 this.videotimearr[i] = time;
                 if (this.videotimearr[0] && this.videotimearr[this.videotimearr.length - 1]) {
                     this.alltime = 0;
-                    for (var _i13 = 0; _i13 < this.videotimearr.length; _i13++) {
-                        this.alltime += this.videotimearr[_i13];
+                    for (var _i14 = 0; _i14 < this.videotimearr.length; _i14++) {
+                        this.alltime += this.videotimearr[_i14];
                     }
                     this.ele.alltime.innerHTML = this.getvideotime(this.alltime).m + ":" + this.getvideotime(this.alltime).s;
                     this.ele.alltime_phone.innerHTML = '&nbsp;/&nbsp;' + this.ele.alltime.innerHTML;
@@ -1659,14 +1683,14 @@ var Tplayer = function () {
             var duantime = time - oldtime;
             this.nowduan = this.getduan(time);
             //video id
-            for (var _i14 = 0; _i14 < this.videoelearr.length; _i14++) {
-                if (_i14 != this.nowduan) {
-                    var ele = this.videoelearr[_i14];
+            for (var _i15 = 0; _i15 < this.videoelearr.length; _i15++) {
+                if (_i15 != this.nowduan) {
+                    var ele = this.videoelearr[_i15];
                     ele.style.display = "none";
                     ele.currentTime = 0;
                     ele.pause();
                 } else {
-                    var _ele3 = this.videoelearr[_i14];
+                    var _ele3 = this.videoelearr[_i15];
                     this.Element = _ele3;
                     if (_ele3.style.display != "block") {
                         _ele3.style.display = "block";

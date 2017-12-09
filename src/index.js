@@ -195,36 +195,59 @@ class Tplayer{
     	this.videosrcarr = this.options.video.url
     }
     
-    
-    for (let i = 0; i < this.videosrcarr.length; i++) {
-        let video = document.createElement("video")
-         if (this.options.video.type == "hls") {
-         	console.log('这是hls视频 启动加载');
-         	let hls = new Hls();
-			hls.loadSource(this.videosrcarr[i]);
-			hls.attachMedia(video);
-			hls.on(Hls.Events.MANIFEST_PARSED,function() {
-		     	console.log('可以开始加载');
-		     	if(this.options.video.autoplay){
-		     		this.play();
-//		     		if(this.options.autoplay==2){
-//		     			this.ele.full.click();
-//		     		}
-		     	}
-		  	});
-        }else{
-        	video.src = this.videosrcarr[i]
-        }
-        video.className = "tp-video"
-        if (i != 0) {
-            video.style.display = "none"
-            video.preload = "meta"
-        } else {
-            video.preload = "auto"
+    if(this.options.video.type == "flv"){
+    	 let video = document.createElement("video");
+    	 let arr=new Array
+    	 for (let i = 0; i < this.videosrcarr.length; i++) {
+    	  	arr.push({url:this.videosrcarr[i]})
+    	 }
+    	 if (flvjs&&flvjs.isSupported()) {
+        	console.log('这是flv视频 启动加载');
+        	var flvPlayer = flvjs.createPlayer({
+                type: 'flv',
+                segments: arr
+         });
+            flvPlayer.attachMediaElement(video)
+            flvPlayer.load()
             this.Element = video
+            video.className = "tp-video"
+            video.preload = "auto"
+            this.ele.tplayer.appendChild(video)
+         }else{
+        	console.error("请预先加载flv.js")
         }
-        
-        this.ele.tplayer.appendChild(video)
+    }else{
+	    for (let i = 0; i < this.videosrcarr.length; i++) {
+	        let video = document.createElement("video")
+	         if (this.options.video.type == "hls") {
+	         	if (hls&&hls.isSupported()) {
+		         	console.log('这是hls视频 启动加载');
+		         	let hls = new Hls();
+					hls.loadSource(this.videosrcarr[i]);
+					hls.attachMedia(video);
+					hls.on(Hls.Events.MANIFEST_PARSED,function() {
+				     	console.log('可以开始加载');
+				     	if(this.options.video.autoplay){
+				     		this.play();
+				     	}
+				  	});
+			  	}else{
+			  		console.error("请预先加载hls.js")
+			  	}
+	        }else {
+	        	video.src = this.videosrcarr[i]
+	        }
+	        video.className = "tp-video"
+	        if (i != 0) {
+	            video.style.display = "none"
+	            video.preload = "meta"
+	        } else {
+	            video.preload = "auto"
+	            this.Element = video
+	        }
+	        
+	        this.ele.tplayer.appendChild(video)
+	    }
     }
       //封面
     if(this.options.video.pic){

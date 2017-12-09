@@ -1222,9 +1222,6 @@ var Tplayer = function () {
             for (var i = 0; i <= this.nowduan - 1; i++) {
                 videotime += this.videotimearr[i];
             }
-            //      console.log(videotime)
-            //      console.log(this.nowduan)
-            //      console.log(this.videoelearr[this.nowduan])
             videotime += this.videoelearr[this.nowduan].currentTime;
             return videotime;
         }

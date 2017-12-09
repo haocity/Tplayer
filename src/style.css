@@ -49,6 +49,13 @@ section.player{
 	height: 100%;
 	width: 100%;
 }
+.tp-video-warp p{
+	margin: 0;
+}
+.tp-video-warp ul{
+	margin: 0;
+	padding: 0;
+}
 .tp-video-warp{
 	font-size: 14px;
 }
@@ -317,9 +324,7 @@ section.player{
     height: 300px;
 }
 
-.tp-video-set p{
-	margin: 0;
-}
+
 .tp-alert-ok{
 	width: 50px;
 	background-color: #e05865;
@@ -642,10 +647,11 @@ section.player{
 	padding-left: 7px;
 	background-color: rgba(255,255,255,0.2);
 }
-.tp-speend {
+ul.tp-speend {
 	display: none;
 	margin: 4px 0 4px 30px;
 }
+
 .tp-copy-input{
     display: block;
     width: 100%;

@@ -311,9 +311,14 @@ section.player{
     overflow: hidden;
     font-size: 14px;
 }
+
 .tp-video-set{
 	width: 400px;
     height: 300px;
+}
+
+.tp-video-set p{
+	margin: 0;
 }
 .tp-alert-ok{
 	width: 50px;

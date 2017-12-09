@@ -6,12 +6,15 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="renderer" content="webkit">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link rel="stylesheet" type="text/css" href="style.css"/>
-		<script src="flv.js" type="text/javascript" charset="utf-8"></script>
-		<script src="Tplayer.js" type="text/javascript" charset="utf-8"></script>
+	    <!--hls-->
+	    <script src="https://cdn.bootcss.com/hls.js/0.8.8/hls.min.js"></script>
+	    <!--flv-->
+		<script src="https://cdn.bootcss.com/flv.js/1.3.3/flv.min.js"></script>
+		
+		<script src="dist/tplayer.js" type="text/javascript" charset="utf-8"></script>
 		
 		<style type="text/css">
-			.header{
+	.header{
 				text-align: center;
 			}
 			.header>.titile{
@@ -42,14 +45,15 @@
 			#v-dom2{
 				min-width: 200px;
 			}
-			
+			/*.tp-video-con{
+				opacity: 1!important;
+			}*/
 			@media screen and (max-width: 910px) {
 			    body{
 			        background-color:lightblue;
 			    }
 			    .tp-video-warp{
-			    	height: auto;
-			    	width: auto;
+			    	width: 100%;
 			    }
 			    .introduction{
 			    	width: auto;
@@ -59,24 +63,46 @@
 		</style>
 	</head>
 	<body>
-		<header class="header"><img src="logo-small.png"/>
-			<h1 class="titile">A HTML5 VIDEO PLAYER WITH BARRAGE</h1>
+	<header class="header"><img src="logo-small.png"/>
+			<h1 class="titile">A HTML5 VIDEO PLAYER WITH DANMAKU</h1>
 		</header>
 		<div id="v-dom"></div>
 		<div class="introduction">
 		<a href='http://acg.tv/sm29146509'>sm29146509</a> あずにゃん：想做一下这样的琪露诺~
 		</div>
+		
 		<script type="text/javascript">
-		Tplayer($d('v-dom'),'https://t4.haotown.cn/danmu/res/1.mp4','https://ooo.0o0.ooo/2017/04/27/590166d5436e9.jpg','https://t5.haotown.cn/danmu/',1,'mp4');
+			
+		var v1=new Tplayer({
+		 		Element:document.querySelector('#v-dom'),
+		 		video:{
+		 			url:["https://t4.haotown.cn/danmu/res/1.mp4"],
+		 			pic:"https://ooo.0o0.ooo/2017/04/27/590166d5436e9.jpg",
+		 			type:'mp4',
+		 		},
+		 		danmakuapi:"https://t5.haotown.cn/danmu/",
+		 		danmakuid:1
+		 	});
+			
+			
+		
 		</script>
-		<div id="v-dom3"></div>
+		<div id="v-dom2"></div>
 		<div class="introduction">
 		FLV.JS Test 如此饥渴，如此邪恶……禽兽放开那些羊！它们是我的！！
 		</div>
 		<script type="text/javascript">
-		var v3= Tplayer($d('v-dom3'),'1.flv','https://ooo.0o0.ooo/2017/05/02/59087cc93323f.jpg','https://t5.haotown.cn/danmu/',5,'flv');
-		v3.adddanmu('https://t5.haotown.cn/acfun/danmu/?ac=229741_1');
+		var v2=new Tplayer({
+		 		Element:document.querySelector('#v-dom2'),
+		 		video:{
+		 			url:["https://t4.haotown.cn/danmu/res/1.mp4"],
+		 			pic:"https://ooo.0o0.ooo/2017/04/27/590166d5436e9.jpg",
+		 			type:'mp4',
+		 		},
+		 		danmakuapi:"https://t5.haotown.cn/danmu/",
+		 		danmakuid:1
+		 	});
+			//v2.adddanmu('https://t5.haotown.cn/acfun/danmu/?ac=229741_1');
 		</script>
-
 	</body>
 </html>

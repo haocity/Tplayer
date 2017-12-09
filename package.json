@@ -1,0 +1,20 @@
+{
+  "name": "tplayer-master",
+  "version": "1.0.0",
+  "description": "![image](https://ooo.0o0.ooo/2016/12/16/585359df46d72.png)",
+  "main": "tplayer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "haocity",
+  "license": "ISC",
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "url-loader": "^0.6.2"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "style-loader": "^0.19.0"
+  }
+}

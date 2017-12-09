@@ -50,6 +50,7 @@ http.createServer(function(req, res){
 	  console.log('关闭连接');
     }
     catch(err){
+      console.log('发生错误了'+eer)
       res.end('{"success":0,"data":[{"id":0,"time":10,"text":"链接弹幕失败￣□￣｜｜","color":"#fff","place":1}]}');
     }
 }).listen(5221);

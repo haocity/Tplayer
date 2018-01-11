@@ -20,8 +20,6 @@ const html = {
       <li class="tp-screenshot">截图</li>
       <a href="https://github.com/haocity/tplayer/issues" target="_blank">
         <li>意见反馈</li></a>
-      <a href="https://www.haotown.cn/about.html" target="_blank">
-        <li>关于作者</li></a>
       <a href="https://github.com/haocity/tplayer" target="_blank">
         <li>About tplayer</li></a>
     </ul>

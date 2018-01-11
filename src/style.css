@@ -305,6 +305,16 @@ section.player{
     transform: translateY(8px);
     cursor: pointer;
 }
+.sound-ico{
+	background-image: url(img/sound.png);
+    display: inline-block;
+    height: 26px;
+    width: 26px;
+    background-size: cover;
+    cursor: pointer;
+    margin-right: 5px;
+    vertical-align: bottom;
+}
 .tp-alert,.tp-video-set{
 	display: none;
 	position: absolute;

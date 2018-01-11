@@ -1,0 +1,94 @@
+[Info] > 14 : 43 : 39: 389  User Initialized 
+[Info] > 14 : 43 : 39: 446  Toast Initialized 
+[Info] > 14 : 43 : 39: 468  Tracker Initialized 
+[Info] > 14 : 43 : 39: 470  LoadingPanel Initialized 
+[Info] > 14 : 43 : 39: 494  Controller Initialized 
+[Info] > 14 : 43 : 39: 504  Auxiliary Initialized 
+[Info] > 14 : 43 : 39: 563  Setting Initialized 
+[Info] > 14 : 43 : 39: 570  ModeSelection Initialized 
+[Info] > 14 : 43 : 39: 588  ColorPicker Initialized 
+[Info] > 14 : 43 : 39: 590  SendModule Initialized 
+[Info] > 14 : 43 : 39: 590  Recommend Initialized 
+[Info] > 14 : 43 : 39: 605  ColorPicker Initialized 
+[Info] > 14 : 43 : 39: 788  ColorPicker Initialized 
+[Info] > 14 : 43 : 39: 793  Load video config 
+[Info] > 14 : 43 : 39: 795  Load video playurl 
+[Info] > 14 : 43 : 39: 973  
+<ip>111.37.29.214</ip>
+<zoneid>4423824</zoneid>
+<zoneip></zoneip>
+<country>中国</country>
+<login>true</login>
+<time>1515653016</time>
+<name>疯狂减肥带</name>
+<user>7058853</user>
+<user_hash>9f15b33f</user_hash>
+<money>388.50</money>
+<face>//i1.hdslb.com/bfs/face/1a16f87019aec485fcdf962b33cd5a273ecabc68.jpg</face>
+<isadmin>false</isadmin>
+<permission>10000,1001</permission>
+<level></level>
+<level_info>{"current_level":4,"current_min":4500,"current_exp":8215,"next_exp":10800}</level_info>
+<vip>{"vipType":1,"vipDueDate":1517500800000,"dueRemark":"","accessStatus":1,"vipStatus":1,"vipStatusWarn":""}</vip>
+<official_verify>{"type":-1,"desc":""}</official_verify>
+<block_time>0</block_time>
+<lastplaytime>0</lastplaytime>
+<lastcid>0</lastcid>
+<aid>18118807</aid>
+<typeid>29</typeid>
+<vtype>vupload</vtype>
+<oriurl></oriurl>
+<suggest_comment>false</suggest_comment>
+<server>chat.bilibili.com</server>
+<maxlimit>1000</maxlimit>
+<click>2317</click>
+<fw_click>3</fw_click>
+<chatid>29580637</chatid>
+<pid>1</pid>
+<duration>4:36</duration>
+<arctype>Original</arctype>
+<allow_bp>false</allow_bp>
+<bottom>0</bottom>
+<shot>false</shot>
+<sinapi>1</sinapi>
+<acceptguest>false</acceptguest>
+<acceptaccel>false</acceptaccel>
+<cache>false</cache>
+<broadcast_tcp>broadcast.chat.bilibili.com:4080</broadcast_tcp>
+<broadcast_ws>broadcast.chat.bilibili.com:4090</broadcast_ws>
+<broadcast_wss>broadcast.chat.bilibili.com:4095</broadcast_wss>
+<default_dm>0</default_dm>
+<dm_host>0://comment.bilibili.com,1://comment.bilibili.com/rc</dm_host>
+<role>0</role>
+<has_next>0</has_next>
+<online_count>2</online_count>
+<new_broadcast>1</new_broadcast>
+<realtime_dm>1</realtime_dm>
+ 
+[Info] > 14 : 43 : 39: 975  Load video config finished   182 ms
+[Info] > 14 : 43 : 40: 103  
+{"qz":"https","U":{"type":"flv","duration":276125,"segments":[{"duration":276125,"filesize":70766265,"url":"https://cn-sdqd2-cmcc-v-05.acgvideo.com/vg4/upgcxcode/37/06/29580637/29580637-1-64.flv?expires=1515660000&platform=pc&ssig=yTq-5iot5KixO-c7l1bfBg&oi=1864703446&nfa=OjFrIkL2alA/CDXXOCCs2A==&dynamic=1&hfa=2019830512&hfb=Yjk5ZmZjM2M1YzY4ZjAwYTMzMTIzYmIyNWY4ODJkNWI="}]},"YL":"flv720,flv480,mp4","Wb":[64,32,16],"Ln":276125,"format":"flv720"}
+ 
+[Info] > 14 : 43 : 40: 104  Load video playurl finished   309 ms
+[Info] > 14 : 43 : 40: 106  Load video data 
+[Info] > 14 : 43 : 40: 639  Load video data finished   533 ms
+[Info] > 14 : 43 : 40: 672  Block Initialized 
+[Info] > 14 : 43 : 40: 674  Message Initialized 
+[Info] > 14 : 43 : 40: 676  ElectricPanel Initialized 
+[Info] > 14 : 43 : 40: 680  Load video danmaku 
+[Info] > 14 : 43 : 40: 682  Danmaku Initialized 
+[Info] > 14 : 43 : 40: 686  Promote Initialized 
+[Info] > 14 : 43 : 40: 687  Load video buffer 
+[Info] > 14 : 43 : 40: 704  Load video buffer finished   17 ms
+[Info] > 14 : 43 : 40: 998  Load video danmaku finished time:204,analyzeTime:0,addTime:112,num:11   318 ms
+[Info] > 14 : 44 : 8: 584  Play 
+[Info] > 14 : 44 : 46: 743  Seeking 
+[Info] > 14 : 44 : 46: 749  Load video buffer 
+[Info] > 14 : 44 : 46: 768  Seeked   25 ms
+[Info] > 14 : 44 : 46: 771  Load video buffer finished   22 ms
+[Info] > 14 : 46 : 0: 371  Pause 
+[Info] > 15 : 24 : 52: 410  Play 
+[Info] > 15 : 24 : 53: 213  Pause 
+[Info] > 17 : 51 : 6: 54  Play 
+[Info] > 17 : 51 : 7: 820  Pause 
+[Info] > 18 : 36 : 49: 231  Play 

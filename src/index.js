@@ -1441,37 +1441,54 @@ class Tplayer{
             addClass(e[i], "tp-suspend");
         }
     }
-    alert(w,h,t){
-        w=w||'auto'
-        h=h||'auto'
-        if (typeof t=='object') {
-             this.ele.alert_container.innerHTML=null
-             this.ele.alert_container.appendChild(t)
-        }else{
-            this.ele.alert_container.innerHTML=t 
-        }
-        this.ele.alert.style.display='block'
-        
-    }
-    screenshot(){
-        let c = document.createElement('canvas');
-        c.width = this.ele.tplayer.offsetWidth
-        c.height = this.ele.tplayer.offsetHeight
-        c.getContext('2d').drawImage(this.videoelearr[this.nowduan], 0, 0, c.width, c.height);
-        c.className='tp-screenshot-canvas'
-        let warp=document.createElement("div");
-        warp.innerHTML='<p>请右键保存截图</p>'
-        warp.appendChild(c)
-        this.alert(null,null,warp)
-    }
+    	alert(o) {
+		let ele=this.ele.alert
+		clearTimeout(ele.t)
+		ele.style.display='block'
+		o.w = o.w || 'auto'
+		o.h = o.h || 'auto'
+		o.time=o.time||1000
+		o.padding=o.padding||"20px"
+		o.opacity=o.opacity||1
+		if(o.btn){
+			this.ele.alert_ok.style.display='block'
+		}else{
+			this.ele.alert_ok.style.display='none'
+			ele.t=setTimeout(function(){
+				ele.style.display='none'
+			},o.time)
+		}
+		if(typeof o.t == 'object') {
+			this.ele.alert_container.innerHTML = null
+			this.ele.alert_container.appendChild(o.t)
+		} else {
+			this.ele.alert_container.innerHTML = o.t
+		}
+		this.ele.alert_container.style.padding=o.padding
+		ele.style.opacity=o.opacity
+		this.ele.alert.style.display = 'block'
+
+	}
+    screenshot() {
+		let c = document.createElement('canvas');
+		c.width = this.ele.tplayer.offsetWidth
+		c.height = this.ele.tplayer.offsetHeight
+		c.getContext('2d').drawImage(this.videoelearr[this.nowduan], 0, 0, c.width, c.height);
+		c.className = 'tp-screenshot-canvas'
+		let warp = document.createElement("div");
+		warp.innerHTML = '<p>请右键保存截图</p>'
+		warp.appendChild(c)
+		this.alert({t:warp,btn:true})
+	}
     changersound() {
-    	let s = parseInt(this.ele.tp_s.style.width) * .01;
-    	for (let i=0;i<this.videoelearr.length;i++) {
-           this.videoelearr[i].volume = s;
-        }
-        this.config.sound=s*100;
-        localStorage.setItem('tdconfig', JSON.stringify(this.config))
-    }
+		let s = parseInt(this.ele.tp_s.style.width) * .01;
+		for(let i = 0; i < this.videoelearr.length; i++) {
+			this.videoelearr[i].volume = s;
+		}
+		this.config.sound =parseInt(s * 100);
+		this.alert({t:'<div class="sound-ico"></div><span style="line-height:26px;font-size: 21px;">'+this.config.sound+"%</span>",time:1000,padding:'6px 10px',opacity:"0.9"})
+		localStorage.setItem('tdconfig', JSON.stringify(this.config))
+	}
    //菜单
     tp_menu(ev) {
     	let _this=this;

@@ -97,7 +97,6 @@ class Tplayer{
 		"replay":_this.$c(".replay")[0],
 		"copy":_this.$c(".tp-copy-warp")[0],
 		"copytext":_this.$c(".tp-copy-input")[0],
-		"css":_this.$c(".css")[0],
 		"alltime_phone":_this.$c(".tp-control-alltime-phone")[0],
 		"vloop":_this.$c('.tp-vloop')[0],
 		"setbox":_this.$c('.tp-video-set')[0],
@@ -118,6 +117,17 @@ class Tplayer{
 		"screenshot":_this.$c(".tp-screenshot")[0],
 		"definition":_this.$c(".tp-definition")[0]
 	}
+	if(document.querySelector('.tp-css')){
+		this.ele.css=document.querySelector('.tp-css')
+	}else{
+		 this.ele.css = document.createElement('style')
+         this.ele.css.type = 'text/css'
+         this.ele.css.className='tp-css'
+         document.body.appendChild(this.ele.css)
+        
+	}
+	
+	
     if (localStorage.getItem('tdconfig')&&localStorage.getItem('tdconfig')!="undefined") {
        this.config=JSON.parse(localStorage.getItem('tdconfig'))
        console.log('加载设置成功')

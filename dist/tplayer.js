@@ -1221,8 +1221,13 @@ var Tplayer = function () {
     }, {
         key: 'joinfull',
         value: function joinfull() {
+            var _this = this;
             this.ele.video_ratio.ratio = 4;
             this.ele.video_ratio.click();
+            setTimeout(function () {
+                _this.width = _this.ele.tplayer_main.offsetWidth;
+                _this.height = _this.ele.tplayer_main.offsetHeight;
+            }, 1000);
         }
     }, {
         key: 'changerconfig',

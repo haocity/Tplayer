@@ -256,7 +256,7 @@ class Tplayer{
     this.danmakuelement = this.ele.danmaku_warp
     this.sjc = 0
     this.dsq = 0
-    this.leftarr = {t:[],v:[],out:[],w:[]}
+    this.leftarr = {t:[],v:[],leaving:[],width:[]}
     this.toparr = []
     this.dmheight = 37
     this.dmplace = 1
@@ -287,8 +287,6 @@ class Tplayer{
   
     //样式
     this.send = function(text, color, wz, me,user,size) {
-        this.width = this.ele.tplayer_main.offsetWidth
-        this.height = this.ele.tplayer_main.offsetHeight
         let dm = document.createElement("div")
         dm.user=user
 	    dm.style.color = color
@@ -297,28 +295,44 @@ class Tplayer{
             dm.style.border = "1px solid #fff"
         }
         if (wz == 1) {
-            //left 弹幕
-            dm.appendChild(document.createTextNode(text))
-            dm.className = "danmaku tp-left"
-            if(this.config.danmakusize){
-               dm.style.transform = "translateX(-" + this.width/this.config.danmakusize + "px)" 
-            }else{
-                dm.style.transform = "translateX(-" + this.width + "px)"
-            }
-            this.ele.danmaku_warp.appendChild(dm)
-            let time = this.width / 100
-            let v=(dm.offsetWidth+this.width)/time
-            let outt=dm.offsetWidth/v
-            let dtop=this.getlefttop(v,dm.offsetWidth)
-            this.leftarr.out[dtop]=true
-            setTimeout(function(){
-                _this.leftarr.out[dtop]=false
-            },outt*1000+200)
-            
-            dm.style.top = dtop * this.dmheight + "px"
-            dm.addEventListener("webkitAnimationEnd",function(){_this.dmend(dm)})
-            dm.addEventListener("animationend",function(){_this.dmend(dm)})
-        } else if (wz == 2) {
+				//left 弹幕
+				dm.appendChild(document.createTextNode(text))
+				dm.className = "danmaku tp-left"
+				if(this.config.danmakusize) {
+					dm.style.transform = "translateX(-" + this.width / this.config.danmakusize + "px)"
+				} else {
+					dm.style.transform = "translateX(-" + this.width + "px)"
+				}
+				this.ele.danmaku_warp.appendChild(dm)
+				let twidth=dm.offsetWidth;
+				let time = this.width / 100
+				let v = ( twidth + this.width) / time
+				let dmtop = this.getlefttop(v,  twidth)
+				let leavetime =  twidth / v
+				this.leftarr.leaving[dmtop] = true
+				
+				
+				if((dmtop+1) * this.dmheight<this.height){
+					dm.style.display='block';
+					setTimeout(function() {
+						_this.leftarr.leaving[dmtop] = false
+					}, leavetime * 1000 + 200)
+					dm.style.top = dmtop * this.dmheight + "px"
+					
+					dm.addEventListener("webkitAnimationEnd", function() {
+						_this.dmend(dm)
+					})
+					dm.addEventListener("animationend", function() {
+						_this.dmend(dm)
+					})
+				}else{
+					this.leftarr.leaving[dmtop] = false
+					this.dmend(dm)
+					console.log('超出屏幕范围',this.height)
+				}
+
+				
+			} else if (wz == 2) {
             //顶部弹幕
             dm.appendChild(document.createTextNode(text))
 	        
@@ -405,7 +419,7 @@ class Tplayer{
                         _this.tiao(0)
                     }else{
                         _this.ele.end.style.display = 'block'
-                        _this.leftarr={t:[],v:[],out:[],w:[]}
+                        _this.leftarr={t:[],v:[],leaving:[],width:[]}
                         _this.toparr = []
                         let arr=_this.$c('.danmaku')
                         for (let i = arr.length - 1; i >= 0; i--) {
@@ -779,7 +793,8 @@ class Tplayer{
         let e = _this.ele.tp_video_warp;
         document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ? document.cancelFullScreen ? document.cancelFullScreen() :document.mozCancelFullScreen ? document.mozCancelFullScreen() :document.webkitCancelFullScreen && document.webkitCancelFullScreen() :e.requestFullscreen ? e.requestFullscreen() :e.mozRequestFullScreen ? e.mozRequestFullScreen() :e.webkitRequestFullscreen && e.webkitRequestFullscreen();
         setTimeout(function() {
-            _this.width = _this.ele.tplayer_main.offsetWidth;
+            _this.width = _this.ele.tplayer_main.offsetWidth
+            _this.height =_this.ele.tplayer_main.offsetHeight
             let e = _this.ele.danmaku_warp.getElementsByTagName("div");
             _this.dmspeend(_this.width / 100);
             for (let i = 0; i < e.length; i++) {
@@ -905,23 +920,35 @@ class Tplayer{
 
     })
 
-    document.addEventListener('webkitfullscreenchange',function(c){
+    document.addEventListener('webkitfullscreenchange',function(){
     	if(document.webkitFullscreenElement){
-    		console.log('进入全屏')
-            _this.joinfull()
+    		if(!_this.isfull){
+    			_this.isfull=true;
+    			console.log('进入全屏')
+            	_this.joinfull()
+    		}
     	}else{
-    		console.log('退出全屏')
-			_this.tpeixtfull()
+    		if(_this.isfull){
+    			_this.isfull=false
+    			console.log('退出全屏')
+				_this.tpeixtfull()
+    		}
     	}
     	
     });
-    document.addEventListener('mozfullscreenchange',function(c){
+    document.addEventListener('mozfullscreenchange',function(){
     	if(document.mozFullscreenElement){
-    		console.log('进入全屏')
-            _this.joinfull()
+    		if(!_this.isfull){
+    			_this.isfull=true;
+    			console.log('进入全屏')
+            	_this.joinfull()
+    		}
     	}else{
-    		console.log('退出全屏')
-    		_this.tpeixtfull()
+    		if(_this.isfull){
+    			_this.isfull=false
+    			console.log('退出全屏')
+				_this.tpeixtfull()
+    		}
     	}
     	
     });
@@ -1016,7 +1043,43 @@ class Tplayer{
 	     }
 	     this.ele.tp_spinner.style.display = "none";
 	}
-
+addacfundanmu(vid){
+		let _this = this;
+		fetch("http://danmu.aixifan.com/size/" + vid).then(response => response.json()).then(function(json) {
+			let max=Math.ceil(json[2]/2000);
+			let nowid=0;
+			let nowp=0;
+			for (let i = 1; i <= max; i++) {
+				fetch("http://danmu.aixifan.com/V3/" + vid+'/'+i+'/2000').then(response => response.json()).then(function(json) {
+					for (let x = 0; x < json.length; x++) {
+						for (let y = 0; y < json[x].length; y++) {
+							if(json[x][y]){
+								let o=new Object
+								o.text=json[x][y].m
+								let c=json[x][y].c.split(',')
+								o.time=parseInt(c[0]*10)
+								o.color='#'+(Array(6).join(0) + parseInt(c[1]).toString(16)).slice(-6)
+								o.place=c[2]
+								o.size=c[3]
+								o.user=c[4]
+								if (o.place!=1&&o.place!=7) {o.place=2}
+								o.id=nowid
+								nowid++
+								_this.data.push(o)
+								_this.nowdata = _this.data.slice(0);
+							}
+						}
+					}
+					nowp++
+					console.log('弹幕'+i+'段解析成功')
+					if(nowp==max){
+						console.log('弹幕添加完成')
+						_this.setint();
+					}
+				})
+			}
+		})
+}
   
   	adddanmaku(url) {
   		let _this=this;
@@ -1047,6 +1110,8 @@ class Tplayer{
 
       //弹幕速度
      dmspeend(v) {
+     	this.width = this.ele.tplayer_main.offsetWidth
+        this.height =this.ele.tplayer_main.offsetHeight
     	console.log('弹幕速度调整为'+v);
         this.config.v=v;
         this.changerconfig();
@@ -1244,12 +1309,13 @@ class Tplayer{
         }
     }
 	
-    getlefttop(v,ww) {
+    getlefttop(v,dmwidth) {
         let h
         let t=this.getnowtime()
         let allt=this.width/100
         for (let i = 0; i <= this.leftarr.t.length; i++) {
-            if (!this.leftarr.out[i]) {
+        	//leaving是否离开左侧屏幕 完全显示出来
+            if (!this.leftarr.leaving[i]) {
                  if (this.leftarr.v[i]>=v) {
                        h = i;
                        break;
@@ -1259,7 +1325,7 @@ class Tplayer{
                        let tt=this.width/100-t+this.leftarr.t[i];
                        let sz= tt*(v-this.leftarr.v[i]);
                        //间隔距离 这里-20是为了防止跟太紧
-                       let so=(t-this.leftarr.t[i])*this.leftarr.v[i]-this.leftarr.w[i]-20;
+                       let so=(t-this.leftarr.t[i])*this.leftarr.v[i]-this.leftarr.width[i]-20;
                        //console.log(`${i}弹幕会在上一弹幕尾部飞行${tt}秒 速度差${v-this.leftarr.v[i]} 会追上路程 ${sz}  判断时距离 ${so}`)
                        if (sz<so) {
                             h = i;
@@ -1274,8 +1340,8 @@ class Tplayer{
         }
         this.leftarr.t[h]=t;
         this.leftarr.v[h]=v;
-        this.leftarr.out[h]=true;
-        this.leftarr.w[h]=ww;
+        this.leftarr.leaving[h]=true;
+        this.leftarr.width[h]=dmwidth;
         return h;
     };
     gettoptop() {

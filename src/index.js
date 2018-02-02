@@ -1431,13 +1431,13 @@ addacfundanmu(vid){
 	showbar() {
     	if(!this.phone){
     		if(this.bar){
-	    		clearTimeout(_this.bar)
+	    		clearTimeout(this.bar)
 	    	}
     		if(this.ele.video_con.style.opacity!='1'){
     			this.ele.video_con.style.opacity = "1";
     		}
 	        let _this=this;
-	    	setTimeout(function(){
+	    	this.bar=setTimeout(function(){
 	    		_this.ele.video_con.style.opacity = "0";
 	    	},3000);
         }

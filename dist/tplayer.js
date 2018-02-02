@@ -1558,14 +1558,14 @@ var Tplayer = function () {
         value: function showbar() {
             if (!this.phone) {
                 if (this.bar) {
-                    clearTimeout(_this3.bar);
+                    clearTimeout(this.bar);
                 }
                 if (this.ele.video_con.style.opacity != '1') {
                     this.ele.video_con.style.opacity = "1";
                 }
-                var _this3 = this;
-                setTimeout(function () {
-                    _this3.ele.video_con.style.opacity = "0";
+                var _this = this;
+                this.bar = setTimeout(function () {
+                    _this.ele.video_con.style.opacity = "0";
                 }, 3000);
             }
         }

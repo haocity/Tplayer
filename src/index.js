@@ -355,40 +355,62 @@ class Tplayer{
                 _this.danmakuhide(e, dtop)
             }, 5e3)
         }else if(wz==7){
-        	console.log('高级弹幕');
-        	let tj=JSON.parse(text);
-        	console.log(tj)
-        	//高级弹幕 test 
-        	//{"e":0.52,"w":{"b":false,"l":[[1,16777215,1,2.7,2.7,5,3,false,false],[2,0,0,16777215,0.5,32,32,2,2,false,false,false]],"f":"黑体"},"l":5.551115123125783e-17,"f":0.52,"z":[{"t":0,"g":0.8,"l":0.2,"y":930,"f":0.8},{"t":1,"g":0.52,"l":0.2,"y":940,"f":0.52},{"l":1.3099999999999998},{"c":16776960,"x":-2,"t":0,"l":0.3,"v":2}],"t":0,"a":0,"n":"但是那样不行哦","ver":2,"b":false,"c":3,"p":{"x":35,"y":950},"ovph":false}
-        	 dm.className = "danmaku danmaku-ad";
-        	 if(tj.w){
-        	 	dm.style.fontFamily=tj.w.f;
-        	 }
-        	 if(tj.n){
-        	 	dm.appendChild(document.createTextNode(tj.n))
-        	 }
-        	 if(tj.p){
-        	 	dm.style.right=(1000-tj.p.x)/10+'%';
-        	 	dm.style.bottom=(1000-tj.p.y)/10+'%';
-        	 }
-        	 if(tj.a){
-        	 	dm.style.opacity=tj.a;
-        	 }
-        	 let e = this.ele.danmaku_warp.appendChild(dm);
-        	 
-        	 if(!tj.l||tj.l.toFixed(2)==0){
-        	 	//时间如果为0
-        	 	if(tj.z){
-        	 		
-        	 	}
-        	 	tj.l=2;
-        	 	
-        	 }
-        	
-        	 setTimeout(function(){
-        	 	 _this.danmakuhide(e)
-        	 },tj.l*1000)
-        }
+				let tj = JSON.parse(text);
+				console.log('高级弹幕', tj);
+				if(!tj.l || tj.l.toFixed(2) == 0) {
+					//时间如果为0
+					if(tj.z) {
+						//console.log('z存在', tj.z);
+						for(var i = 0; i < tj.z.length; i++) {
+							if(tj.l <= tj.z[i].l) {
+								tj.l = tj.z[i].l
+								tj.maxi = i;
+							}
+						}
+
+						for(var i = 0; i <= tj.maxi; i++) {
+							if(tj.z[i].x) {
+								//console.log('x2存在',tj.z[i].x)
+								tj.p.x = tj.z[i].x
+							}
+							if(tj.z[i].y) {
+								//console.log('y2存在',tj.z[i].y)
+								tj.p.x = tj.z[i].y
+							}
+							if(tj.z[i].t) {
+								console.log('透明度存在', tj.z[i].t)
+								tj.a = tj.z[i].t
+							}
+
+						}
+					} else {
+						tj.l = 2;
+					}
+
+				}
+
+				//高级弹幕 test 
+				//{"e":0.52,"w":{"b":false,"l":[[1,16777215,1,2.7,2.7,5,3,false,false],[2,0,0,16777215,0.5,32,32,2,2,false,false,false]],"f":"黑体"},"l":5.551115123125783e-17,"f":0.52,"z":[{"t":0,"g":0.8,"l":0.2,"y":930,"f":0.8},{"t":1,"g":0.52,"l":0.2,"y":940,"f":0.52},{"l":1.3099999999999998},{"c":16776960,"x":-2,"t":0,"l":0.3,"v":2}],"t":0,"a":0,"n":"但是那样不行哦","ver":2,"b":false,"c":3,"p":{"x":35,"y":950},"ovph":false}
+				dm.className = "danmaku danmaku-ad";
+				if(tj.w) {
+					dm.style.fontFamily = tj.w.f;
+				}
+				if(tj.n) {
+					dm.appendChild(document.createTextNode(tj.n))
+				}
+				if(tj.p) {
+					dm.style.right = (1000 - tj.p.x) / 10 + '%';
+					dm.style.bottom = (1000 - tj.p.y) / 10 + '%';
+				}
+				if(tj.a) {
+					dm.style.opacity = tj.a;
+				}
+				let e = this.ele.danmaku_warp.appendChild(dm);
+
+				setTimeout(function() {
+					_this.danmakuhide(e)
+				}, tj.l * 1000 - 20)
+			}
     }
    
 
@@ -1090,7 +1112,35 @@ addacfundanmu(vid){
 			}
 		})
 }
-  
+addonedanmaku(url) {
+	let _this = this;
+  	fetch(url).then(response => response.json()).then(function(json) {
+  		let nowid=0;
+  		for(let x = 0; x < json.length; x++) {
+  			for(let y = 0; y < json[x].length; y++) {
+  				if(json[x][y]) {
+  					let o = new Object
+  					o.text = json[x][y].m
+  					let c = json[x][y].c.split(',')
+  					o.time = parseInt(c[0] * 10)
+  					o.color = '#' + (Array(6).join(0) + parseInt(c[1]).toString(16)).slice(-6)
+  					o.place = c[2]
+  					o.size = c[3]
+  					o.user = c[4]
+  					if(o.place != 1 && o.place != 7) {
+  						o.place = 2
+  					}
+  					o.id = nowid
+  					nowid++
+  					_this.data.push(o)
+  					_this.nowdata = _this.data.slice(0);
+  				}
+  			}
+  		}
+  		console.log('弹幕添加完成')
+  		_this.setint();
+  	})
+  }
   	adddanmaku(url) {
   		let _this=this;
         let xmlhttp = new XMLHttpRequest();

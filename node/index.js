@@ -45,10 +45,9 @@ http.createServer(function(req, res) {
 			'Content-Type': 'application/json; charset=utf8',
 			'Access-Control-Allow-Origin': '*'
 		});
-		var now = new Date();
+		let time = new Date();
 		if(p.id && p.time && p.text && p.color && p.place) { // 输出提交的数据
 			db = mysql.createConnection(dbconfig);
-			let time = new Date();
 			db.query('CREATE TABLE IF NOT EXISTS `' + p.id + '` (`id` int(4) NOT NULL AUTO_INCREMENT, `time` int(6) NOT NULL,`text` varchar(200) NOT NULL,`color` varchar(20) NOT NULL,`place` int(1) NOT NULL,PRIMARY KEY (`id`)) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT="Tplayer"');
 			var sql = "INSERT INTO `danmaku`.`" + parseInt(p.id) + "` (`id`, `time`, `text`, `color`, `place`) VALUES (NULL, " + db.escape(p.time) + ", " + db.escape(p.text) + ", " + db.escape(p.color) + ", " + db.escape(p.place) + ")";
 			console.log(sql);

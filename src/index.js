@@ -150,8 +150,8 @@ class Tplayer{
    			li.v=src[0][i].v
    			li.vsrc=src[0][i].m3u8
    			li.addEventListener('click',function(){
-   				console.log('清晰度切换'+this.v);
-   				 _this.pause();
+   				console.log('正在为你切换清晰度切换'+this.v);
+   				this.alert({t:'<span style="line-height:26px;font-size: 21px;">正在为你切换清晰度..</span>',time:3000,padding:'6px 10px',opacity:"0.9"})
    				_this.ele.definition.querySelector('span').innerHTML=_this.Definition(this.v)
    				let time=_this.Element.currentTime
    				let hls = new Hls();
@@ -722,8 +722,8 @@ class Tplayer{
    this.ele.tp_s_w.addEventListener("click", function(event) {
         let e = event || window.event || arguments.callee.caller.arguments[0];
         let xbl = _this.show_coords(e, this).xbl * 100;
-         _this.ele.tp_s.style.width = xbl + "%";
-         _this.changersound();
+        _this.ele.tp_s.style.width = xbl + "%";
+        _this.changersound();
     }, false);
 
     //行走器
@@ -1590,7 +1590,7 @@ addonedanmaku(url) {
             addClass(e[i], "tp-suspend");
         }
     }
-    	alert(o) {
+    alert(o) {
 		let ele=this.ele.alert
 		clearTimeout(ele.t)
 		ele.style.display='block'

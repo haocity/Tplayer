@@ -324,7 +324,7 @@ class Tplayer{
 				this.leftarr.leaving[dmtop] = true
 				
 				
-				if((dmtop+1) * this.dmheight<this.height){
+				if((dmtop+1) * this.dmheight*this.config.danmakusize<this.height){
 					dm.style.display='block';
 					setTimeout(function() {
 						_this.leftarr.leaving[dmtop] = false
@@ -834,7 +834,29 @@ class Tplayer{
     
     this.ele.full.addEventListener("click", function() {
         let e = _this.ele.tp_video_warp;
-        document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ? document.cancelFullScreen ? document.cancelFullScreen() :document.mozCancelFullScreen ? document.mozCancelFullScreen() :document.webkitCancelFullScreen && document.webkitCancelFullScreen() :e.requestFullscreen ? e.requestFullscreen() :e.mozRequestFullScreen ? e.mozRequestFullScreen() :e.webkitRequestFullscreen && e.webkitRequestFullscreen();
+        if(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement) {
+        	if(document.cancelFullScreen) {
+        		document.cancelFullScreen();
+        	} else if(document.mozCancelFullScreen) {
+        		document.mozCancelFullScreen();
+        	} else if(document.webkitCancelFullScreen) {
+        		document.webkitCancelFullScreen();
+        	}
+        } else {
+        	if(e.requestFullscreen) {
+        		e.requestFullscreen();
+        	} else if(e.mozRequestFullScreen) {
+        		e.mozRequestFullScreen();
+        	} else if(e.webkitRequestFullscreen) {
+        		e.webkitRequestFullscreen();
+        	}
+        }
+        
+        
+        //document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ? document.cancelFullScreen ? document.cancelFullScreen() :document.mozCancelFullScreen ? document.mozCancelFullScreen() :document.webkitCancelFullScreen && document.webkitCancelFullScreen() :e.requestFullscreen ? e.requestFullscreen() :e.mozRequestFullScreen ? e.mozRequestFullScreen() :e.webkitRequestFullscreen && e.webkitRequestFullscreen();
+         
+        
+           
         setTimeout(function() {
             _this.width = _this.ele.tplayer_main.offsetWidth
             _this.height =_this.ele.tplayer_main.offsetHeight
@@ -1000,7 +1022,6 @@ class Tplayer{
          let ev = event || window.event || arguments.callee.caller.arguments[0];
             if (ev.button == 0) {
             	if(_this.istouch!=1){
- 
 	                //如果左按键
 	                if (_this.ele.tp_rightmenu.style.display == "block") {
 	                    _this.ele.tp_rightmenu.style.display = "none";

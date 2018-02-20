@@ -180,6 +180,7 @@ section.player{
 .tp-text {
 	width: 100%;
     line-height: 36px;
+    height: 36px;
 	border: none;
 	text-align: center;
 	background-color: transparent;
@@ -396,6 +397,7 @@ section.player{
 	display: inline-block;
 	color: #fff;
 	top: -7px;
+	vertical-align: bottom;
 }
 .tp-s-tranger {
   position: relative;
@@ -560,6 +562,7 @@ section.player{
 	cursor: pointer;
 	fill: #fff;
 }
+
 :-webkit-full-screen .tp-video-main {
 	height: 100% !important;
 	width: 100% !important;

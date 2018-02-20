@@ -1209,7 +1209,7 @@ addonedanmaku(url) {
         	shadow=`text-shadow: rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) -1px 0px 1px;`
         }
         let t=this.options.Element
-        this.ele.css.innerText = `${t} .tp-left {animation: dmleft  ${this.config.v}s linear;-webkit-animation: dmleft ${this.config.v}s linear;}${t} .danmaku-warp{font-weight:${this.config.dmweight};transform:scale(${this.config.danmakusize});-webkit-transform:scale(${this.config.danmakusize});-moz-transform:scale(${this.config.danmakusize});width:${100/this.config.danmakusize}%;height:${100/this.config.danmakusize}%;opacity:${this.config.danmakuo}}${t} .tp-video-main>.danmaku-warp>.danmaku{${shadow}}`;
+        this.ele.css.innerHTML = `${t} .tp-left {animation: dmleft  ${this.config.v}s linear;-webkit-animation: dmleft ${this.config.v}s linear;}${t} .danmaku-warp{font-weight:${this.config.dmweight};transform:scale(${this.config.danmakusize});-webkit-transform:scale(${this.config.danmakusize});-moz-transform:scale(${this.config.danmakusize});width:${100/this.config.danmakusize}%;height:${100/this.config.danmakusize}%;opacity:${this.config.danmakuo}}${t} .tp-video-main>.danmaku-warp>.danmaku{${shadow}}`;
         let earr= this.$c('.tp-left');
         for (let i = 0; i < earr.length; i++) {
             earr[i].style.transform = "translateX(-" + this.width/this.config.danmakusize + "px)";

@@ -415,7 +415,7 @@ class Tplayer{
 					tj.f=tj.f||0;
 					tj.rx=tj.rx||0;
 					tj.k=tj.k||0;
-					dm.style.transform=`scale(${tj.e},${tj.f}) skew(${tj.rx}deg,${tj.k}deg) translateX(50%)`
+					dm.style.transform=`scale(${tj.e},${tj.f}) skew(${tj.rx}deg,${tj.k}deg) translate(50%,50%)`
 				}
 				
 				let e = this.ele.danmaku_warp.appendChild(dm);

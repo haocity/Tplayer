@@ -275,10 +275,10 @@ class Tplayer{
 }   
     
  init() {
- 	let _this=this;
- 	
+ 	let _this=this
+ 	this.nowdm=[]
     this.Element.addEventListener("canplaythrough", function(){
-			console.log('加载完成 可以进行播放');
+			console.log('加载完成 可以进行播放')
 	});
     this.videoelearr = this.ele.tplayer.getElementsByTagName("video")
     this.videotimearr = []
@@ -290,6 +290,8 @@ class Tplayer{
     //样式
     this.send = function(text, color, wz, me,user,size) {
         let dm = document.createElement("div")
+        let videotime=this.getnowtime()
+        let inttime = parseInt(videotime * 10)
         dm.user=user
 	    dm.style.color = color
 	    dm.style.fontSize=size+'px'
@@ -313,9 +315,13 @@ class Tplayer{
 				
 				if((dmtop+1) * this.dmheight*this.config.danmakusize<this.height){
 					dm.style.display='block';
-					setTimeout(function() {
+					
+					
+					//console.log('leavetime',leavetime)
+					this.nowdm.push({time:inttime+leavetime.toFixed(1)*10,call:function() {
 						_this.leftarr.leaving[dmtop] = false
-					}, leavetime * 1000 + 200)
+					}})
+					
 					dm.style.top = dmtop * this.dmheight + "px"
 					
 					dm.addEventListener("webkitAnimationEnd", function() {
@@ -327,7 +333,7 @@ class Tplayer{
 				}else{
 					this.leftarr.leaving[dmtop] = false
 					this.dmend(dm)
-					console.log('超出屏幕范围',this.height)
+					console.log('超出屏幕范围')
 				}
 
 				
@@ -340,9 +346,8 @@ class Tplayer{
             dm.style.top = dtop * this.dmheight + "px"
             this.toparr[dtop] = 1
             let e = this.ele.danmaku_warp.appendChild(dm)
-            setTimeout(function() {
-                _this.danmakuhide(e, dtop)
-            }, 5e3)
+            this.nowdm.push({time:inttime+50,call:function() {_this.danmakuhide(e, dtop)},g:true})
+			
         }else if(wz==7){
 				let tj = JSON.parse(text);
 				console.log('高级弹幕', tj);
@@ -355,7 +360,7 @@ class Tplayer{
 						//console.log('z存在', tj.z);
 						for (let i = 0; i < tj.z.length; i++) {
 							let a=i;
-							setTimeout(function(){
+							this.nowdm.push({"call":function() {
 								dm.style.transition="all "+tj.z[a].l+'s';
 								//console.log('到达动画时间',a,dm);
 								setTimeout(function(){
@@ -375,10 +380,10 @@ class Tplayer{
 										tj.z[a].g=tj.z[a].g||0;
 										tj.z[a].rx=tj.z[a].rx||0;
 										tj.z[a].e=tj.z[a].e||0;
-										dm.style.transform=`scale(${tj.z[a].f},${tj.z[a].g}) skew(${tj.z[a].rx}deg,${tj.z[a].e}deg) translateX(50%)`
+										dm.style.transform=`scale(${tj.z[a].f},${tj.z[a].g}) skew(${tj.z[a].rx}deg,${tj.z[a].e}deg) translate(50%,50%)`
 									}
-								},0);
-							},nowtime*1000);
+								},0)
+							},"time":inttime+nowtime.toFixed(1)*10,g:true})
 							if(tj.z[i].l){
 								nowtime=nowtime+tj.z[i].l;
 							}
@@ -414,9 +419,9 @@ class Tplayer{
 				}
 				
 				let e = this.ele.danmaku_warp.appendChild(dm);
-				setTimeout(function() {
+				this.nowdm.push({"call":function() {
 					_this.danmakuhide(e)
-				}, nowtime * 1000 - 10)
+				} ,"time":inttime+nowtime.toFixed(1)*10,g:true})
 			}
     }
    
@@ -728,19 +733,21 @@ class Tplayer{
    
     
     //定时器二 1s执行一次
-    setInterval(function() {
-    	let videotime=_this.getnowtime(videotime);
+    setInterval(()=>{
+    	this.width = this.ele.tplayer_main.offsetWidth
+		this.height =this.ele.tplayer_main.offsetHeight
+    	let videotime=this.getnowtime(videotime);
         //当前段播放将要结束 缓存下一段
-        let temp = _this.videoelearr[_this.nowduan].currentTime;
-        if (temp + 20 >= _this.videotimearr[_this.nowduan]) {
-            if (_this.videoelearr[_this.nowduan + 1]) {
-            	if (_this.videoelearr[_this.nowduan + 1].preload != "auto") {
-	                _this.videoelearr[_this.nowduan + 1].preload = "auto";
-	                console.log("当前正在播放第" + _this.nowduan + "段，正在加载下一段");
+        let temp = _this.videoelearr[this.nowduan].currentTime;
+        if (temp + 20 >= _this.videotimearr[this.nowduan]) {
+            if (this.videoelearr[this.nowduan + 1]) {
+            	if (this.videoelearr[this.nowduan + 1].preload != "auto") {
+	                this.videoelearr[this.nowduan + 1].preload = "auto";
+	                console.log("当前正在播放第" + this.nowduan + "段，正在加载下一段");
 	            }
             }
         }
-        _this.ele.nowtime.innerHTML = _this.getvideotime(videotime).m + ":" + _this.getvideotime(videotime).s;
+        this.ele.nowtime.innerHTML = this.getvideotime(videotime).m + ":" + this.getvideotime(videotime).s;
         
     }, 1e3);
     
@@ -1162,20 +1169,19 @@ addonedanmaku(url) {
     	let isfull = document.fullscreenElement || document.mozFullScreenElement ||document.webkitFullscreenElement
     	if(isfull) {
     		if(this.ele.tplayer_main==isfull){
-				console.log('进入全屏')
+				console.log('进入全屏', this.height)
 				this.ele.video_ratio.ratio=4
 		        this.ele.video_ratio.click()
 		        this.width = this.ele.tplayer_main.offsetWidth
 		        this.height =this.ele.tplayer_main.offsetHeight
 		        let e = this.ele.danmaku_warp.getElementsByTagName("div")
-		        this.width = this.ele.tplayer_main.offsetWidth
-				this.height = this.ele.tplayer_main.offsetHeight
 				for (let i = 0; i < e.length; i++) {
 	            	if (hasClass(e[i], "tp-left")) {
 	                	e[i].style.transform = "translateX(-" + this.width/this.config.danmakusize + "px)";
 	           		}
 	        	}
 				this.dmspeend(this.width / 100)
+			
 			}
 		} else {
 			console.log('退出全屏')
@@ -1353,18 +1359,13 @@ addonedanmaku(url) {
     }
 	
 	danmakuhide(e, topid) {
-		let _this=this;
-        if (this.Element.paused) {
-            setTimeout(function() {
-                _this.danmakuhide(e, topid)
-            }, this.width * 10 + 1e3)
-        } else {
-            e.parentNode.removeChild(e);
-            if(topid!==undefined){
-            	this.toparr[topid] = 0
-            }
-        }
-    }
+		if(e&&e.parentNode){
+			e.parentNode.removeChild(e)
+		}
+		if(topid !== undefined) {
+			this.toparr[topid] = 0
+		}
+	}
 	
     getlefttop(v,dmwidth) {
         let h
@@ -1496,6 +1497,13 @@ addonedanmaku(url) {
                         delete this.nowdata[i];
                     }
                 }
+            }
+            //弹幕定时器
+            for (var i = 0; i < this.nowdm.length; i++) {
+            	 if (this.nowdm[i]&&this.nowdm[i].time&&this.nowdm[i].time == inttime) {
+            	 	this.nowdm[i].call()
+            	 	delete this.nowdm[i];
+            	 }
             }
         }
     }
@@ -1696,7 +1704,20 @@ addonedanmaku(url) {
         if (this.ele.video_control_play.display != "none") {
             this.play();
         }
-
+        //清空top和高级弹幕
+//      let a=this.ele.danmaku_warp.querySelectorAll('.danmaku-ad')
+//      for (let i = 0; i < a.length; i++) {
+//      	a[i].parentNode.removeChild(a[i])
+//      }
+//      let b=this.ele.danmaku_warp.querySelectorAll('.tp-top')
+//		for (let i = 0; i < b.length; i++) {
+//      	b[i].parentNode.removeChild(b[i])
+//      }
+		for (let i = 0; i < this.nowdm.length; i++) {
+			if(this.nowdm[i]&&this.nowdm[i].call){
+				this.nowdm[i].call()
+			}
+		}
     }
     
 	

@@ -220,7 +220,7 @@ class Tplayer{
 	    for (let i = 0; i < this.videosrcarr.length; i++) {
 	        let video = document.createElement("video")
 	         if (this.options.video.type == "hls") {
-	         	if (hls&&hls.isSupported()) {
+	         	if (Hls&&Hls.isSupported()) {
 		         	console.log('这是hls视频 启动加载');
 		         	let hls = new Hls();
 					hls.loadSource(this.videosrcarr[i]);

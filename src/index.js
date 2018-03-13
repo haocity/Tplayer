@@ -1500,7 +1500,7 @@ addonedanmaku(url) {
             }
             //弹幕定时器
             for (var i = 0; i < this.nowdm.length; i++) {
-            	 if (this.nowdm[i]&&this.nowdm[i].time&&this.nowdm[i].time == inttime) {
+            	 if (this.nowdm[i]&&this.nowdm[i].time&&this.nowdm[i].time <= inttime) {
             	 	this.nowdm[i].call()
             	 	delete this.nowdm[i];
             	 }

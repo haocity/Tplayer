@@ -231,7 +231,9 @@ class Tplayer{
 				     		this.play();
 				     	}
 				  	});
-			  	}else{
+			  	}else if(video.canPlayType('application/vnd.apple.mpegurl')) {
+					video.src = this.videosrcarr[i]
+				}else{
 			  		console.error("请预先加载hls.js")
 			  	}
 	        }else {

@@ -212,6 +212,8 @@ class Tplayer{
             this.Element = video
             video.className = "tp-video"
             video.preload = "auto"
+            video.setAttribute('webkit-playsinline','')
+            video.setAttribute('playsinline','')
             this.ele.tplayer.appendChild(video)
          }else{
         	console.error("请预先加载flv.js")
@@ -219,6 +221,9 @@ class Tplayer{
     }else{
 	    for (let i = 0; i < this.videosrcarr.length; i++) {
 	        let video = document.createElement("video")
+	        video.setAttribute('webkit-playsinline','')
+            video.setAttribute('playsinline','')
+            video.className = "tp-video"
 	         if (this.options.video.type == "hls") {
 	         	if (Hls&&Hls.isSupported()) {
 		         	console.log('这是hls视频 启动加载');
@@ -239,7 +244,7 @@ class Tplayer{
 	        }else {
 	        	video.src = this.videosrcarr[i]
 	        }
-	        video.className = "tp-video"
+	        
 	        if (i != 0) {
 	            video.style.display = "none"
 	            video.preload = "meta"

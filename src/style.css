@@ -1,49 +1,4 @@
-/*acfun*/
-.vdown {
-    width: 110px;
-    margin: 0;
-    padding: 20px 10px;
-    cursor: pointer;
-    position: relative;
-}
 
-section.crumb .vdown .ico {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-section.player{
-	position: relative;
-	min-height:653px;
-}
-#vdown {
-	position: absolute;
-	z-index: 5;
-	width: 300px;
-	background: #fff;
-	border: 1px solid #eee;
-	border-radius: 5px;
-	margin-left: -150px;
-	left: 160px;
-	padding: 20px 10px;
-	box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-	background-color: #fff;
-	overflow: hidden;
-}
-.down-btn, .down-btn>a {
-	color: #fff;
-	text-decoration: none;
-}
-.down-btn {
-	display: inline-block;
-	margin: 10px 5px;
-	padding: 5px 10px;
-	border-radius: 5px;
-	background-color: #d07878;
-	box-shadow: 1px 1px 5px #b5b5b5;
-	text-align: center;
-}
 /*player*/
 .tplayer{
 	height: 100%;
@@ -70,6 +25,17 @@ section.player{
 }
 .tp-video-warp{
 	font-size: 14px;
+}
+.tp-tip{
+    display: none;
+    position: fixed;
+	left: 145px;
+	background-color: #5f5f5f7d;
+	line-height: 18px;
+	padding: 4px 6px;
+	top: -9px;
+	border-radius: 4px;
+	/*  transition: left 0.1s;*/
 }
 .video-end {
 	position: absolute;

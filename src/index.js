@@ -772,7 +772,7 @@ class Tplayer{
     	if(this.last-e.x>4||this.last-e.x<-4){
     		
 			_this.ele.tip.style.left=e.x-22+'px';
-			_this.ele.tip.style.top=this.t-20-document.documentElement.scrollTop+'px';
+			_this.ele.tip.style.top=this.t-27-document.documentElement.scrollTop+'px';
 			
 			var xbl =(e.x-this.w2)/this.w;
 			var videotime = _this.alltime*xbl;
@@ -1242,6 +1242,7 @@ addonedanmaku(url) {
 			}
 		} else {
 			console.log('退出全屏')
+			this.ele.tranger.last=false
 	    	this.width = this.ele.tplayer.offsetWidth
 	    	this.dmspeend(this.width / 100)
 	        let e = this.ele.danmaku_warp.getElementsByTagName("div")

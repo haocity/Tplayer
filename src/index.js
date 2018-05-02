@@ -1535,6 +1535,7 @@ addonedanmaku(url) {
 	    	}
     		if(this.ele.video_con.style.opacity!='1'){
     			this.ele.video_con.style.opacity = "1";
+					
     		}
 	        let _this=this;
 	    	this.bar=setTimeout(function(){
